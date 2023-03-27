@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "870317025836",
+    "project_id": "dreamstar-1d71c",
+    "storage_bucket": "dreamstar-1d71c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870317025836:android:af25906e537adec303bf89",
+        "android_client_info": {
+          "package_name": "dev.dada.dream_star"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "870317025836-9ddivnculsfq1vjn3m0unsut2nou9ohr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDElQP0rzRIa6395oR46zYinFKVHcLufmE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "870317025836-9ddivnculsfq1vjn3m0unsut2nou9ohr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
