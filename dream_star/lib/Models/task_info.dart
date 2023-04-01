@@ -5,16 +5,28 @@ enum TaskStatus {
 }
 
 class TaskInfo {
-  String title;
-  String description;
-  int cost;
-  TaskStatus status;
+  final String title;
+  final String description;
+  final int cost;
+  final TaskStatus status;
   Color lineColor;
   bool overdue = false;
-  String? childName;
+  final String childName;
+  final String childId;
   DateTime? deadline;
   int? penalty;
 
 
-  TaskInfo(this.title, this.description, this.cost, this.status, this.lineColor, [this.childName, this.deadline, this.penalty]);
+  TaskInfo(
+      this.title,
+      this.description,
+      this.cost,
+      this.status,
+      this.lineColor,
+      this.childName,
+      this.childId,
+      [
+        this.deadline,
+        this.penalty
+      ]);
 }
