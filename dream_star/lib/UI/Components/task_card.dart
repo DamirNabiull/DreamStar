@@ -105,7 +105,6 @@ class TaskCard extends StatelessWidget {
 
   Widget buildCostLabel() {
     return SizedBox(
-        width: 25.0,
         child: Row(
           children: [
             Text(getCost().toString(),
