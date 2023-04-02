@@ -1,5 +1,6 @@
 import 'package:dream_star/Models/task_info.dart';
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 import '../../Models/app_side.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -46,7 +47,7 @@ class TaskCard extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                buildOverDue(),
+                                buildOverdue(),
                                 const SizedBox(height: 2),
                                 buildChildName()
                               ],
@@ -89,13 +90,13 @@ class TaskCard extends StatelessWidget {
     );
   }
 
-  Widget buildOverDue() {
+  Widget buildOverdue() {
     return taskInfo.overdue
-        ? const SizedBox(
+        ? SizedBox(
             height: 14.0,
             child: Text(
-              "Задача просрочена",
-              style: TextStyle(
+              'overdue-text'.i18n(),
+              style: const TextStyle(
                   color: Colors.red,
                   fontWeight: FontWeight.w500,
                   fontSize: 12.0),
@@ -106,20 +107,20 @@ class TaskCard extends StatelessWidget {
   Widget buildCostLabel() {
     return SizedBox(
         child: Row(
-          children: [
-            Text(getCost().toString(),
-                style: TextStyle(
-                    color:
-                        taskInfo.overdue ? Colors.red : Colors.deepPurpleAccent,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12.0)),
-            const SizedBox(width: 5.0),
-            buildStar()
-          ],
-        ));
+      children: [
+        Text(getCost().toString(),
+            style: TextStyle(
+                color: taskInfo.overdue ? Colors.red : Colors.deepPurpleAccent,
+                fontWeight: FontWeight.w500,
+                fontSize: 12.0)),
+        const SizedBox(width: 5.0),
+        buildStar()
+      ],
+    ));
   }
+
   int getCost() {
-    if (taskInfo.penalty == null){
+    if (taskInfo.penalty == null) {
       return taskInfo.cost;
     } else {
       return taskInfo.cost - taskInfo.penalty!;
@@ -159,7 +160,7 @@ class TaskCard extends StatelessWidget {
     return appSide == AppSide.parent
         ? RichText(
             text: TextSpan(
-                text: "Ребёнок: ",
+                text: 'child-text'.i18n(),
                 style: const TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.w400,
@@ -208,9 +209,9 @@ class TaskCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.0),
         ),
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-        child: const Text(
-          "Отправить на проверку",
-          style: TextStyle(
+        child: Text(
+          'progress-button-title'.i18n(),
+          style: const TextStyle(
               color: Colors.black, fontWeight: FontWeight.w500, fontSize: 12.0),
         ),
       ),
@@ -226,9 +227,9 @@ class TaskCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.0),
         ),
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-        child: const Text(
-          "Ожидает проверки",
-          style: TextStyle(
+        child: Text(
+          'review-button-title'.i18n(),
+          style: const TextStyle(
               color: Colors.black, fontWeight: FontWeight.w500, fontSize: 12.0),
         ),
       ),
@@ -244,9 +245,9 @@ class TaskCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.0),
         ),
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-        child: const Text(
-          "Принять задачу",
-          style: TextStyle(
+        child: Text(
+          'pass-button-title'.i18n(),
+          style: const TextStyle(
               color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12.0),
         ),
       ),

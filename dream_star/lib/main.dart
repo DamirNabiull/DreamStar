@@ -1,6 +1,10 @@
+import 'package:dream_star/Models/app_side.dart';
+import 'package:dream_star/UI/Components/task_card.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:localization/localization.dart';
 
 import 'Clients/providers.dart';
 import 'Models/app_side.dart';
@@ -20,8 +24,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    LocalJsonLocalization.delegate.directories = ['lib/i18n'];
     return MaterialApp(
       theme: customTheme,
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        LocalJsonLocalization.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en', 'US'),
+        Locale('ru', 'RUS'),
+      ],
       home: const HomeView(),
     );
   }
