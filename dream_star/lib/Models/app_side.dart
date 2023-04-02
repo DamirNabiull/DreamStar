@@ -1,0 +1,3 @@
+enum AppSide {
+  child, parent;
+}
