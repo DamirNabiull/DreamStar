@@ -21,15 +21,23 @@ class FireStoreClient {
   }
 
   void createTask(TaskDTO taskDTO) async {
-    final docRef = _tasksCollection.doc();
-    taskDTO.id = docRef.id;
+    final taskRef = _tasksCollection.doc();
+    taskDTO.id = taskRef.id;
 
-    await docRef.set(taskDTO.toJson());
+    await taskRef.set(taskDTO.toJson());
   }
 
-  Stream<List<TaskInfo>> getTasks(List<String> childIds) {
-    return _tasksCollection.where("childId", whereIn: childIds).snapshots().map(
-        (snapshot) => snapshot.docs
+  void updateTaskStatus(String taskId, TaskStatus status) async {
+    final taskRef = _tasksCollection.doc(taskId);
+    taskRef.update({"status": status.toString()});
+  }
+
+  Stream<List<TaskInfo>> getTasks(List<String> childIds, TaskStatus status) {
+    return _tasksCollection
+        .where("childId", whereIn: childIds)
+        .where("status", isEqualTo: status.toString())
+        .snapshots()
+        .map((snapshot) => snapshot.docs
             .map((doc) =>
                 _mapper.taskDTOToTaskInfo(TaskDTO.fromJson(doc.data())))
             .toList());

@@ -7,14 +7,15 @@ part of 'task_dto.dart';
 // **************************************************************************
 
 TaskDTO _$TaskDTOFromJson(Map<String, dynamic> json) => TaskDTO(
-      childId: json['childId'] as String,
-      childName: json['childName'] as String,
-      title: json['title'] as String,
-      description: json['description'] as String,
-      status: json['status'] as String,
-      cost: json['cost'] as int,
-      color: json['color'] as String,
-    )..id = json['id'] as String;
+      json['childId'] as String,
+      json['childName'] as String,
+      json['title'] as String,
+      json['description'] as String,
+      json['status'] as String,
+      json['cost'] as int,
+      json['color'] as String,
+      json['id'] as String? ?? "-1",
+    );
 
 Map<String, dynamic> _$TaskDTOToJson(TaskDTO instance) => <String, dynamic>{
       'id': instance.id,
