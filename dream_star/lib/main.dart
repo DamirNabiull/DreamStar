@@ -6,15 +6,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:localization/localization.dart';
 
+import 'firebase_options.dart';
+
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
 
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform
+  );
 
   // This widget is the root of your application.
   @override
@@ -32,7 +37,18 @@ class MyApp extends StatelessWidget {
         Locale('en', 'US'),
         Locale('ru', 'RUS'),
       ],
-      home: const TasksMainScreen(),
+      home: FutureBuilder(
+        future: _initialization,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            print(snapshot.error.toString());
+          }
+          if (snapshot.connectionState == ConnectionState.done) {
+            return TasksMainScreen();
+          }
+          return const CircularProgressIndicator();
+        },
+      ),
     );
   }
 }

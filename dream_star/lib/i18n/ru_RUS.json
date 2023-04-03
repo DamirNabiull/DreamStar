@@ -8,6 +8,9 @@
   "task-description": "Описание задачи",
   "new-task-title": "Новая задача",
   "cost-title": "Звёзды за выполнение",
-  "child-title": "Ребёнок"
-  "tasks-screen-title": "Список задач"
+  "child-title": "Ребёнок",
+  "tasks-screen-title": "Список задач",
+  "tasks-progress-title": "Задачи",
+  "tasks-review-title": "Задачи на проверке",
+  "tasks-passed-title": "Выполненные задачи"
 }

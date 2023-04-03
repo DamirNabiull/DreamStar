@@ -9,25 +9,29 @@ import 'package:localization/localization.dart';
 class TasksMainScreen extends StatelessWidget {
   final AppSide _appSide = AppSide.parent;
 
-  final List<String> tabNames = const [
-    "Задачи",
-    "Задачи на проверке",
-    "Выполненные задачи"
-  ];
+  final List<String> childs =
+      ["test"] + [for (var i = 0; i < 42; i++) "test$i"];
 
-  const TasksMainScreen({super.key});
+  TasksMainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: tabNames.length,
+        length: 3,
         child: Scaffold(
-          appBar: TopAppBar('tasks-screen-title'.i18n(), tabNames),
+          appBar: TopAppBar('tasks-screen-title'.i18n(), [
+            'tasks-progress-title'.i18n(),
+            'tasks-review-title'.i18n(),
+            'tasks-passed-title'.i18n()
+          ]),
           body: TabBarView(
             children: [
-              TaskListScreen(_appSide, TaskStatus.progress),
-              TaskListScreen(_appSide, TaskStatus.review),
-              TaskListScreen(_appSide, TaskStatus.passed)
+              // Container(color: Colors.orange),
+              // Container(color: Colors.yellow),
+              // Container(color: Colors.redAccent)
+              TaskListScreen(_appSide, TaskStatus.progress, childs),
+              TaskListScreen(_appSide, TaskStatus.review, childs),
+              TaskListScreen(_appSide, TaskStatus.passed, childs)
             ],
           ),
         ));

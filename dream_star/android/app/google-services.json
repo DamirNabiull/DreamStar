@@ -29,6 +29,13 @@
             {
               "client_id": "870317025836-9ddivnculsfq1vjn3m0unsut2nou9ohr.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "870317025836-racnhao9qptfenjnp2tamsa1ul051uql.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "dev.dada.dreamStar"
+              }
             }
           ]
         }
