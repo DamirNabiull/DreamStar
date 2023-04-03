@@ -4,5 +4,10 @@
   "progress-button-title": "Отправить на проверку",
   "review-button-title": "Ожидает проверки",
   "pass-button-title": "Принять задачу",
+  "task-title": "Название задачи",
+  "task-description": "Описание задачи",
+  "new-task-title": "Новая задача",
+  "cost-title": "Звёзды за выполнение",
+  "child-title": "Ребёнок"
   "tasks-screen-title": "Список задач"
 }

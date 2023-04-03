@@ -4,5 +4,10 @@
   "progress-button-title": "Submit for review",
   "review-button-title": "Pending review",
   "pass-button-title": "Accept a task",
+  "task-title": "Task title",
+  "task-description": "Task description",
+  "new-task-title": "New task",
+  "cost-title": "Stars for completion",
+  "child-title": "Child"
   "tasks-screen-title": "Task list"
 }

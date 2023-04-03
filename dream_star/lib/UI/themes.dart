@@ -166,4 +166,7 @@ final ThemeData customTheme = ThemeData(
     onError: white,
     brightness: Brightness.light,
   ),
+  inputDecorationTheme: const InputDecorationTheme(
+    isDense: true
+  )
 );
