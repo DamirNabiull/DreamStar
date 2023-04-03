@@ -33,13 +33,13 @@ class TaskCard extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            buildTitle(),
+                            buildTitle(context),
                             const Spacer(),
                             buildCostLabel()
                           ],
                         ),
                         const SizedBox(height: 6),
-                        buildDescription(),
+                        buildDescription(context),
                         const SizedBox(height: 6),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -72,21 +72,19 @@ class TaskCard extends StatelessWidget {
     );
   }
 
-  Widget buildTitle() {
+  Widget buildTitle(BuildContext context) {
     return Text(
       taskInfo.title,
-      style: const TextStyle(
-          color: Colors.black, fontWeight: FontWeight.w400, fontSize: 17.0),
+      style: Theme.of(context).textTheme.titleSmall,
     );
   }
 
-  Widget buildDescription() {
+  Widget buildDescription(BuildContext context) {
     return Text(
       taskInfo.description,
       overflow: TextOverflow.ellipsis,
       maxLines: 5,
-      style: const TextStyle(
-          color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 12.0),
+      style: Theme.of(context).textTheme.labelSmall,
     );
   }
 
