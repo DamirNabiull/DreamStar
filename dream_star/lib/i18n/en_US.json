@@ -3,5 +3,6 @@
   "child-text": "Child: ",
   "progress-button-title": "Submit for review",
   "review-button-title": "Pending review",
-  "pass-button-title": "Accept a task"
+  "pass-button-title": "Accept a task",
+  "tasks-screen-title": "Task list"
 }
