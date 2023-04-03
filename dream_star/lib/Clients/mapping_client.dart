@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:dream_star/DTO/task_dto.dart';
 import 'package:dream_star/Models/task_info.dart';
-import 'package:riverpod/riverpod.dart';
 
 class MappingClient {
   TaskInfo taskDTOToTaskInfo(TaskDTO taskDTO) =>
@@ -35,10 +34,8 @@ class MappingClient {
   String _taskStatusToString(TaskStatus status) => status.toString();
 
   Color _stringToColor(String color) {
-    return const Color(0x00000000);
+    return const Color(0xFFB6E147);
   }
 
   String _colorToString(Color color) => color.toString();
 }
-
-final mappingProvider = Provider((ref) => MappingClient());
