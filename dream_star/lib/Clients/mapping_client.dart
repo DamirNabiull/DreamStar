@@ -4,32 +4,28 @@ import 'package:dream_star/DTO/task_dto.dart';
 import 'package:dream_star/Models/task_info.dart';
 
 class MappingClient {
-  TaskInfo taskDTOToTaskInfo(TaskDTO taskDTO) =>
-      TaskInfo(
-          taskDTO.title,
-          taskDTO.description,
-          taskDTO.cost,
-          _taskStatusToEnum(taskDTO.status),
-          _stringToColor(taskDTO.color),
-          taskDTO.childName,
-          taskDTO.childId
-      );
+  TaskInfo taskDTOToTaskInfo(TaskDTO taskDTO) => TaskInfo(
+      taskDTO.id,
+      taskDTO.title,
+      taskDTO.description,
+      taskDTO.cost,
+      _taskStatusToEnum(taskDTO.status),
+      _stringToColor(taskDTO.color),
+      taskDTO.childName,
+      taskDTO.childId);
 
-  TaskDTO taskInfoToTaskDTO(TaskInfo task) =>
-      TaskDTO(
-          childId: task.childId,
-          childName: task.childName,
-          title: task.title,
-          description: task.description,
-          status: _taskStatusToString(task.status),
-          cost: task.cost,
-          color: _colorToString(task.lineColor)
-      );
+  TaskDTO taskInfoToTaskDTO(TaskInfo task) => TaskDTO(
+      task.childId,
+      task.childName,
+      task.title,
+      task.description,
+      _taskStatusToString(task.status),
+      task.cost,
+      _colorToString(task.lineColor),
+      task.id);
 
   TaskStatus _taskStatusToEnum(String status) =>
-      TaskStatus.values.firstWhere(
-              (e) => e.toString() == 'TaskStatus.$status'
-      );
+      TaskStatus.values.firstWhere((e) => e.toString() == status);
 
   String _taskStatusToString(TaskStatus status) => status.toString();
 
