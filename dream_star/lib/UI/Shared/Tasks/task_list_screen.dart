@@ -8,13 +8,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class TaskListScreen extends ConsumerWidget {
   final TaskStatus _taskStatus;
   final AppSide _appSide;
+  final List<String> childs;
 
-  const TaskListScreen(this._appSide, this._taskStatus, {super.key});
+  const TaskListScreen(this._appSide, this._taskStatus, this.childs, {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tasksStream =
-        ref.read(fireStoreProvider).getTasks(["test"], _taskStatus);
+        ref.read(fireStoreProvider).getTasks(childs, _taskStatus);
     return Scaffold(
         body: StreamBuilder(
       stream: tasksStream,
@@ -23,10 +24,10 @@ class TaskListScreen extends ConsumerWidget {
           return const Text("Error occurred");
         } else if (snapshot.hasData) {
           final tasks = snapshot.data!;
-          return Container(
+          return SizedBox(
             height: double.infinity,
-            padding: const EdgeInsets.only(top: 12),
             child: ListView.separated(
+              padding: const EdgeInsets.only(top: 12),
               shrinkWrap: true,
               itemCount: tasks.length,
               itemBuilder: (context, index) {

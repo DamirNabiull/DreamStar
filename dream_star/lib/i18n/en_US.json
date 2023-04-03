@@ -8,6 +8,9 @@
   "task-description": "Task description",
   "new-task-title": "New task",
   "cost-title": "Stars for completion",
-  "child-title": "Child"
-  "tasks-screen-title": "Task list"
+  "child-title": "Child",
+  "tasks-screen-title": "Task list",
+  "tasks-progress-title": "Tasks",
+  "tasks-review-title": "Tasks on review",
+  "tasks-passed-title": "Passed tasks"
 }
