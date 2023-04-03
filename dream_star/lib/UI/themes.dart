@@ -2,55 +2,141 @@ import 'package:flutter/material.dart';
 
 // Define your custom fonts
 const String fontSFProRounded = "SF Pro Rounded";
-const TextStyle headingStyle = TextStyle(
-  fontFamily: fontSFProRounded,
-  fontWeight: FontWeight.bold,
-  fontSize: 34,
-);
-const TextStyle mainTextStyle = TextStyle(
-  fontFamily: fontSFProRounded,
-  fontSize: 17,
-);
-const TextStyle secondaryTextStyle = TextStyle(
-  fontFamily: fontSFProRounded,
-  fontSize: 12,
-);
-const TextStyle buttonTextStyle = TextStyle(
-  fontFamily: fontSFProRounded,
-  fontWeight: FontWeight.bold,
-  fontSize: 17,
-);
-const TextStyle codeTextStyle = TextStyle(
-  fontFamily: fontSFProRounded,
+const TextStyle displayLargeStyle = TextStyle(
+  fontFamily: 'fontSFProRounded',
   fontWeight: FontWeight.w600,
-  fontSize: 34,
+  fontSize: 34.0,
+  letterSpacing: 0.0,
+  color: white,
 );
-const TextStyle pageHeadingStyle = TextStyle(
-  fontFamily: fontSFProRounded,
-  fontWeight: FontWeight.w500,
-  fontSize: 17,
+const TextStyle displayLargeStylePrimary = TextStyle(
+  fontFamily: 'fontSFProRounded',
+  fontWeight: FontWeight.w600,
+  fontSize: 34.0,
+  letterSpacing: 0.0,
+  color: primary,
 );
-const TextStyle secondaryTextMediumStyle = TextStyle(
-  fontFamily: fontSFProRounded,
+const TextStyle displayMediumStyle = TextStyle(
+  fontFamily: 'fontSFProRounded',
+  fontWeight: FontWeight.w700,
+  fontSize: 34.0,
+  letterSpacing: 0.0,
+  color: primary,
+);
+const TextStyle displayMediumStyleWhite = TextStyle(
+  fontFamily: 'fontSFProRounded',
+  fontWeight: FontWeight.w700,
+  fontSize: 34.0,
+  letterSpacing: 0.0,
+  color: white,
+);
+const TextStyle titleLargeStyle = TextStyle(
+  fontFamily: 'fontSFProRounded',
+  fontWeight: FontWeight.w700,
+  fontSize: 17.0,
+  letterSpacing: 0.0,
+  color: white,
+);
+const TextStyle titleLargeStyleSecondary = TextStyle(
+  fontFamily: 'fontSFProRounded',
+  fontWeight: FontWeight.w700,
+  fontSize: 17.0,
+  letterSpacing: 0.0,
+  color: secondary,
+);
+const TextStyle titleMediumStyle = TextStyle(
+  fontFamily: 'fontSFProRounded',
   fontWeight: FontWeight.w500,
-  fontSize: 12,
+  fontSize: 17.0,
+  letterSpacing: 0.0,
+  color: primary,
+);
+const TextStyle titleMediumStyleWhite = TextStyle(
+  fontFamily: 'fontSFProRounded',
+  fontWeight: FontWeight.w500,
+  fontSize: 17.0,
+  letterSpacing: 0.0,
+  color: white,
+);
+const TextStyle titleSmallStyle = TextStyle(
+  fontFamily: 'fontSFProRounded',
+  fontWeight: FontWeight.w400,
+  fontSize: 17.0,
+  letterSpacing: 0.0,
+  color: black,
+);
+const TextStyle titleSmallStyleSecondary = TextStyle(
+  fontFamily: 'fontSFProRounded',
+  fontWeight: FontWeight.w400,
+  fontSize: 17.0,
+  letterSpacing: 0.0,
+  color: secondary,
+);
+const TextStyle titleSmallStyleTertiary = TextStyle(
+  fontFamily: 'fontSFProRounded',
+  fontWeight: FontWeight.w400,
+  fontSize: 17.0,
+  letterSpacing: 0.0,
+  color: tertiary,
+);
+const TextStyle labelMediumStyle = TextStyle(
+  fontFamily: 'fontSFProRounded',
+  fontWeight: FontWeight.w500,
+  fontSize: 12.0,
+  letterSpacing: 0.0,
+  color: black,
+);
+const TextStyle labelMediumStylePrimary = TextStyle(
+  fontFamily: 'fontSFProRounded',
+  fontWeight: FontWeight.w500,
+  fontSize: 12.0,
+  letterSpacing: 0.0,
+  color: primary,
+);
+const TextStyle labelMediumStyleSecondary = TextStyle(
+  fontFamily: 'fontSFProRounded',
+  fontWeight: FontWeight.w500,
+  fontSize: 12.0,
+  letterSpacing: 0.0,
+  color: secondary,
+);
+const TextStyle labelMediumStyleRed = TextStyle(
+  fontFamily: 'fontSFProRounded',
+  fontWeight: FontWeight.w500,
+  fontSize: 12.0,
+  letterSpacing: 0.0,
+  color: red,
+);
+const TextStyle labelSmallStyle = TextStyle(
+  fontFamily: 'fontSFProRounded',
+  fontWeight: FontWeight.w400,
+  fontSize: 12.0,
+  letterSpacing: 0.0,
+  color: secondary,
+);
+const TextStyle labelSmallStyleSecondPrimary = TextStyle(
+  fontFamily: 'fontSFProRounded',
+  fontWeight: FontWeight.w400,
+  fontSize: 12.0,
+  letterSpacing: 0.0,
+  color: secondPrimary,
 );
 
 // Define your custom colors
 const Color black = Color(0xFF000000);
 const Color white = Color(0xFFFFFFFF);
-const Color secondary = Color(0xFF8A8A8E);
-const Color primary = Color(0xFF6E5AF6);
-const Color secondPrimary = Color(0xFFB6E147);
-const Color tertiary = Color(0xFFC5C5C7);
-const Color textBackground = Color(0x0D3C3C43);
-const Color secondaryText = Color(0xCC000000);
-const Color blockBackground = Color(0xFF414141);
 const Color whiteTransparent = Color(0x99FFFFFF);
+const Color primary = Color(0xFF6E5AF6);
 const Color primaryMuted = Color(0xFFDEDAFF);
+const Color primaryBackground = Color(0xFFF6F5FF);
+const Color secondPrimary = Color(0xFFB6E147);
+const Color secondary = Color(0xFF8A8A8E);
+const Color tertiary = Color(0xFFC5C5C7);
+const Color blockBackground = Color(0xFF414141);
 const Color red = Color(0xFFEF4444);
 const Color yellow = Color(0xFFF5C20B);
-const Color primaryBackground = Color(0xFFF6F5FF);
+const Color secondaryText = Color(0xCC000000);
+const Color textBackground = Color(0x0D3C3C43);
 
 // Define your custom theme
 final ThemeData customTheme = ThemeData(
@@ -58,13 +144,13 @@ final ThemeData customTheme = ThemeData(
   primaryColor: primary,
   fontFamily: fontSFProRounded,
   textTheme: const TextTheme(
-    displayLarge: codeTextStyle,
-    displayMedium: headingStyle,
-    titleLarge: buttonTextStyle,
-    titleMedium: pageHeadingStyle,
-    titleSmall: mainTextStyle,
-    labelMedium: secondaryTextMediumStyle,
-    labelSmall: secondaryTextStyle,
+    displayLarge: displayLargeStyle,
+    displayMedium: displayMediumStyle,
+    titleLarge: titleLargeStyle,
+    titleMedium: titleMediumStyle,
+    titleSmall: titleSmallStyle,
+    labelMedium: labelMediumStyle,
+    labelSmall: labelSmallStyle,
   ),
   colorScheme: const ColorScheme(
     primary: primary,

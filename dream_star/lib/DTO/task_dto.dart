@@ -13,16 +13,11 @@ class TaskDTO {
   final int cost;
   final String color;
 
-  TaskDTO({
-    required this.childId,
-    required this.childName,
-    required this.title,
-    required this.description,
-    required this.status,
-    required this.cost,
-    required this.color
-  });
+  TaskDTO(this.childId, this.childName, this.title, this.description,
+      this.status, this.cost, this.color,
+      [this.id = "-1"]);
 
-  factory TaskDTO.fromJson(Map<String, dynamic> json) => _$TaskDTOFromJson(json);
+  factory TaskDTO.fromJson(Map<String, dynamic> json) =>
+      _$TaskDTOFromJson(json);
   Map<String, dynamic> toJson() => _$TaskDTOToJson(this);
 }
