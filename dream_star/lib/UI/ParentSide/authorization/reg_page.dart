@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 // import 'package:localization/localization.dart';
 
-class AuthParentScreen extends StatefulWidget {
-  const AuthParentScreen({super.key});
+class RegParentScreen extends StatefulWidget {
+  const RegParentScreen({super.key});
 
   @override
-  AuthParentScreenState createState() => AuthParentScreenState();
+  RegParentScreenState createState() => RegParentScreenState();
 }
 
 enum SingingCharacter { lafayette, jefferson }
 
-class AuthParentScreenState extends State<AuthParentScreen> {
+class RegParentScreenState extends State<RegParentScreen> {
   SingingCharacter? _character = SingingCharacter.lafayette;
 
   @override
@@ -23,7 +23,7 @@ class AuthParentScreenState extends State<AuthParentScreen> {
     return Scaffold(
       // backgroundColor: Colors.white,
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -63,7 +63,7 @@ class AuthParentScreenState extends State<AuthParentScreen> {
                           text: 'Создайте аккаунт!',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                              fontSize: 30,
                               color: Colors.deepPurpleAccent)),
                     ],
                   ),
@@ -79,7 +79,7 @@ class AuthParentScreenState extends State<AuthParentScreen> {
                           text: 'Для начала, зарегистрируемся',
                           style: TextStyle(
                               fontWeight: FontWeight.normal,
-                              fontSize: 13,
+                              fontSize: 16,
                               color: Colors.grey)),
                     ],
                   ),
@@ -92,7 +92,7 @@ class AuthParentScreenState extends State<AuthParentScreen> {
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: Colors.grey)),
                 child: const TextField(
-                  obscureText: true,
+                  
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     labelText: 'Имя',
@@ -106,7 +106,7 @@ class AuthParentScreenState extends State<AuthParentScreen> {
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: Colors.grey)),
                 child: const TextField(
-                  obscureText: true,
+                  
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     labelText: 'Фамилия',
@@ -120,7 +120,7 @@ class AuthParentScreenState extends State<AuthParentScreen> {
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: Colors.grey)),
                 child: const TextField(
-                  obscureText: true,
+                  
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     labelText: 'Дата рождения',
@@ -135,12 +135,12 @@ class AuthParentScreenState extends State<AuthParentScreen> {
                   // color: Colors.white,
                   width: 40.0,
                   height: 21.0,
-                  child: Column(children: const [
-                    Text("Пол"),
-                  ]),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.grey)),
+                  child: Column(children: const [
+                    Text("Пол"),
+                  ]),
                 ),
               ),
               // const SizedBox(height: 15),
@@ -192,7 +192,7 @@ class AuthParentScreenState extends State<AuthParentScreen> {
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: Colors.grey)),
                 child: const TextField(
-                  obscureText: true,
+                  
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     labelText: 'Электронная почта',
@@ -206,7 +206,7 @@ class AuthParentScreenState extends State<AuthParentScreen> {
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: Colors.grey)),
                 child: const TextField(
-                  obscureText: true,
+                  
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     labelText: 'Пароль',
@@ -220,7 +220,7 @@ class AuthParentScreenState extends State<AuthParentScreen> {
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: Colors.grey)),
                 child: const TextField(
-                  obscureText: true,
+                  
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     labelText: 'Подтвердите пароль',
@@ -233,7 +233,7 @@ class AuthParentScreenState extends State<AuthParentScreen> {
                   onPressed: () {
                     print('Button Pressed');
                   },
-                  child: Text('Зарегистрироваться'),
+                  child: const Text('Зарегистрироваться'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepPurpleAccent,
                     padding: const EdgeInsets.symmetric(
@@ -257,7 +257,7 @@ class AuthParentScreenState extends State<AuthParentScreen> {
                             text: 'Вы тут не впервые?',
                             style: TextStyle(
                                 fontWeight: FontWeight.normal,
-                                fontSize: 13,
+                                fontSize: 16,
                                 color: Colors.grey)),
                       ],
                     ),
@@ -270,7 +270,7 @@ class AuthParentScreenState extends State<AuthParentScreen> {
                     child: const Text('Войдите!',
                         style: TextStyle(
                             fontWeight: FontWeight.normal,
-                            fontSize: 13,
+                            fontSize: 16,
                             color: Colors.deepPurpleAccent)),
                   ),
                 ]),
