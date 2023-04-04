@@ -1,10 +1,13 @@
 import 'dart:ui';
 
 enum TaskStatus {
-  progress, review, passed;
+  progress,
+  review,
+  passed;
 }
 
 class TaskInfo {
+  final String id;
   final String title;
   final String description;
   final int cost;
@@ -16,17 +19,7 @@ class TaskInfo {
   DateTime? deadline;
   int? penalty;
 
-
-  TaskInfo(
-      this.title,
-      this.description,
-      this.cost,
-      this.status,
-      this.lineColor,
-      this.childName,
-      this.childId,
-      [
-        this.deadline,
-        this.penalty
-      ]);
+  TaskInfo(this.id, this.title, this.description, this.cost, this.status,
+      this.lineColor, this.childName, this.childId,
+      [this.deadline, this.penalty]);
 }

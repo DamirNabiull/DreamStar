@@ -1,16 +1,19 @@
+import 'package:dream_star/Clients/providers.dart';
+import 'package:dream_star/Models/app_side.dart';
 import 'package:dream_star/Models/task_info.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localization/localization.dart';
-import '../../Models/app_side.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class TaskCard extends StatelessWidget {
+class TaskCard extends ConsumerWidget {
   final AppSide appSide;
   final TaskInfo taskInfo;
   const TaskCard({super.key, required this.appSide, required this.taskInfo});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    var updateTask = ref.read(fireStoreProvider).updateTaskStatus;
     return Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -33,13 +36,13 @@ class TaskCard extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            buildTitle(),
+                            buildTitle(context),
                             const Spacer(),
                             buildCostLabel()
                           ],
                         ),
                         const SizedBox(height: 6),
-                        buildDescription(),
+                        buildDescription(context),
                         const SizedBox(height: 6),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -53,7 +56,7 @@ class TaskCard extends StatelessWidget {
                               ],
                             ),
                             const Spacer(),
-                            buildButton()
+                            buildButton(updateTask)
                           ],
                         )
                       ],
@@ -72,21 +75,19 @@ class TaskCard extends StatelessWidget {
     );
   }
 
-  Widget buildTitle() {
+  Widget buildTitle(BuildContext context) {
     return Text(
       taskInfo.title,
-      style: const TextStyle(
-          color: Colors.black, fontWeight: FontWeight.w400, fontSize: 17.0),
+      style: Theme.of(context).textTheme.titleSmall,
     );
   }
 
-  Widget buildDescription() {
+  Widget buildDescription(BuildContext context) {
     return Text(
       taskInfo.description,
       overflow: TextOverflow.ellipsis,
       maxLines: 5,
-      style: const TextStyle(
-          color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 12.0),
+      style: Theme.of(context).textTheme.labelSmall,
     );
   }
 
@@ -177,14 +178,14 @@ class TaskCard extends StatelessWidget {
         : const SizedBox.shrink();
   }
 
-  Widget buildButton() {
+  Widget buildButton(updateTask) {
     switch (appSide) {
       case AppSide.child:
         switch (taskInfo.status) {
           case TaskStatus.progress:
-            return buildTaskButton();
+            return buildUploadButton(updateTask);
           case TaskStatus.review:
-            return buildReviewButton();
+            return buildOnReviewLabel();
           case TaskStatus.passed:
             return const SizedBox.shrink();
         }
@@ -193,14 +194,14 @@ class TaskCard extends StatelessWidget {
           case TaskStatus.progress:
             return const SizedBox.shrink();
           case TaskStatus.review:
-            return buildPassButton();
+            return buildPassButton(updateTask);
           case TaskStatus.passed:
             return const SizedBox.shrink();
         }
     }
   }
 
-  Widget buildTaskButton() {
+  Widget buildUploadButton(updateTask) {
     return GestureDetector(
       child: Container(
         alignment: Alignment.center,
@@ -215,28 +216,27 @@ class TaskCard extends StatelessWidget {
               color: Colors.black, fontWeight: FontWeight.w500, fontSize: 12.0),
         ),
       ),
+      onTap: () => updateTask(taskInfo.id, TaskStatus.review),
     );
   }
 
-  Widget buildReviewButton() {
-    return GestureDetector(
-      child: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: Colors.black12,
-          borderRadius: BorderRadius.circular(12.0),
-        ),
-        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-        child: Text(
-          'review-button-title'.i18n(),
-          style: const TextStyle(
-              color: Colors.black, fontWeight: FontWeight.w500, fontSize: 12.0),
-        ),
+  Widget buildOnReviewLabel() {
+    return Container(
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: Colors.black12,
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+      child: Text(
+        'review-button-title'.i18n(),
+        style: const TextStyle(
+            color: Colors.black, fontWeight: FontWeight.w500, fontSize: 12.0),
       ),
     );
   }
 
-  Widget buildPassButton() {
+  Widget buildPassButton(updateTask) {
     return GestureDetector(
       child: Container(
         alignment: Alignment.center,
@@ -251,6 +251,7 @@ class TaskCard extends StatelessWidget {
               color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12.0),
         ),
       ),
+      onTap: () => updateTask(taskInfo.id, TaskStatus.passed),
     );
   }
 }
