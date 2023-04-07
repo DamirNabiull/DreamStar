@@ -17,7 +17,7 @@ class TaskCard extends ConsumerWidget {
     var updateTask = ref.read(fireStoreProvider).updateTaskStatus;
     return Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: white,
           borderRadius: BorderRadius.circular(12.0),
           boxShadow: kElevationToShadow[4],
         ),
@@ -98,10 +98,7 @@ class TaskCard extends ConsumerWidget {
         height: 14.0,
         child: Text(
           'overdue-text'.i18n(),
-          style: const TextStyle(
-              color: Colors.red,
-              fontWeight: FontWeight.w500,
-              fontSize: 12.0),
+          style: labelMediumStyle,
         ))
         : const SizedBox.shrink();
   }
@@ -111,10 +108,10 @@ class TaskCard extends ConsumerWidget {
         child: Row(
           children: [
             Text(getCost().toString(),
-                style: TextStyle(
-                    color: taskInfo.overdue ? Colors.red : Colors.deepPurpleAccent,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12.0)),
+                style: taskInfo.overdue
+                    ? labelMediumStyle.copyWith(color: red)
+                    : labelMediumStyle.copyWith(color: primary),
+            ),
             const SizedBox(width: 5.0),
             buildStar()
           ],
@@ -163,17 +160,11 @@ class TaskCard extends ConsumerWidget {
         ? RichText(
         text: TextSpan(
             text: 'child-text'.i18n(),
-            style: const TextStyle(
-                color: Colors.grey,
-                fontWeight: FontWeight.w400,
-                fontSize: 12.0),
+            style: labelMediumStyle.copyWith(color: secondary),
             children: [
               TextSpan(
                 text: taskInfo.childName,
-                style: const TextStyle(
-                    color: Colors.deepPurpleAccent,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12.0),
+                style: labelMediumStyle.copyWith(color: primary),
               )
             ]))
         : const SizedBox.shrink();

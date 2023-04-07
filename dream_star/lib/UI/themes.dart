@@ -137,6 +137,25 @@ const Color red = Color(0xFFEF4444);
 const Color yellow = Color(0xFFF5C20B);
 const Color secondaryText = Color(0xCC000000);
 const Color textBackground = Color(0x0D3C3C43);
+List<Color> cardLineColors = [
+  const Color(0xffef4444),
+  const Color(0xfff97316),
+  const Color(0xfff59e0b),
+  const Color(0xffeab308),
+  const Color(0xff84cc16),
+  const Color(0xff22c55e),
+  const Color(0xff10b981),
+  const Color(0xff14b8a6),
+  const Color(0xff06b6d4),
+  const Color(0xff0ea5e9),
+  const Color(0xff3b82f6),
+  const Color(0xff6366f1),
+  const Color(0xff8b5cf6),
+  const Color(0xffa855f7),
+  const Color(0xffd946ef),
+  const Color(0xffec4899),
+  const Color(0xfff43f5e),];
+
 
 TextStyle sendTaskButtonText = labelMediumStyle;
 BoxDecoration sendTaskButton = BoxDecoration(
