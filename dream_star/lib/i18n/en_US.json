@@ -12,5 +12,9 @@
   "tasks-screen-title": "Task list",
   "tasks-progress-title": "Tasks",
   "tasks-review-title": "Tasks on review",
-  "tasks-passed-title": "Passed tasks"
+  "tasks-passed-title": "Passed tasks",
+  "deadline-title": "Complete before",
+  "penalty-title": "Late task penalty",
+  "penalty-cost-title": "Penalty",
+  "create-task": "Create task"
 }
