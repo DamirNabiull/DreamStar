@@ -101,7 +101,8 @@ class MainHomeScreenState extends State<MainHomeScreen> {
                             children: [
                               ElevatedButton(
                                 onPressed: () {
-                                  print('Button Pressed');
+                                  Navigator.pushReplacementNamed(context, '/tasks');
+                                  // print('Parrent Button Pressed');
                                 },
                                 child: const Text('Я родитель'),
                                 style: ElevatedButton.styleFrom(
@@ -119,7 +120,7 @@ class MainHomeScreenState extends State<MainHomeScreen> {
                               const SizedBox(width: 20),
                               ElevatedButton(
                                 onPressed: () {
-                                  print('Button Pressed');
+                                  print('Child Button Pressed');
                                 },
                                 child: const Text('Я ребёнок'),
                                 style: ElevatedButton.styleFrom(
@@ -142,7 +143,7 @@ class MainHomeScreenState extends State<MainHomeScreen> {
                             text: const TextSpan(
                               children: <TextSpan>[
                                 TextSpan(
-                                    text: '\u{2139} Небольшая подсказка',
+                                    text: '\u{1F6C8} Небольшая подсказка',
                                     style: TextStyle(
                                         fontWeight: FontWeight.normal,
                                         fontSize: 13,
