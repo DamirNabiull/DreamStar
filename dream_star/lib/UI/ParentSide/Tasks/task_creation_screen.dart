@@ -1,3 +1,4 @@
+import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
 import '../../Components/custom_text_field.dart';
@@ -28,13 +29,10 @@ class TaskCreationScreenState extends State<TaskCreationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Colors.deepPurpleAccent,
+            backgroundColor: primary,
             title: Text('new-task-title'.i18n()),
-            titleTextStyle: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-                fontSize: 17.0)),
-        backgroundColor: const Color(0x00F6F5FF),
+            titleTextStyle: titleMediumStyleWhite),
+        backgroundColor: primaryMuted,
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 16),
           child: Column(
@@ -54,8 +52,8 @@ class TaskCreationScreenState extends State<TaskCreationScreen> {
     return UnifiedFields(
         widget1: CustomTextField(
             TextEditingController(), 'task-title'.i18n(), 1, 25),
-        widget2: CustomTextField(TextEditingController(),
-            'task-description'.i18n(), 1, 125));
+        widget2: CustomTextField(
+            TextEditingController(), 'task-description'.i18n(), 1, 125));
   }
 
   Widget buildChildSection() {
@@ -63,19 +61,15 @@ class TaskCreationScreenState extends State<TaskCreationScreen> {
         widget1: Row(
           children: [
             Text('child-title'.i18n(),
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 17.0)),
+                style: titleSmallStyle),
             const Spacer(),
             DropdownButton<String>(
               value: dropdownNameValue,
               isDense: true,
               borderRadius: BorderRadius.circular(12.0),
               icon: const Icon(Icons.unfold_more_rounded,
-                  color: Colors.black),
-              style: const TextStyle(
-                  color: Colors.black, fontWeight: FontWeight.w400, fontSize: 17.0),
+                  color: black),
+              style: titleSmallStyle,
               underline: const SizedBox.shrink(),
               onChanged: (String? value) {
                 setState(() {
@@ -100,19 +94,15 @@ class TaskCreationScreenState extends State<TaskCreationScreen> {
         widget1: Row(
           children: [
             Text('cost-title'.i18n(),
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 17.0)),
+                style: titleSmallStyle),
             const Spacer(),
             DropdownButton<int>(
               value: dropdownCostValue,
               isDense: true,
               borderRadius: BorderRadius.circular(12.0),
               icon: const Icon(Icons.unfold_more_rounded,
-                  color: Colors.black),
-              style: const TextStyle(
-                  color: Colors.black, fontWeight: FontWeight.w400, fontSize: 17.0),
+                  color: black),
+              style: titleSmallStyle,
               underline: const SizedBox.shrink(),
               onChanged: (int? value) {
                 setState(() {

@@ -49,7 +49,7 @@ const TextStyle titleMediumStyle = TextStyle(
   fontWeight: FontWeight.w500,
   fontSize: 17.0,
   letterSpacing: 0.0,
-  color: primary,
+  color: white,
 );
 const TextStyle titleMediumStyleWhite = TextStyle(
   fontFamily: 'fontSFProRounded',
@@ -138,9 +138,55 @@ const Color yellow = Color(0xFFF5C20B);
 const Color secondaryText = Color(0xCC000000);
 const Color textBackground = Color(0x0D3C3C43);
 
+TextStyle sendTaskButtonText = labelMediumStyle;
+BoxDecoration sendTaskButton = BoxDecoration(
+  color: secondPrimary,
+  borderRadius: BorderRadius.circular(12.0),
+);
+
+
+TextStyle onReviewTaskButtonText = labelMediumStyle.copyWith(color: secondary);
+BoxDecoration onReviewTaskButton = BoxDecoration(
+  color: primaryMuted,
+  borderRadius: BorderRadius.circular(12.0),
+);
+
+
+TextStyle acceptTaskButtonText = labelMediumStyle.copyWith(color: white);
+BoxDecoration acceptTaskButton = BoxDecoration(
+  color: primary,
+  borderRadius: BorderRadius.circular(12.0),
+);
+
+
+@immutable
+class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
+  ThemeExtensions();
+
+  final TextStyle acceptTaskButtonTextStyle = acceptTaskButtonText;
+  final BoxDecoration acceptTaskButtonStyle = acceptTaskButton;
+  final TextStyle sendTaskButtonTextStyle = sendTaskButtonText;
+  final BoxDecoration sendTaskButtonStyle = sendTaskButton;
+  final TextStyle onReviewTaskButtonTextStyle = onReviewTaskButtonText;
+  final BoxDecoration onReviewTaskButtonStyle = onReviewTaskButton;
+
+  @override
+  ThemeExtensions copyWith() {
+    return ThemeExtensions();
+  }
+
+  @override
+  ThemeExtensions lerp(ThemeExtensions? other, double t) {
+    if (other is! ThemeExtensions) {
+      return this;
+    }
+    return ThemeExtensions();
+  }
+}
+
 // Define your custom theme
 final ThemeData customTheme = ThemeData(
-  scaffoldBackgroundColor: primaryBackground,
+  scaffoldBackgroundColor: white,
   primaryColor: primary,
   fontFamily: fontSFProRounded,
   textTheme: const TextTheme(
@@ -154,19 +200,20 @@ final ThemeData customTheme = ThemeData(
   ),
   colorScheme: const ColorScheme(
     primary: primary,
-    primaryContainer: primaryMuted,
+    primaryContainer: white,
     secondary: secondPrimary,
     surface: white,
     background: primaryBackground,
     error: red,
     onPrimary: white,
-    onSecondary: black,
-    onSurface: black,
-    onBackground: black,
+    onSecondary: white,
+    onSurface: white,
+    onBackground: primaryMuted,
     onError: white,
     brightness: Brightness.light,
   ),
-  inputDecorationTheme: const InputDecorationTheme(
-    isDense: true
-  )
+  inputDecorationTheme: const InputDecorationTheme(isDense: true),
+  extensions: [
+    ThemeExtensions()
+  ],
 );
