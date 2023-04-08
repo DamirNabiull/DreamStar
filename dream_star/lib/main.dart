@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:localization/localization.dart';
 
+import 'UI/ParentSide/Tasks/task_creation_screen.dart';
 import 'firebase_options.dart';
 
 Future main() async {
