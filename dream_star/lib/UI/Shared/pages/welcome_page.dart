@@ -1,3 +1,5 @@
+import 'package:dream_star/UI/Shared/Tasks/tasks_main_screen.dart';
+import 'package:dream_star/UI/routes.dart';
 import 'package:flutter/material.dart';
 // import 'package:localization/localization.dart';
 
@@ -101,7 +103,7 @@ class MainHomeScreenState extends State<MainHomeScreen> {
                             children: [
                               ElevatedButton(
                                 onPressed: () {
-                                  Navigator.pushReplacementNamed(context, '/tasks');
+                                  Navigator.pushReplacement(context, tasksScreenRoute);
                                   // print('Parrent Button Pressed');
                                 },
                                 child: const Text('Я родитель'),
