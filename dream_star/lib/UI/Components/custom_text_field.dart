@@ -25,6 +25,7 @@ class CustomTextField extends StatelessWidget {
         hintStyle: titleSmallStyleSecondary,
         border: InputBorder.none,
       ),
+      style: titleSmallStyle,
       onChanged: (String text) {
         textEditingController.text = text;
       },

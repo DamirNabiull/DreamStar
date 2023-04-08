@@ -1,6 +1,7 @@
 import 'package:dream_star/UI/themes.dart';
 import 'package:dream_star/UI/Components/custom_date_input_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
 import '../../Components/custom_text_field.dart';
@@ -50,7 +51,7 @@ class TaskCreationScreenState extends State<TaskCreationScreen> {
       _titleController.value = _titleController.value.copyWith(
         text: text,
         selection:
-            TextSelection(baseOffset: text.length, extentOffset: text.length),
+        TextSelection(baseOffset: text.length, extentOffset: text.length),
         composing: TextRange.empty,
       );
     });
@@ -60,7 +61,7 @@ class TaskCreationScreenState extends State<TaskCreationScreen> {
       _descriptionController.value = _descriptionController.value.copyWith(
         text: text,
         selection:
-            TextSelection(baseOffset: text.length, extentOffset: text.length),
+        TextSelection(baseOffset: text.length, extentOffset: text.length),
         composing: TextRange.empty,
       );
     });
@@ -79,29 +80,29 @@ class TaskCreationScreenState extends State<TaskCreationScreen> {
         appBar: AppBar(
             backgroundColor: primary,
             title: Text('new-task-title'.i18n()),
-            titleTextStyle: titleMediumStyleWhite),
-        backgroundColor: primaryMuted,
+            titleTextStyle: titleMediumStyle.copyWith(color: white)),
+        backgroundColor: primaryBackground,
         body: Padding(
             padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
             child: Column(
               children: [
                 Expanded(
                     child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 28),
-                      buildDescriptionSection(),
-                      const SizedBox(height: 12),
-                      buildChildSection(),
-                      const SizedBox(height: 12),
-                      buildCostSection(),
-                      const SizedBox(height: 12),
-                      buildDeadlineSection(),
-                      const SizedBox(height: 12),
-                      buildPenaltySection()
-                    ],
-                  ),
-                )),
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 28),
+                          buildDescriptionSection(),
+                          const SizedBox(height: 12),
+                          buildChildSection(),
+                          const SizedBox(height: 12),
+                          buildCostSection(),
+                          const SizedBox(height: 12),
+                          buildDeadlineSection(),
+                          const SizedBox(height: 12),
+                          buildPenaltySection()
+                        ],
+                      ),
+                    )),
                 buildButton(),
                 const SizedBox(height: 20),
               ],
@@ -133,8 +134,7 @@ class TaskCreationScreenState extends State<TaskCreationScreen> {
               value: dropdownNameValue,
               isDense: true,
               borderRadius: BorderRadius.circular(12.0),
-              icon: const Icon(Icons.unfold_more_rounded,
-                  color: black),
+              icon: SvgPicture.asset('assets/arrow-separate-vertical-20px-black.svg'),
               style: titleSmallStyle,
               underline: const SizedBox.shrink(),
               onChanged: (String? value) {
@@ -167,8 +167,7 @@ class TaskCreationScreenState extends State<TaskCreationScreen> {
               isDense: true,
               alignment: AlignmentDirectional.centerEnd,
               borderRadius: BorderRadius.circular(12.0),
-              icon: const Icon(Icons.unfold_more_rounded,
-                  color: black),
+              icon: SvgPicture.asset('assets/arrow-separate-vertical-20px-black.svg'),
               style: titleSmallStyle,
               underline: const SizedBox.shrink(),
               onChanged: (int? value) {
@@ -178,7 +177,7 @@ class TaskCreationScreenState extends State<TaskCreationScreen> {
                     dropdownPenaltyValue = dropdownCostValue;
                   }
                   taskPenaltyList =
-                      List<int>.generate(dropdownCostValue, (i) => i + 1);
+                  List<int>.generate(dropdownCostValue, (i) => i + 1);
                 });
               },
               items: taskCostList.map<DropdownMenuItem<int>>((int value) {
@@ -197,16 +196,14 @@ class TaskCreationScreenState extends State<TaskCreationScreen> {
     return UnifiedFields(
         widget1: Row(children: [
           Text('deadline-title'.i18n(),
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 17.0)),
+              style: titleSmallStyle),
           const Spacer(),
           Container(
             constraints: const BoxConstraints(maxHeight: 25.0),
             child: Switch(
                 value: deadlineFlag,
-                activeColor: Colors.deepPurpleAccent,
+                activeColor: primary,
+                inactiveTrackColor: secondary,
                 onChanged: (bool value) {
                   setState(() {
                     deadlineFlag = value;
@@ -215,23 +212,21 @@ class TaskCreationScreenState extends State<TaskCreationScreen> {
           )
         ]),
         widget2:
-            deadlineFlag ? CustomDateInputField(dateInput: _dateInput) : null);
+        deadlineFlag ? CustomDateInputField(dateInput: _dateInput) : null);
   }
 
   Widget buildPenaltySection() {
     return UnifiedFields(
         widget1: Row(children: [
           Text('penalty-title'.i18n(),
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 17.0)),
+              style: titleSmallStyle),
           const Spacer(),
           Container(
             constraints: const BoxConstraints(maxHeight: 25.0),
             child: Switch(
                 value: penaltyFlag,
-                activeColor: Colors.deepPurpleAccent,
+                activeColor: primary,
+                inactiveTrackColor: secondary,
                 onChanged: (bool value) {
                   setState(() {
                     penaltyFlag = value;
@@ -246,19 +241,15 @@ class TaskCreationScreenState extends State<TaskCreationScreen> {
     return Row(
       children: [
         Text('penalty-cost-title'.i18n(),
-            style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w400,
-                fontSize: 17.0)),
+            style: titleSmallStyle),
         const Spacer(),
         DropdownButton<int>(
           value: dropdownPenaltyValue,
           isDense: true,
           borderRadius: BorderRadius.circular(12.0),
           alignment: AlignmentDirectional.centerEnd,
-          icon: const Icon(Icons.unfold_more_rounded, color: Colors.black),
-          style: const TextStyle(
-              color: Colors.black, fontWeight: FontWeight.w400, fontSize: 17.0),
+          icon: SvgPicture.asset('assets/arrow-separate-vertical-20px-black.svg'),
+          style: titleSmallStyle,
           underline: const SizedBox.shrink(),
           onChanged: (int? value) {
             setState(() {
@@ -279,20 +270,19 @@ class TaskCreationScreenState extends State<TaskCreationScreen> {
   Widget buildButton() {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
-          elevation: 5,
-          disabledBackgroundColor: Colors.lightGreenAccent,
-          backgroundColor: Colors.deepPurpleAccent,
-          shadowColor: Colors.grey,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(22.0)
-          ),
-          minimumSize: const Size.fromHeight(54),
-          textStyle: const TextStyle(
-              color: Colors.white, fontWeight: FontWeight.w700, fontSize: 17.0),
-          ),
+            elevation: 5,
+            disabledBackgroundColor: primaryMuted,
+            backgroundColor: primary,
+            shadowColor: secondary,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(22.0)
+            ),
+            minimumSize: const Size.fromHeight(54)
+        ),
         onPressed: isButtonDisabled ? null : (){},
         child: Text(
           'create-task'.i18n(),
+          style: titleLargeStyle.copyWith(color: isButtonDisabled ? secondary : white),
         )
     );
   }
