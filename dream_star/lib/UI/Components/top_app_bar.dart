@@ -4,6 +4,7 @@ class TopAppBar extends AppBar {
   TopAppBar(String title, List<String> tabNames, {super.key})
       : super(
             title: Text(title),
+            automaticallyImplyLeading: false,
             centerTitle: true,
             bottom: PreferredSize(
                 preferredSize: const Size.fromHeight(30),

@@ -1,4 +1,4 @@
-import 'package:dream_star/UI/Shared/Tasks/tasks_main_screen.dart';
+import 'package:dream_star/UI/routes.dart';
 import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   final Future<FirebaseApp> _initialization = Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
+      options: DefaultFirebaseOptions.currentPlatform
   );
 
   // This widget is the root of your application.
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
             print(snapshot.error.toString());
           }
           if (snapshot.connectionState == ConnectionState.done) {
-            return Center(child: const TaskCreationScreen(childrenNamesList: ["Никита", "Алина", "Aня"]));
+            return const InitPage();
           }
           return const CircularProgressIndicator();
         },
