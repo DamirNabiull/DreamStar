@@ -178,6 +178,11 @@ BoxDecoration acceptTaskButton = BoxDecoration(
 );
 
 
+ButtonStyle buttonWithoutBackingText = TextButton.styleFrom(
+  textStyle: titleSmallStyle.copyWith(color: primary)
+);
+
+
 @immutable
 class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
   ThemeExtensions();

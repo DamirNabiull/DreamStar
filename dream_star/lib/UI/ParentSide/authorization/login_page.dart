@@ -1,4 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+
+import '../../themes.dart';
 // import 'package:localization/localization.dart';
 
 class LoginParentScreen extends StatefulWidget {
@@ -17,166 +22,160 @@ class LoginParentScreenState extends State<LoginParentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              const SizedBox(height: 30),
-              Align(
-                alignment: Alignment.topLeft,
-                child: ElevatedButton.icon(
-                  icon: const Icon(
-                    Icons.arrow_back,
-                    color: Colors.grey,
-                    size: 20.0,
-                  ),
-                  label: const Text('Изменить роль',
-                      style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 18,
-                          color: Colors.grey)),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    elevation: 0,
-                    shadowColor: Colors.transparent,
-                  ),
-                  onPressed: () {
-                    print('Button Pressed');
-                  },
-                ),
-              ),
-              const SizedBox(height: 30),
-              Align(
-                alignment: Alignment.topLeft,
-                child: RichText(
-                  text: const TextSpan(
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: 'Рады Вас видеть!',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30,
-                              color: Colors.deepPurpleAccent)),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 15),
-              Align(
-                alignment: Alignment.topLeft,
-                child: RichText(
-                  text: const TextSpan(
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: 'Войдите, чтобы продолжить',
-                          style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              fontSize: 16,
-                              color: Colors.grey)),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 80),
-              Container(
-                padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Colors.grey)),
-                child: const TextField(
-                  
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    labelText: 'Электронная почта',
-                  ),
-                ),
-              ),
-              const SizedBox(height: 15),
-              Container(
-                padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Colors.grey)),
-                child: const TextField(
-                  
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    labelText: 'Пароль',
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 13),
-                  ),
-                  onPressed: () {},
-                  child: const Text('Забыли пароль?',
-                      style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 13,
-                          color: Colors.deepPurpleAccent)),
-                ),
-              ),
-              const SizedBox(height: 30),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    print('Button Pressed');
-                  },
-                  child: const Text('Войти'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurpleAccent,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 25, vertical: 20),
-                    textStyle: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 30),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Row(children: <Widget>[
-                  RichText(
-                    text: const TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                            text: 'Впервые здесь?',
-                            style: TextStyle(
-                                fontWeight: FontWeight.normal,
-                                fontSize: 16,
-                                color: Colors.grey)),
-                      ],
-                    ),
-                  ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      textStyle: const TextStyle(fontSize: 13),
-                    ),
-                    onPressed: () {},
-                    child: const Text('Зарегистрируйтесь!',
-                        style: TextStyle(
-                            fontWeight: FontWeight.normal,
-                            fontSize: 16,
-                            color: Colors.deepPurpleAccent)),
-                  ),
-                ]),
-              ),
-              const SizedBox(height: 10),
-            ],
+      backgroundColor: white,
+      body: Stack(
+        children: [
+          SvgPicture.asset('assets/background/green-blured-blobs-background.svg',
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              alignment: Alignment.center),
+          Positioned.fill(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                child: Container(color: Colors.transparent,),
+              )
           ),
-        ),
-      ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  const SizedBox(height: 80),
+                  // Align(
+                  //   alignment: Alignment.topLeft,
+                  //   child: ElevatedButton.icon(
+                  //     icon: SvgPicture.asset('assets/arrow-left-24px-secondary.svg'),
+                  //     label: Text('Изменить роль',
+                  //         style: titleSmallStyle.copyWith(color: secondary)),
+                  //     style: ElevatedButton.styleFrom(
+                  //       // backgroundColor: white,
+                  //       elevation: 0,
+                  //       shadowColor: Colors.transparent,
+                  //     ),
+                  //     onPressed: () {
+                  //       print('Button Pressed');
+                  //     },
+                  //   ),
+                  // ),
+                  const SizedBox(height: 30),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: RichText(
+                      text: TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'Рады Вас видеть!',
+                              style: displayMediumStyle.copyWith(color: primary)),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 15),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: RichText(
+                      text: TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'Войдите, чтобы продолжить',
+                              style: titleSmallStyle.copyWith(color: secondary)),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 120),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: secondary),
+                      color: white,
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        labelText: 'Электронная почта',
+                        labelStyle: titleSmallStyle.copyWith(color: secondary),
+                      ),
+                      style: titleSmallStyle,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: secondary),
+                      color: white,
+                    ),
+                    child:  TextField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        labelText: 'Пароль',
+                        labelStyle: titleSmallStyle.copyWith(color: secondary),
+                      ),
+                      style: titleSmallStyle,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                        style: buttonWithoutBackingText,
+                        onPressed: () {},
+                        child: const Text('Забыли пароль?')
+                    ),
+                  ),
+                  const SizedBox(height: 48),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        print('Button Pressed');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: primary,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 100, vertical: 20),
+                        textStyle: titleLargeStyle.copyWith(color: secondary),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(22.0),
+                        ),
+                      ),
+                      child: const Text('Войти'),
+                    ),
+                  ),
+                  const SizedBox(height: 130),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          RichText(
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'Впервые здесь?',
+                                  style: titleSmallStyle.copyWith(color: secondary),
+                                ),
+                              ],
+                            ),
+                          ),
+                          TextButton(
+                              style: buttonWithoutBackingText,
+                              onPressed: () {},
+                              child: const Text('Зарегистрируйтесь!')
+                          ),
+                        ]),
+                  ),
+                  const SizedBox(height: 10),
+                ],
+              ),
+            ),
+          ),
+        ],
+      )
     );
   }
 }
