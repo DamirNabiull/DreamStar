@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:dream_star/DTO/task_dto.dart';
 import 'package:dream_star/Models/task_info.dart';
+import 'package:dream_star/UI/themes.dart';
 
 class MappingClient {
   TaskInfo taskDTOToTaskInfo(TaskDTO taskDTO) => TaskInfo(
@@ -21,7 +22,7 @@ class MappingClient {
       task.description,
       _taskStatusToString(task.status),
       task.cost,
-      _colorToString(task.lineColor),
+      _colorToInt(task.lineColor),
       task.id);
 
   TaskStatus _taskStatusToEnum(String status) =>
@@ -29,9 +30,7 @@ class MappingClient {
 
   String _taskStatusToString(TaskStatus status) => status.toString();
 
-  Color _stringToColor(String color) {
-    return const Color(0xFFB6E147);
-  }
+  Color _stringToColor(int color) => cardLineColors[color];
 
-  String _colorToString(Color color) => color.toString();
+  int _colorToInt(Color color) => cardLineColors.indexOf(color);
 }

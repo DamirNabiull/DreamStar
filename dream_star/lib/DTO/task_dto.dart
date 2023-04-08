@@ -11,7 +11,7 @@ class TaskDTO {
   final String description;
   final String status;
   final int cost;
-  final String color;
+  final int color;
 
   TaskDTO(this.childId, this.childName, this.title, this.description,
       this.status, this.cost, this.color,

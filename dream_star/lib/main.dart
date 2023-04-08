@@ -1,4 +1,3 @@
-import 'package:dream_star/Clients/firebase_client.dart';
 import 'package:dream_star/UI/routes.dart';
 import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
