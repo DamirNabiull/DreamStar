@@ -26,8 +26,9 @@ class LoginParentScreenState extends State<LoginParentScreen> {
       body: Stack(
         children: [
           SvgPicture.asset('assets/background/green-blured-blobs-background.svg',
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
               alignment: Alignment.center),
           Positioned.fill(
               child: BackdropFilter(
