@@ -1,21 +1,19 @@
+import 'package:dream_star/Clients/providers.dart';
 import 'package:dream_star/Models/app_side.dart';
 import 'package:dream_star/Models/task_info.dart';
 import 'package:dream_star/UI/Components/top_app_bar.dart';
 import 'package:dream_star/UI/Shared/Tasks/task_list_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localization/localization.dart';
 
-class TasksMainScreen extends StatelessWidget {
-  final AppSide _appSide = AppSide.parent;
-
-  final List<String> childs =
-      ["test"] + [for (var i = 0; i < 42; i++) "test$i"];
-
-  TasksMainScreen({super.key});
+class TasksMainScreen extends ConsumerWidget {
+  const TasksMainScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appSide = ref.read(userProvider).getUserRole();
     return DefaultTabController(
         length: 3,
         child: Scaffold(
@@ -29,9 +27,9 @@ class TasksMainScreen extends StatelessWidget {
               // Container(color: Colors.orange),
               // Container(color: Colors.yellow),
               // Container(color: Colors.redAccent)
-              TaskListScreen(_appSide, TaskStatus.progress, childs),
-              TaskListScreen(_appSide, TaskStatus.review, childs),
-              TaskListScreen(_appSide, TaskStatus.passed, childs)
+              TaskListScreen(appSide, TaskStatus.progress),
+              TaskListScreen(appSide, TaskStatus.review),
+              TaskListScreen(appSide, TaskStatus.passed)
             ],
           ),
         ));

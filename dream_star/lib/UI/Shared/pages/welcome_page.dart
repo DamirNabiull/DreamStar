@@ -1,23 +1,16 @@
+import 'package:dream_star/Clients/providers.dart';
 import 'package:dream_star/UI/Shared/Tasks/tasks_main_screen.dart';
 import 'package:dream_star/UI/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:localization/localization.dart';
 
-class MainHomeScreen extends StatefulWidget {
+class MainHomeScreen extends ConsumerWidget {
   const MainHomeScreen({super.key});
 
   @override
-  MainHomeScreenState createState() => MainHomeScreenState();
-}
-
-class MainHomeScreenState extends State<MainHomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userInfo = ref.read(userProvider);
     return Scaffold(
       // backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -103,6 +96,7 @@ class MainHomeScreenState extends State<MainHomeScreen> {
                             children: [
                               ElevatedButton(
                                 onPressed: () {
+                                  userInfo.setUserRole(true);
                                   Navigator.pushReplacement(context, tasksScreenRoute);
                                   // print('Parrent Button Pressed');
                                 },
@@ -122,7 +116,9 @@ class MainHomeScreenState extends State<MainHomeScreen> {
                               const SizedBox(width: 20),
                               ElevatedButton(
                                 onPressed: () {
-                                  print('Child Button Pressed');
+                                  userInfo.setUserRole(false);
+                                  Navigator.pushReplacement(context, tasksScreenRoute);
+                                  // print('Child Button Pressed');
                                 },
                                 child: const Text('Я ребёнок'),
                                 style: ElevatedButton.styleFrom(

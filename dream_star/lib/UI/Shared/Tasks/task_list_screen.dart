@@ -8,9 +8,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class TaskListScreen extends ConsumerWidget {
   final TaskStatus _taskStatus;
   final AppSide _appSide;
-  final List<String> childs;
+  final List<String> childs = ['test'];
 
-  const TaskListScreen(this._appSide, this._taskStatus, this.childs, {super.key});
+  TaskListScreen(this._appSide, this._taskStatus, {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
