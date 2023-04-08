@@ -13,7 +13,7 @@ TaskDTO _$TaskDTOFromJson(Map<String, dynamic> json) => TaskDTO(
       json['description'] as String,
       json['status'] as String,
       json['cost'] as int,
-      json['color'] as String,
+      json['color'] as int,
       json['id'] as String? ?? "-1",
     );
 

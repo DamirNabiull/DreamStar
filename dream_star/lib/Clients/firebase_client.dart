@@ -4,7 +4,6 @@ import 'package:dream_star/DTO/task_dto.dart';
 import 'package:dream_star/Models/task_info.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rxdart/rxdart.dart';
 
 import 'mapping_client.dart';
 
@@ -53,8 +52,15 @@ class FireStoreClient {
     for (var i = 0; i < 42; i++) {
       var taskRef = _tasksCollection.doc();
 
-      TaskDTO task = TaskDTO("test$i", "test$i", titles[i%7], descriptions[i%7],
-          statuses[(i ~/ 7) % 3].toString(), i % 11 + 1, "test$i", taskRef.id);
+      TaskDTO task = TaskDTO(
+          "test",
+          "test",
+          "${titles[i % 7]} test_$i",
+          descriptions[i % 7],
+          statuses[(i ~/ 7) % 3].toString(),
+          i % 11 + 1,
+          i%17,
+          taskRef.id);
 
       taskRef.set(task.toJson());
     }
@@ -66,32 +72,14 @@ class FireStoreClient {
   }
 
   Stream<List<TaskInfo>> getTasks(List<String> childIds, TaskStatus status) {
-    if (childIds.length <= 10) {
-      return _tasksCollection
-          .where("childId", whereIn: childIds)
-          .where("status", isEqualTo: status.toString())
-          .snapshots()
-          .map((snapshot) => snapshot.docs
-          .map((doc) =>
-          _mapper.taskDTOToTaskInfo(TaskDTO.fromJson(doc.data())))
-          .toList());
-    }
-    else {
-      var stream1 = _tasksCollection
-          .where("childId", whereIn: childIds.sublist(0, 10))
-          .where("status", isEqualTo: status.toString())
-          .snapshots()
-          .map((snapshot) => snapshot.docs
-          .map((doc) =>
-          _mapper.taskDTOToTaskInfo(TaskDTO.fromJson(doc.data())))
-          .toList());
-      var stream2 = getTasks(childIds.sublist(10), status);
-      return Rx.zip2(
-        stream1,
-        stream2,
-            (a, b) => a + b,
-      );
-    }
+    return _tasksCollection
+        .where("childId", whereIn: childIds)
+        .where("status", isEqualTo: status.toString())
+        .snapshots()
+        .map((snapshot) => snapshot.docs
+            .map((doc) =>
+                _mapper.taskDTOToTaskInfo(TaskDTO.fromJson(doc.data())))
+            .toList());
   }
 
   Stream<List<TaskInfo>> getAllTasks() {
