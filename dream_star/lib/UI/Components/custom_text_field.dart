@@ -8,7 +8,11 @@ class CustomTextField extends StatelessWidget {
   final int? maxLines;
   final int? maxLength;
 
-  const CustomTextField(this.textEditingController, [this.placeholder, this.maxLines, this.maxLength]);
+  const CustomTextField({super.key,
+    required this.textEditingController,
+    required this.placeholder,
+    required this.maxLines,
+    required this.maxLength});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +25,9 @@ class CustomTextField extends StatelessWidget {
         hintStyle: titleSmallStyleSecondary,
         border: InputBorder.none,
       ),
+      onChanged: (String text) {
+        textEditingController.text = text;
+      },
     );
   }
 

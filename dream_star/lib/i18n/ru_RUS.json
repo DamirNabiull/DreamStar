@@ -12,5 +12,9 @@
   "tasks-screen-title": "Список задач",
   "tasks-progress-title": "Задачи",
   "tasks-review-title": "Задачи на проверке",
-  "tasks-passed-title": "Выполненные задачи"
+  "tasks-passed-title": "Выполненные задачи",
+  "deadline-title": "Выполнить до",
+  "penalty-title": "Штраф за просрочку",
+  "penalty-cost-title": "Штраф",
+  "create-task": "Создать задачу"
 }
