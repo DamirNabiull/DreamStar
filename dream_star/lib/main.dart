@@ -1,5 +1,6 @@
 import 'package:dream_star/UI/ParentSide/Tasks/task_creation_screen.dart';
 import 'package:dream_star/UI/Shared/Tasks/tasks_main_screen.dart';
+import 'package:dream_star/UI/routes.dart';
 import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:localization/localization.dart';
 
+import 'UI/ParentSide/Tasks/task_creation_screen.dart';
 import 'firebase_options.dart';
 
 Future main() async {
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   final Future<FirebaseApp> _initialization = Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
+      options: DefaultFirebaseOptions.currentPlatform
   );
 
   // This widget is the root of your application.
@@ -45,7 +47,7 @@ class MyApp extends StatelessWidget {
             print(snapshot.error.toString());
           }
           if (snapshot.connectionState == ConnectionState.done) {
-            return TasksMainScreen();
+            return const InitPage();
           }
           return const CircularProgressIndicator();
         },
