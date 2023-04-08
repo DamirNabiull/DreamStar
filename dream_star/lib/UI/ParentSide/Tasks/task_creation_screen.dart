@@ -1,3 +1,4 @@
+import 'package:dream_star/UI/themes.dart';
 import 'package:dream_star/UI/Components/custom_date_input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -76,12 +77,10 @@ class TaskCreationScreenState extends State<TaskCreationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Colors.deepPurpleAccent,
+            backgroundColor: primary,
             title: Text('new-task-title'.i18n()),
-            titleTextStyle: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-                fontSize: 17.0)),
+            titleTextStyle: titleMediumStyleWhite),
+        backgroundColor: primaryMuted,
         body: Padding(
             padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
             child: Column(
@@ -128,20 +127,15 @@ class TaskCreationScreenState extends State<TaskCreationScreen> {
         widget1: Row(
           children: [
             Text('child-title'.i18n(),
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 17.0)),
+                style: titleSmallStyle),
             const Spacer(),
             DropdownButton<String>(
               value: dropdownNameValue,
               isDense: true,
               borderRadius: BorderRadius.circular(12.0),
-              icon: const Icon(Icons.unfold_more_rounded, color: Colors.black),
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 17.0),
+              icon: const Icon(Icons.unfold_more_rounded,
+                  color: black),
+              style: titleSmallStyle,
               underline: const SizedBox.shrink(),
               onChanged: (String? value) {
                 setState(() {
@@ -166,21 +160,16 @@ class TaskCreationScreenState extends State<TaskCreationScreen> {
         widget1: Row(
           children: [
             Text('cost-title'.i18n(),
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 17.0)),
+                style: titleSmallStyle),
             const Spacer(),
             DropdownButton<int>(
               value: dropdownCostValue,
               isDense: true,
               alignment: AlignmentDirectional.centerEnd,
               borderRadius: BorderRadius.circular(12.0),
-              icon: const Icon(Icons.unfold_more_rounded, color: Colors.black),
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 17.0),
+              icon: const Icon(Icons.unfold_more_rounded,
+                  color: black),
+              style: titleSmallStyle,
               underline: const SizedBox.shrink(),
               onChanged: (int? value) {
                 setState(() {

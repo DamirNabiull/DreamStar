@@ -49,7 +49,7 @@ const TextStyle titleMediumStyle = TextStyle(
   fontWeight: FontWeight.w500,
   fontSize: 17.0,
   letterSpacing: 0.0,
-  color: primary,
+  color: white,
 );
 const TextStyle titleMediumStyleWhite = TextStyle(
   fontFamily: 'fontSFProRounded',
@@ -137,10 +137,75 @@ const Color red = Color(0xFFEF4444);
 const Color yellow = Color(0xFFF5C20B);
 const Color secondaryText = Color(0xCC000000);
 const Color textBackground = Color(0x0D3C3C43);
+List<Color> cardLineColors = [
+  const Color(0xffef4444),
+  const Color(0xfff97316),
+  const Color(0xfff59e0b),
+  const Color(0xffeab308),
+  const Color(0xff84cc16),
+  const Color(0xff22c55e),
+  const Color(0xff10b981),
+  const Color(0xff14b8a6),
+  const Color(0xff06b6d4),
+  const Color(0xff0ea5e9),
+  const Color(0xff3b82f6),
+  const Color(0xff6366f1),
+  const Color(0xff8b5cf6),
+  const Color(0xffa855f7),
+  const Color(0xffd946ef),
+  const Color(0xffec4899),
+  const Color(0xfff43f5e),];
+
+
+TextStyle sendTaskButtonText = labelMediumStyle;
+BoxDecoration sendTaskButton = BoxDecoration(
+  color: secondPrimary,
+  borderRadius: BorderRadius.circular(12.0),
+);
+
+
+TextStyle onReviewTaskButtonText = labelMediumStyle.copyWith(color: secondary);
+BoxDecoration onReviewTaskButton = BoxDecoration(
+  color: primaryMuted,
+  borderRadius: BorderRadius.circular(12.0),
+);
+
+
+TextStyle acceptTaskButtonText = labelMediumStyle.copyWith(color: white);
+BoxDecoration acceptTaskButton = BoxDecoration(
+  color: primary,
+  borderRadius: BorderRadius.circular(12.0),
+);
+
+
+@immutable
+class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
+  ThemeExtensions();
+
+  final TextStyle acceptTaskButtonTextStyle = acceptTaskButtonText;
+  final BoxDecoration acceptTaskButtonStyle = acceptTaskButton;
+  final TextStyle sendTaskButtonTextStyle = sendTaskButtonText;
+  final BoxDecoration sendTaskButtonStyle = sendTaskButton;
+  final TextStyle onReviewTaskButtonTextStyle = onReviewTaskButtonText;
+  final BoxDecoration onReviewTaskButtonStyle = onReviewTaskButton;
+
+  @override
+  ThemeExtensions copyWith() {
+    return ThemeExtensions();
+  }
+
+  @override
+  ThemeExtensions lerp(ThemeExtensions? other, double t) {
+    if (other is! ThemeExtensions) {
+      return this;
+    }
+    return ThemeExtensions();
+  }
+}
 
 // Define your custom theme
 final ThemeData customTheme = ThemeData(
-  scaffoldBackgroundColor: primaryBackground,
+  scaffoldBackgroundColor: white,
   primaryColor: primary,
   fontFamily: fontSFProRounded,
   textTheme: const TextTheme(
@@ -154,19 +219,20 @@ final ThemeData customTheme = ThemeData(
   ),
   colorScheme: const ColorScheme(
     primary: primary,
-    primaryContainer: primaryMuted,
+    primaryContainer: white,
     secondary: secondPrimary,
     surface: white,
     background: primaryBackground,
     error: red,
     onPrimary: white,
-    onSecondary: black,
-    onSurface: black,
-    onBackground: black,
+    onSecondary: white,
+    onSurface: white,
+    onBackground: primaryMuted,
     onError: white,
     brightness: Brightness.light,
   ),
-  inputDecorationTheme: const InputDecorationTheme(
-    isDense: true
-  )
+  inputDecorationTheme: const InputDecorationTheme(isDense: true),
+  extensions: [
+    ThemeExtensions()
+  ],
 );

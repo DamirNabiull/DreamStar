@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../themes.dart';
+
 class CustomTextField extends StatelessWidget {
   final TextEditingController textEditingController;
   final String? placeholder;
@@ -20,7 +22,7 @@ class CustomTextField extends StatelessWidget {
       decoration: InputDecoration(
         counterText: "",
         hintText: placeholder,
-        hintStyle: const TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 17.0),
+        hintStyle: titleSmallStyleSecondary,
         border: InputBorder.none,
       ),
       onChanged: (String text) {

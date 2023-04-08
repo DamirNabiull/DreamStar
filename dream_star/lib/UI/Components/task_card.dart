@@ -1,6 +1,7 @@
 import 'package:dream_star/Clients/providers.dart';
 import 'package:dream_star/Models/app_side.dart';
 import 'package:dream_star/Models/task_info.dart';
+import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localization/localization.dart';
@@ -16,14 +17,14 @@ class TaskCard extends ConsumerWidget {
     var updateTask = ref.read(fireStoreProvider).updateTaskStatus;
     return Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: white,
           borderRadius: BorderRadius.circular(12.0),
           boxShadow: kElevationToShadow[4],
         ),
         width: MediaQuery.of(context).size.width - 32,
         child: Padding(
             padding:
-                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+            const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
             child: IntrinsicHeight(
               child: Row(
                 children: [
@@ -94,30 +95,27 @@ class TaskCard extends ConsumerWidget {
   Widget buildOverdue() {
     return taskInfo.overdue
         ? SizedBox(
-            height: 14.0,
-            child: Text(
-              'overdue-text'.i18n(),
-              style: const TextStyle(
-                  color: Colors.red,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12.0),
-            ))
+        height: 14.0,
+        child: Text(
+          'overdue-text'.i18n(),
+          style: labelMediumStyle,
+        ))
         : const SizedBox.shrink();
   }
 
   Widget buildCostLabel() {
     return SizedBox(
         child: Row(
-      children: [
-        Text(getCost().toString(),
-            style: TextStyle(
-                color: taskInfo.overdue ? Colors.red : Colors.deepPurpleAccent,
-                fontWeight: FontWeight.w500,
-                fontSize: 12.0)),
-        const SizedBox(width: 5.0),
-        buildStar()
-      ],
-    ));
+          children: [
+            Text(getCost().toString(),
+                style: taskInfo.overdue
+                    ? labelMediumStyle.copyWith(color: red)
+                    : labelMediumStyle.copyWith(color: primary),
+            ),
+            const SizedBox(width: 5.0),
+            buildStar()
+          ],
+        ));
   }
 
   int getCost() {
@@ -160,21 +158,15 @@ class TaskCard extends ConsumerWidget {
   Widget buildChildName() {
     return appSide == AppSide.parent
         ? RichText(
-            text: TextSpan(
-                text: 'child-text'.i18n(),
-                style: const TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 12.0),
-                children: [
-                TextSpan(
-                  text: taskInfo.childName,
-                  style: const TextStyle(
-                      color: Colors.deepPurpleAccent,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12.0),
-                )
-              ]))
+        text: TextSpan(
+            text: 'child-text'.i18n(),
+            style: labelMediumStyle.copyWith(color: secondary),
+            children: [
+              TextSpan(
+                text: taskInfo.childName,
+                style: labelMediumStyle.copyWith(color: primary),
+              )
+            ]))
         : const SizedBox.shrink();
   }
 
@@ -205,15 +197,11 @@ class TaskCard extends ConsumerWidget {
     return GestureDetector(
       child: Container(
         alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: Colors.lime,
-          borderRadius: BorderRadius.circular(12.0),
-        ),
+        decoration: customTheme.extension<ThemeExtensions>()!.sendTaskButtonStyle,
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
         child: Text(
           'progress-button-title'.i18n(),
-          style: const TextStyle(
-              color: Colors.black, fontWeight: FontWeight.w500, fontSize: 12.0),
+          style: customTheme.extension<ThemeExtensions>()!.sendTaskButtonTextStyle,
         ),
       ),
       onTap: () => updateTask(taskInfo.id, TaskStatus.review),
@@ -223,15 +211,11 @@ class TaskCard extends ConsumerWidget {
   Widget buildOnReviewLabel() {
     return Container(
       alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: Colors.black12,
-        borderRadius: BorderRadius.circular(12.0),
-      ),
+      decoration: customTheme.extension<ThemeExtensions>()!.onReviewTaskButtonStyle,
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
       child: Text(
         'review-button-title'.i18n(),
-        style: const TextStyle(
-            color: Colors.black, fontWeight: FontWeight.w500, fontSize: 12.0),
+        style: customTheme.extension<ThemeExtensions>()!.onReviewTaskButtonTextStyle,
       ),
     );
   }
@@ -240,15 +224,11 @@ class TaskCard extends ConsumerWidget {
     return GestureDetector(
       child: Container(
         alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: Colors.deepPurpleAccent,
-          borderRadius: BorderRadius.circular(12.0),
-        ),
+        decoration: customTheme.extension<ThemeExtensions>()!.acceptTaskButtonStyle,
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
         child: Text(
           'pass-button-title'.i18n(),
-          style: const TextStyle(
-              color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12.0),
+          style: customTheme.extension<ThemeExtensions>()!.acceptTaskButtonTextStyle,
         ),
       ),
       onTap: () => updateTask(taskInfo.id, TaskStatus.passed),

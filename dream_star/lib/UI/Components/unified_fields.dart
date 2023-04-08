@@ -1,6 +1,8 @@
 import 'package:dream_star/UI/Components/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
+import '../themes.dart';
+
 class UnifiedFields extends StatelessWidget {
   final Widget widget1;
   final Widget? widget2;
@@ -10,7 +12,8 @@ class UnifiedFields extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(10.0)),
+          color: white,
+          borderRadius: BorderRadius.circular(12.0)),
       child: IntrinsicHeight(
         child: Column(children: [
           Padding(
@@ -20,7 +23,7 @@ class UnifiedFields extends StatelessWidget {
           ),
           widget2 != null ? const Padding(
             padding: EdgeInsets.only(left: 20.0, right: 20.0),
-            child: Divider(height: 0, color: Colors.grey),
+            child: Divider(height: 0, color: secondary),
           ) : const SizedBox.shrink(),
           widget2 != null ? Padding(
               padding: const EdgeInsets.symmetric(
