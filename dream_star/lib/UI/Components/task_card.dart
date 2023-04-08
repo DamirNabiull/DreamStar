@@ -130,27 +130,21 @@ class TaskCard extends ConsumerWidget {
     switch (taskInfo.status) {
       case TaskStatus.progress:
         if (taskInfo.penalty == null) {
-          return SvgPicture.asset('assets/star-empty-14px-yellow.svg',
-              height: 12.0, width: 12.0);
+          return SvgPicture.asset('assets/star-empty-14px-yellow.svg');
         } else {
-          return SvgPicture.asset('assets/star-half-dashed-empty-14px-red.svg',
-              height: 12.0, width: 12.0);
+          return SvgPicture.asset('assets/star-half-dashed-empty-14px-red.svg');
         }
       case TaskStatus.review:
         if (taskInfo.penalty == null) {
-          return SvgPicture.asset('assets/star-empty-14px-yellow.svg',
-              height: 12.0, width: 12.0);
+          return SvgPicture.asset('assets/star-empty-14px-yellow.svg');
         } else {
-          return SvgPicture.asset('assets/star-half-dashed-empty-14px-red.svg',
-              height: 12.0, width: 12.0);
+          return SvgPicture.asset('assets/star-half-dashed-empty-14px-red.svg');
         }
       case TaskStatus.passed:
         if (taskInfo.penalty == null) {
-          return SvgPicture.asset('assets/star-filled-14px-yellow.svg',
-              height: 12.0, width: 12.0);
+          return SvgPicture.asset('assets/star-filled-14px-yellow.svg');
         } else {
-          return SvgPicture.asset('assets/star-half-dashed-filled-14px-red.svg',
-              height: 12.0, width: 12.0);
+          return SvgPicture.asset('assets/star-half-dashed-filled-14px-red.svg');
         }
     }
   }
