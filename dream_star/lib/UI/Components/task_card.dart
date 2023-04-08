@@ -19,7 +19,14 @@ class TaskCard extends ConsumerWidget {
         decoration: BoxDecoration(
           color: white,
           borderRadius: BorderRadius.circular(12.0),
-          boxShadow: kElevationToShadow[4],
+          boxShadow: [
+            BoxShadow(
+              color: tertiary.withOpacity(0.5),
+              spreadRadius: 0,
+              blurRadius: 6,
+              offset: const Offset(0, 0), // changes position of shadow
+            ),
+          ],
         ),
         width: MediaQuery.of(context).size.width - 32,
         child: Padding(

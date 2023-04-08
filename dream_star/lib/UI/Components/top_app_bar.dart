@@ -11,7 +11,14 @@ class TopAppBar extends AppBar {
       centerTitle: true,
       bottom: PreferredSize(
           preferredSize: const Size.fromHeight(30),
-          child: TabBar(isScrollable: true, tabs: [
-            for (var name in tabNames) Tab(child: Text(name))
-          ])));
+          child: TabBar(
+            dividerColor: white,
+            indicatorColor: white,
+            isScrollable: true,
+            tabs: [for (var name in tabNames) Tab(child: Text(name))],
+            labelStyle: titleMediumStyle,
+            // labelColor: primary,
+            unselectedLabelStyle: titleSmallStyle,
+            // unselectedLabelColor: secondary,
+          )));
 }

@@ -15,40 +15,40 @@ class TaskListScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tasksStream =
-        ref.read(fireStoreProvider).getTasks(childs, _taskStatus);
+    ref.read(fireStoreProvider).getTasks(childs, _taskStatus);
     return Scaffold(
         body: StreamBuilder(
-      stream: tasksStream,
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return const Text("Error occurred");
-        } else if (snapshot.hasData) {
-          final tasks = snapshot.data!;
-          return SizedBox(
-            height: double.infinity,
-            child: ListView.separated(
-              padding: const EdgeInsets.only(top: 12),
-              shrinkWrap: true,
-              itemCount: tasks.length,
-              itemBuilder: (context, index) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TaskCard(appSide: _appSide, taskInfo: tasks[index])
-                  ],
-                );
-              },
-              separatorBuilder: (context, index) => const SizedBox(
-                height: 12,
-              ),
-            ),
-          );
-        } else {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-      },
-    ));
+          stream: tasksStream,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return const Text("Error occurred");
+            } else if (snapshot.hasData) {
+              final tasks = snapshot.data!;
+              return SizedBox(
+                height: double.infinity,
+                child: ListView.separated(
+                  padding: const EdgeInsets.only(top: 12),
+                  shrinkWrap: true,
+                  itemCount: tasks.length,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TaskCard(appSide: _appSide, taskInfo: tasks[index])
+                      ],
+                    );
+                  },
+                  separatorBuilder: (context, index) => const SizedBox(
+                    height: 12,
+                  ),
+                ),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }},
+        )
+    );
   }
 }
