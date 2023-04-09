@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 
 import 'package:pinput/pinput.dart';
 // import 'package:localization/localization.dart';
@@ -50,14 +51,14 @@ class LoginChildScreenState extends State<LoginChildScreen> {
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
-            alignment: Alignment.center),
+            alignment: Alignment.center,),
         Positioned.fill(
             child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: Container(
             color: Colors.transparent,
           ),
-        )),
+        ),),
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
@@ -72,7 +73,7 @@ class LoginChildScreenState extends State<LoginChildScreen> {
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                          text: 'Привет!',
+                          text: "child-login-welcome-text".i18n(),
                           style: displayMediumStyle.copyWith(color: primary),
                         ),
                       ],
@@ -86,7 +87,7 @@ class LoginChildScreenState extends State<LoginChildScreen> {
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                          text: 'Введи код, который ты получил от родителей',
+                          text: "child-login-info-text".i18n(),
                           style: titleSmallStyle.copyWith(color: secondary),
                         ),
                       ],
@@ -113,7 +114,7 @@ class LoginChildScreenState extends State<LoginChildScreen> {
                           validator: (value) {
                             return value == codeValidate
                                 ? null
-                                : 'Неверный код';
+                                : "child-login-incorrect-code-text".i18n();
                           },
                           hapticFeedbackType: HapticFeedbackType.lightImpact,
                           onCompleted: (pin) {
@@ -138,7 +139,7 @@ class LoginChildScreenState extends State<LoginChildScreen> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(8),
                                 border: Border.all(
-                                    color: focusedBorderColor, width: 6),
+                                    color: focusedBorderColor, width: 6,),
                               ),
                               textStyle:
                                   displayLargeStyle.copyWith(color: primary)),
@@ -149,7 +150,7 @@ class LoginChildScreenState extends State<LoginChildScreen> {
                                 border: Border.all(color: focusedBorderColor),
                               ),
                               textStyle:
-                                  displayLargeStyle.copyWith(color: white)),
+                                  displayLargeStyle.copyWith(color: white),),
                           followingPinTheme: defaultPinTheme.copyWith(
                             decoration: defaultPinTheme.decoration!.copyWith(
                               color: white,
@@ -174,9 +175,8 @@ class LoginChildScreenState extends State<LoginChildScreen> {
                           onPressed: () {
                             focusNode.unfocus();
                             formKey.currentState!.validate();
-                            print('Button Pressed');
+                            // print('Button Pressed');
                           },
-                          child: const Text('Войти'),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: primary,
                             padding: const EdgeInsets.symmetric(
@@ -186,6 +186,7 @@ class LoginChildScreenState extends State<LoginChildScreen> {
                               borderRadius: BorderRadius.circular(22.0),
                             ),
                           ),
+                          child: Text("enter-submit-text".i18n(),),
                         ),
                       ),
                     ],

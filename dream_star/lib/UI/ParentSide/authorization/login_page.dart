@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:localization/localization.dart';
 
 import '../../themes.dart';
 // import 'package:localization/localization.dart';
@@ -32,7 +33,7 @@ class LoginParentScreenState extends State<LoginParentScreen> {
               fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity,
-              alignment: Alignment.center),
+              alignment: Alignment.center,),
           Positioned.fill(
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
@@ -70,8 +71,8 @@ class LoginParentScreenState extends State<LoginParentScreen> {
                       text: TextSpan(
                         children: <TextSpan>[
                           TextSpan(
-                              text: 'Рады Вас видеть!',
-                              style: displayMediumStyle.copyWith(color: primary)),
+                              text: "welcome-login-parent-text".i18n(),
+                              style: displayMediumStyle.copyWith(color: primary),),
                         ],
                       ),
                     ),
@@ -83,8 +84,8 @@ class LoginParentScreenState extends State<LoginParentScreen> {
                       text: TextSpan(
                         children: <TextSpan>[
                           TextSpan(
-                              text: 'Войдите, чтобы продолжить',
-                              style: titleSmallStyle.copyWith(color: secondary)),
+                              text: "info-login-parent-text".i18n(),
+                              style: titleSmallStyle.copyWith(color: secondary),),
                         ],
                       ),
                     ),
@@ -100,7 +101,7 @@ class LoginParentScreenState extends State<LoginParentScreen> {
                     child: TextField(
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        labelText: 'Электронная почта',
+                        labelText: "email-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
                       ),
                       style: titleSmallStyle,
@@ -118,14 +119,14 @@ class LoginParentScreenState extends State<LoginParentScreen> {
                       obscureText: passwordVisible,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        labelText: 'Пароль',
+                        labelText: "password-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
                         suffixIcon: IconButton(
                           icon: Icon(passwordVisible
                               ? Icons.visibility
                               : Icons.visibility_off),
                           onPressed: () {
-                            setState(() { passwordVisible = !passwordVisible; },);
+                            setState(() { passwordVisible = !passwordVisible; });
                           },
                         ),
                       ),
@@ -138,25 +139,25 @@ class LoginParentScreenState extends State<LoginParentScreen> {
                     child: TextButton(
                         style: buttonWithoutBackingText,
                         onPressed: () {},
-                        child: const Text('Забыли пароль?')
+                        child: Text("password-input-text".i18n(),),
                     ),
                   ),
                   const SizedBox(height: 48),
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        print('Button Pressed');
+                        // print('Button Pressed');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: primary,
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 100, vertical: 20),
+                            horizontal: 100, vertical: 20,),
                         textStyle: titleLargeStyle.copyWith(color: secondary),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(22.0),
                         ),
                       ),
-                      child: const Text('Войти'),
+                      child: Text("enter-submit-text".i18n(),),
                     ),
                   ),
                   const SizedBox(height: 130),
@@ -169,7 +170,7 @@ class LoginParentScreenState extends State<LoginParentScreen> {
                             text: TextSpan(
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: 'Впервые здесь?',
+                                  text: "info-login-parent-bottom-text".i18n(),
                                   style: titleSmallStyle.copyWith(color: secondary),
                                 ),
                               ],
@@ -178,7 +179,7 @@ class LoginParentScreenState extends State<LoginParentScreen> {
                           TextButton(
                               style: buttonWithoutBackingText,
                               onPressed: () {},
-                              child: const Text('Зарегистрируйтесь!')
+                              child: Text("info-login-parent-bottom-btn-text".i18n()),
                           ),
                         ]),
                   ),

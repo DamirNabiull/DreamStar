@@ -1,13 +1,12 @@
 import 'package:dream_star/Clients/providers.dart';
-import 'package:dream_star/UI/Shared/Tasks/tasks_main_screen.dart';
 import 'package:dream_star/UI/routes.dart';
+import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:localization/localization.dart';
+import 'package:localization/localization.dart';
 
 import 'package:flutter_svg/svg.dart';
 import 'dart:ui';
-import '../../themes.dart';
 
 class MainHomeScreen extends ConsumerWidget {
   const MainHomeScreen({super.key});
@@ -16,7 +15,6 @@ class MainHomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final userInfo = ref.read(userProvider);
     return Scaffold(
-      // backgroundColor: Colors.white,
       backgroundColor: white,
       body: Stack(
         children: [
@@ -25,14 +23,14 @@ class MainHomeScreen extends ConsumerWidget {
               fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity,
-              alignment: Alignment.center),
+              alignment: Alignment.center,),
           Positioned.fill(
               child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
             child: Container(
               color: Colors.transparent,
             ),
-          )),
+          ),),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -45,8 +43,8 @@ class MainHomeScreen extends ConsumerWidget {
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                            text: 'Добро пожаловать!',
-                            style: displayMediumStyle.copyWith(color: primary)),
+                            text: "welcome-text".i18n(),
+                            style: displayMediumStyle.copyWith(color: primary),),
                       ],
                     ),
                   ),
@@ -73,9 +71,9 @@ class MainHomeScreen extends ConsumerWidget {
                                 text: TextSpan(
                                   children: <TextSpan>[
                                     TextSpan(
-                                        text: 'Спасибо, что выбрали нас!',
+                                        text: "thanks-text".i18n(),
                                         style: titleSmallStyle.copyWith(
-                                            color: whiteTransparent)),
+                                            color: whiteTransparent),),
                                   ],
                                 ),
                               ),
@@ -88,10 +86,9 @@ class MainHomeScreen extends ConsumerWidget {
                                 text: TextSpan(
                                   children: <TextSpan>[
                                     TextSpan(
-                                        text:
-                                        'Мы помогаем детям обучаться финансовой грамотности!',
+                                        text: "goal-text".i18n(),
                                         style: displayMediumStyle.copyWith(
-                                            color: white)),
+                                            color: white),),
                                   ],
                                 ),
                               ),
@@ -119,7 +116,7 @@ class MainHomeScreen extends ConsumerWidget {
                                         borderRadius: BorderRadius.circular(22.0),
                                       ),
                                     ),
-                                    child: const Text('Я родитель'),
+                                    child: Text("parent-role".i18n()),
                                   ),
                                   const SizedBox(width: 20),
                                   ElevatedButton(
@@ -139,7 +136,7 @@ class MainHomeScreen extends ConsumerWidget {
                                         borderRadius: BorderRadius.circular(22.0),
                                       ),
                                     ),
-                                    child: const Text('Я ребёнок'),
+                                    child: Text("child-role".i18n()),
                                   ),
                                 ]),
                             const SizedBox(height: 30),
@@ -158,8 +155,8 @@ class MainHomeScreen extends ConsumerWidget {
                                               'assets/info-empty-16px-second-primary.svg'),
                                         ),
                                       ),
-                                      const TextSpan(
-                                          text: 'Небольшая подсказка.'),
+                                      TextSpan(
+                                          text: "hint-text".i18n(),),
                                     ],
                                   ),
                                 )),
@@ -171,9 +168,9 @@ class MainHomeScreen extends ConsumerWidget {
                                   children: <TextSpan>[
                                     TextSpan(
                                         text:
-                                        'Для начала необходимо зарегистрироваться родителю, а уже потом родитель добавит своих детей.',
+                                        "hint-text-expanded".i18n(),
                                         style: labelSmallStyle.copyWith(
-                                            color: white)),
+                                            color: white),),
                                   ],
                                 ),
                               ),

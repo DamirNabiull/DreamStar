@@ -1,10 +1,13 @@
+import 'package:dream_star/Models/app_side.dart';
 import 'package:dream_star/UI/ParentSide/Tasks/task_creation_screen.dart';
 import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class TopAppBar extends AppBar {
-  TopAppBar(BuildContext context, String title, List<String> tabNames, {super.key})
+  TopAppBar(BuildContext context, String title, List<String> tabNames,
+      AppSide appSide,
+      {super.key})
       : super(
           title: Text(
             title,
@@ -24,19 +27,20 @@ class TopAppBar extends AppBar {
                 // unselectedLabelColor: secondary,
               )),
           actions: [
-            Padding(
-                padding: const EdgeInsets.only(right: 20.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute<void>(
-                      builder: (BuildContext context) {
-                        return const TaskCreationScreen();
+            appSide == AppSide.parent
+                ? Padding(
+                    padding: const EdgeInsets.only(right: 20.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute<void>(
+                          builder: (BuildContext context) {
+                            return const TaskCreationScreen();
+                          },
+                        ));
                       },
-                    ));
-                  },
-                  child: SvgPicture.asset("assets/plus-24px-white.svg")
-                )
-            )
+                      child: SvgPicture.asset("assets/plus-24px-white.svg"),
+                    ))
+                : const SizedBox.shrink(),
           ],
         );
 }

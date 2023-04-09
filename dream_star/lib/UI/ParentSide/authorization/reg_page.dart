@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:localization/localization.dart';
 
 import 'package:flutter_svg/svg.dart';
+import 'package:localization/localization.dart';
 import 'dart:ui';
 import '../../themes.dart';
 
@@ -17,13 +18,13 @@ enum Switch { female, male }
 class RegParentScreenState extends State<RegParentScreen> {
   Switch? _character = Switch.female;
   bool passwordVisible = false;
-  bool passwordVisible_rep = false;
+  bool passwordVisibleRep = false;
 
   @override
   void initState() {
     super.initState();
     passwordVisible = true;
-    passwordVisible_rep = true;
+    passwordVisibleRep = true;
   }
 
   @override
@@ -36,7 +37,7 @@ class RegParentScreenState extends State<RegParentScreen> {
               fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity,
-              alignment: Alignment.center),
+              alignment: Alignment.center,),
           Positioned.fill(
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
@@ -59,18 +60,18 @@ class RegParentScreenState extends State<RegParentScreen> {
                         color: secondary,
                         size: 20.0,
                       ),
-                      label: const Text('Изменить роль',
-                          style: TextStyle(
+                      label: Text("change-role-text".i18n(),
+                          style: const TextStyle(
                               fontWeight: FontWeight.normal,
                               fontSize: 18,
-                              color: Colors.grey)),
+                              color: Colors.grey,),),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
                         elevation: 0,
                         shadowColor: Colors.transparent,
                       ),
                       onPressed: () {
-                        print('Button Pressed');
+                        // print('Button Pressed');
                       },
                     ),
                   ),
@@ -81,7 +82,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                       text: TextSpan(
                         children: <TextSpan>[
                           TextSpan(
-                              text: 'Создайте аккаунт!',
+                              text: "create-account-text".i18n(),
                               style: displayMediumStyle.copyWith(color: primary),
                           ),
                         ],
@@ -95,8 +96,8 @@ class RegParentScreenState extends State<RegParentScreen> {
                       text: TextSpan(
                         children: <TextSpan>[
                           TextSpan(
-                              text: 'Для начала, зарегистрируемся',
-                              style: titleSmallStyle.copyWith(color: secondary)),
+                              text: "create-account-info-text".i18n(),
+                              style: titleSmallStyle.copyWith(color: secondary),),
                         ],
                       ),
                     ),
@@ -106,11 +107,11 @@ class RegParentScreenState extends State<RegParentScreen> {
                     padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: secondary)),
+                        border: Border.all(color: secondary),),
                     child: TextField(
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        labelText: 'Имя',
+                        labelText: "name-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
                       ),
                     ),
@@ -120,11 +121,11 @@ class RegParentScreenState extends State<RegParentScreen> {
                     padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: secondary)),
+                        border: Border.all(color: secondary),),
                     child: TextField(
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        labelText: 'Фамилия',
+                        labelText: "second-name-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
                       ),
                     ),
@@ -134,11 +135,11 @@ class RegParentScreenState extends State<RegParentScreen> {
                     padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: secondary)),
+                        border: Border.all(color: secondary),),
                     child: TextField(
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        labelText: 'Дата рождения',
+                        labelText: "birth-day-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
                       ),
                     ),
@@ -153,9 +154,9 @@ class RegParentScreenState extends State<RegParentScreen> {
                       height: 21.0,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: secondary)),
-                      child: Column(children: const [
-                        Text("Пол"),
+                          border: Border.all(color: secondary),),
+                      child: Column(children: [
+                        Text("sex".i18n(),),
                       ]),
                     ),
                   ),
@@ -169,9 +170,9 @@ class RegParentScreenState extends State<RegParentScreen> {
                         width: 146,
                         child: RadioListTile<Switch>(
                           controlAffinity: ListTileControlAffinity.trailing,
-                          title: const Text('Женский',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.normal, fontSize: 15)),
+                          title: Text("switch-female-text".i18n(),
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.normal, fontSize: 15),),
                           value: Switch.female,
                           groupValue: _character,
                           onChanged: (Switch? value) {
@@ -187,9 +188,9 @@ class RegParentScreenState extends State<RegParentScreen> {
                         width: 146,
                         child: RadioListTile<Switch>(
                           controlAffinity: ListTileControlAffinity.trailing,
-                          title: const Text('Мужской',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.normal, fontSize: 15)),
+                          title: Text("switch-male-text".i18n(),
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.normal, fontSize: 15),),
                           value: Switch.male,
                           groupValue: _character,
                           onChanged: (Switch? value) {
@@ -206,11 +207,11 @@ class RegParentScreenState extends State<RegParentScreen> {
                     padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: secondary)),
+                        border: Border.all(color: secondary),),
                     child: TextField(
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        labelText: 'Электронная почта',
+                        labelText: "email-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
                       ),
                     ),
@@ -220,12 +221,12 @@ class RegParentScreenState extends State<RegParentScreen> {
                     padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: secondary)),
+                        border: Border.all(color: secondary),),
                     child: TextField(
                       obscureText: passwordVisible,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        labelText: 'Пароль',
+                        labelText: "password-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
                         suffixIcon: IconButton(
                           icon: Icon(passwordVisible
@@ -235,7 +236,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                             setState(
                               () {
                                 passwordVisible = !passwordVisible;
-                              },
+                              }
                             );
                           },
                         ),
@@ -247,22 +248,22 @@ class RegParentScreenState extends State<RegParentScreen> {
                     padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: secondary)),
+                        border: Border.all(color: secondary),),
                     child: TextField(
-                      obscureText: passwordVisible_rep,
+                      obscureText: passwordVisibleRep,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        labelText: 'Подтвердите пароль',
+                        labelText: "verify-password-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
                         suffixIcon: IconButton(
-                          icon: Icon(passwordVisible_rep
+                          icon: Icon(passwordVisibleRep
                               ? Icons.visibility
                               : Icons.visibility_off),
                           onPressed: () {
                             setState(
                               () {
-                                passwordVisible_rep = !passwordVisible_rep;
-                              },
+                                passwordVisibleRep = !passwordVisibleRep;
+                              }
                             );
                           },
                         ),
@@ -273,9 +274,8 @@ class RegParentScreenState extends State<RegParentScreen> {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        print('Button Pressed');
+                        // print('Button Pressed');
                       },
-                      child: const Text('Зарегистрироваться'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: primary,
                         padding: const EdgeInsets.symmetric(
@@ -286,6 +286,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                           borderRadius: BorderRadius.circular(15.0),
                         ),
                       ),
+                      child: Text("submit-reg-text".i18n()),
                     ),
                   ),
                   const SizedBox(height: 30),
@@ -296,8 +297,8 @@ class RegParentScreenState extends State<RegParentScreen> {
                         text: TextSpan(
                           children: <TextSpan>[
                             TextSpan(
-                                text: 'Вы тут не впервые?',
-                                style: titleSmallStyle.copyWith(color: secondary)),
+                                text: "info-reg-text".i18n(),
+                                style: titleSmallStyle.copyWith(color: secondary),),
                           ],
                         ),
                       ),
@@ -306,8 +307,8 @@ class RegParentScreenState extends State<RegParentScreen> {
                           textStyle: const TextStyle(fontSize: 13),
                         ),
                         onPressed: () {},
-                        child: Text('Войдите!',
-                        style: titleSmallStyle.copyWith(color: primary)),
+                        child: Text("info-btn-reg-text".i18n(),
+                        style: titleSmallStyle.copyWith(color: primary),),
                       ),
                     ]),
                   ),
