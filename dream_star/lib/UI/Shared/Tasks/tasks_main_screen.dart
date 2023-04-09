@@ -17,11 +17,16 @@ class TasksMainScreen extends ConsumerWidget {
       child: DefaultTabController(
         length: 3,
         child: Scaffold(
-          appBar: TopAppBar(context, 'tasks-screen-title'.i18n(), [
-            'tasks-progress-title'.i18n(),
-            'tasks-review-title'.i18n(),
-            'tasks-passed-title'.i18n()
-          ]),
+          appBar: TopAppBar(
+            context,
+            'tasks-screen-title'.i18n(),
+            [
+              'tasks-progress-title'.i18n(),
+              'tasks-review-title'.i18n(),
+              'tasks-passed-title'.i18n()
+            ],
+            appSide,
+          ),
           body: TabBarView(
             children: [
               // Container(color: Colors.orange),
