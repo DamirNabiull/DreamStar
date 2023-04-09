@@ -23,7 +23,7 @@ class TaskCard extends ConsumerWidget {
             BoxShadow(
               color: tertiary.withOpacity(0.5),
               spreadRadius: 0,
-              blurRadius: 6,
+              blurRadius: 12,
               offset: const Offset(0, 0), // changes position of shadow
             ),
           ],

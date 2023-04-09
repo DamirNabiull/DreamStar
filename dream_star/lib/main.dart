@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:localization/localization.dart';
 
+import 'UI/ChildSide/authorization/login_page.dart';
 import 'UI/ParentSide/Tasks/task_creation_screen.dart';
 import 'firebase_options.dart';
 
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
             print(snapshot.error.toString());
           }
           if (snapshot.connectionState == ConnectionState.done) {
-            return const InitPage();
+            return LoginChildScreen();
           }
           return const CircularProgressIndicator();
         },
