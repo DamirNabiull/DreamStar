@@ -17,9 +17,8 @@ Future main() async {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform
-  );
+  final Future<FirebaseApp> _initialization =
+      Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   // This widget is the root of your application.
   @override

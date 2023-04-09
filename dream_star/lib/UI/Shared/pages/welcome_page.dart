@@ -19,18 +19,20 @@ class MainHomeScreen extends ConsumerWidget {
       body: Stack(
         children: [
           SvgPicture.asset(
-              'assets/background/green-blured-blobs-background.svg',
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: double.infinity,
-              alignment: Alignment.center,),
+            'assets/background/green-blured-blobs-background.svg',
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+            alignment: Alignment.center,
+          ),
           Positioned.fill(
-              child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: Container(
-              color: Colors.transparent,
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+              child: Container(
+                color: Colors.transparent,
+              ),
             ),
-          ),),
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -43,8 +45,9 @@ class MainHomeScreen extends ConsumerWidget {
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                            text: "welcome-text".i18n(),
-                            style: displayMediumStyle.copyWith(color: primary),),
+                          text: "welcome-text".i18n(),
+                          style: displayMediumStyle.copyWith(color: primary),
+                        ),
                       ],
                     ),
                   ),
@@ -56,7 +59,7 @@ class MainHomeScreen extends ConsumerWidget {
                   decoration: const BoxDecoration(
                       color: blockBackground,
                       borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(38.0))),
+                          BorderRadius.vertical(top: Radius.circular(38.0))),
                   child: Column(
                     children: <Widget>[
                       Padding(
@@ -71,9 +74,10 @@ class MainHomeScreen extends ConsumerWidget {
                                 text: TextSpan(
                                   children: <TextSpan>[
                                     TextSpan(
-                                        text: "thanks-text".i18n(),
-                                        style: titleSmallStyle.copyWith(
-                                            color: whiteTransparent),),
+                                      text: "thanks-text".i18n(),
+                                      style: titleSmallStyle.copyWith(
+                                          color: whiteTransparent),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -86,9 +90,10 @@ class MainHomeScreen extends ConsumerWidget {
                                 text: TextSpan(
                                   children: <TextSpan>[
                                     TextSpan(
-                                        text: "goal-text".i18n(),
-                                        style: displayMediumStyle.copyWith(
-                                            color: white),),
+                                      text: "goal-text".i18n(),
+                                      style: displayMediumStyle.copyWith(
+                                          color: white),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -110,10 +115,11 @@ class MainHomeScreen extends ConsumerWidget {
                                       backgroundColor: primary,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 25, vertical: 20),
-                                      textStyle:
-                                      titleLargeStyle.copyWith(color: white),
+                                      textStyle: titleLargeStyle.copyWith(
+                                          color: white),
                                       shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(22.0),
+                                        borderRadius:
+                                            BorderRadius.circular(22.0),
                                       ),
                                     ),
                                     child: Text("parent-role".i18n()),
@@ -130,10 +136,11 @@ class MainHomeScreen extends ConsumerWidget {
                                       backgroundColor: primary,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 25, vertical: 20),
-                                      textStyle:
-                                      titleLargeStyle.copyWith(color: white),
+                                      textStyle: titleLargeStyle.copyWith(
+                                          color: white),
                                       shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(22.0),
+                                        borderRadius:
+                                            BorderRadius.circular(22.0),
                                       ),
                                     ),
                                     child: Text("child-role".i18n()),
@@ -150,13 +157,14 @@ class MainHomeScreen extends ConsumerWidget {
                                       WidgetSpan(
                                         child: Padding(
                                           padding:
-                                          const EdgeInsets.only(right: 4.0),
+                                              const EdgeInsets.only(right: 4.0),
                                           child: SvgPicture.asset(
                                               'assets/info-empty-16px-second-primary.svg'),
                                         ),
                                       ),
                                       TextSpan(
-                                          text: "hint-text".i18n(),),
+                                        text: "hint-text".i18n(),
+                                      ),
                                     ],
                                   ),
                                 )),
@@ -167,10 +175,10 @@ class MainHomeScreen extends ConsumerWidget {
                                 text: TextSpan(
                                   children: <TextSpan>[
                                     TextSpan(
-                                        text:
-                                        "hint-text-expanded".i18n(),
-                                        style: labelSmallStyle.copyWith(
-                                            color: white),),
+                                      text: "hint-text-expanded".i18n(),
+                                      style: labelSmallStyle.copyWith(
+                                          color: white),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -179,8 +187,7 @@ class MainHomeScreen extends ConsumerWidget {
                         ),
                       ),
                     ],
-                  )
-              ),
+                  )),
             ],
           ),
         ],

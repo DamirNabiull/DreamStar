@@ -83,6 +83,7 @@ class TaskCreationScreenState extends ConsumerState<TaskCreationScreen> {
     return Scaffold(
         appBar: AppBar(
             backgroundColor: primary,
+            centerTitle: true,
             title: Text('new-task-title'.i18n()),
             titleTextStyle: titleMediumStyle.copyWith(color: white)),
         backgroundColor: primaryBackground,
@@ -282,15 +283,17 @@ class TaskCreationScreenState extends ConsumerState<TaskCreationScreen> {
         onPressed: isButtonDisabled
             ? null
             : () {
-                ref.read(fireStoreProvider).createTask(TaskInfo(
-                    "",
-                    _titleController.text,
-                    _descriptionController.text,
-                    dropdownCostValue,
-                    TaskStatus.progress,
-                    null,
-                    dropdownNameValue,
-                    "test"),);
+                ref.read(fireStoreProvider).createTask(
+                      TaskInfo(
+                          "",
+                          _titleController.text,
+                          _descriptionController.text,
+                          dropdownCostValue,
+                          TaskStatus.progress,
+                          null,
+                          dropdownNameValue,
+                          "test"),
+                    );
                 Navigator.pop(context);
                 // print(_titleController.text);
                 // print(_descriptionController.text);
