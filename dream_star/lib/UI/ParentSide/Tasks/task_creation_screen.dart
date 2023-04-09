@@ -83,6 +83,7 @@ class TaskCreationScreenState extends ConsumerState<TaskCreationScreen> {
     return Scaffold(
         appBar: AppBar(
             backgroundColor: primary,
+            centerTitle: true,
             title: Text('new-task-title'.i18n()),
             titleTextStyle: titleMediumStyle.copyWith(color: white)),
         backgroundColor: primaryBackground,
