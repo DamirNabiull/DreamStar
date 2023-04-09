@@ -17,7 +17,7 @@ class TasksMainScreen extends ConsumerWidget {
     return DefaultTabController(
         length: 3,
         child: Scaffold(
-          appBar: TopAppBar('tasks-screen-title'.i18n(), [
+          appBar: TopAppBar(context, 'tasks-screen-title'.i18n(), [
             'tasks-progress-title'.i18n(),
             'tasks-review-title'.i18n(),
             'tasks-passed-title'.i18n()
