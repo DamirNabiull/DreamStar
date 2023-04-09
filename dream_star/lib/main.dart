@@ -1,4 +1,3 @@
-import 'package:dream_star/UI/routes.dart';
 import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -7,7 +6,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:localization/localization.dart';
 
 import 'UI/ChildSide/authorization/login_page.dart';
-import 'UI/ParentSide/Tasks/task_creation_screen.dart';
 import 'firebase_options.dart';
 
 Future main() async {
@@ -43,10 +41,11 @@ class MyApp extends StatelessWidget {
         future: _initialization,
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            print(snapshot.error.toString());
+            // print(snapshot.error.toString());
+            throw Exception(snapshot.error.toString());
           }
           if (snapshot.connectionState == ConnectionState.done) {
-            return LoginChildScreen();
+            return const LoginChildScreen();
           }
           return const CircularProgressIndicator();
         },

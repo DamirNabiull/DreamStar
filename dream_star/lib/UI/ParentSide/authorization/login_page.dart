@@ -145,7 +145,7 @@ class LoginParentScreenState extends State<LoginParentScreen> {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        print('Button Pressed');
+                        // print('Button Pressed');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: primary,

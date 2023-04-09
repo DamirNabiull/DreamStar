@@ -14,7 +14,7 @@ class ConnectionClient extends Notifier<bool> {
     final StreamSubscription<InternetConnectionStatus> _ =
         internetProvider.onStatusChange.listen(
       (InternetConnectionStatus status) {
-        print("CHECK");
+        // print("CHECK");
         switch (status) {
           case InternetConnectionStatus.connected:
             state = true;

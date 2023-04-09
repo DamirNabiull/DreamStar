@@ -1,6 +1,6 @@
 import 'package:dream_star/Clients/providers.dart';
 import 'package:dream_star/UI/Shared/Connection/no_connection_screen.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ScreenWrapper extends ConsumerWidget {

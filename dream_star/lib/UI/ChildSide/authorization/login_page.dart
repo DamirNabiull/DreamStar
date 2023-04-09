@@ -174,9 +174,8 @@ class LoginChildScreenState extends State<LoginChildScreen> {
                           onPressed: () {
                             focusNode.unfocus();
                             formKey.currentState!.validate();
-                            print('Button Pressed');
+                            // print('Button Pressed');
                           },
-                          child: const Text('Войти'),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: primary,
                             padding: const EdgeInsets.symmetric(
@@ -186,6 +185,7 @@ class LoginChildScreenState extends State<LoginChildScreen> {
                               borderRadius: BorderRadius.circular(22.0),
                             ),
                           ),
+                          child: const Text('Войти'),
                         ),
                       ),
                     ],

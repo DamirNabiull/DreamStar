@@ -17,13 +17,13 @@ enum Switch { female, male }
 class RegParentScreenState extends State<RegParentScreen> {
   Switch? _character = Switch.female;
   bool passwordVisible = false;
-  bool passwordVisible_rep = false;
+  bool passwordVisibleRep = false;
 
   @override
   void initState() {
     super.initState();
     passwordVisible = true;
-    passwordVisible_rep = true;
+    passwordVisibleRep = true;
   }
 
   @override
@@ -70,7 +70,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                         shadowColor: Colors.transparent,
                       ),
                       onPressed: () {
-                        print('Button Pressed');
+                        // print('Button Pressed');
                       },
                     ),
                   ),
@@ -249,19 +249,19 @@ class RegParentScreenState extends State<RegParentScreen> {
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(color: secondary)),
                     child: TextField(
-                      obscureText: passwordVisible_rep,
+                      obscureText: passwordVisibleRep,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         labelText: 'Подтвердите пароль',
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
                         suffixIcon: IconButton(
-                          icon: Icon(passwordVisible_rep
+                          icon: Icon(passwordVisibleRep
                               ? Icons.visibility
                               : Icons.visibility_off),
                           onPressed: () {
                             setState(
                               () {
-                                passwordVisible_rep = !passwordVisible_rep;
+                                passwordVisibleRep = !passwordVisibleRep;
                               },
                             );
                           },
@@ -273,9 +273,8 @@ class RegParentScreenState extends State<RegParentScreen> {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        print('Button Pressed');
+                        // print('Button Pressed');
                       },
-                      child: const Text('Зарегистрироваться'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: primary,
                         padding: const EdgeInsets.symmetric(
@@ -286,6 +285,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                           borderRadius: BorderRadius.circular(15.0),
                         ),
                       ),
+                      child: const Text('Зарегистрироваться'),
                     ),
                   ),
                   const SizedBox(height: 30),

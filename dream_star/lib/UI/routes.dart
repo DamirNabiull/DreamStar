@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final tasksScreenRoute = MaterialPageRoute(
-  builder: (BuildContext context) => TasksMainScreen(),
+  builder: (BuildContext context) => const TasksMainScreen(),
 );
 
 class InitPage extends ConsumerWidget {
@@ -13,6 +13,6 @@ class InitPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ref.read(userProvider).isAuth ? TasksMainScreen() : const MainHomeScreen();
+    return ref.read(userProvider).isAuth ? const TasksMainScreen() : const MainHomeScreen();
   }
 }
