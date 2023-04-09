@@ -1,3 +1,4 @@
+import 'package:dream_star/UI/Shared/pages/welcome_page.dart';
 import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -5,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:localization/localization.dart';
 
-import 'UI/ChildSide/authorization/login_page.dart';
 import 'firebase_options.dart';
 
 Future main() async {
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
             throw Exception(snapshot.error.toString());
           }
           if (snapshot.connectionState == ConnectionState.done) {
-            return const LoginChildScreen();
+            return const MainHomeScreen();
           }
           return const CircularProgressIndicator();
         },
