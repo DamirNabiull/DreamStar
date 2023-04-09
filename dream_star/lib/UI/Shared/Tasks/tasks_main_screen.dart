@@ -1,7 +1,7 @@
 import 'package:dream_star/Clients/providers.dart';
-import 'package:dream_star/Models/app_side.dart';
 import 'package:dream_star/Models/task_info.dart';
 import 'package:dream_star/UI/Components/top_app_bar.dart';
+import 'package:dream_star/UI/Shared/Connection/screen_wrapper.dart';
 import 'package:dream_star/UI/Shared/Tasks/task_list_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,8 @@ class TasksMainScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appSide = ref.read(userProvider).getUserRole();
-    return DefaultTabController(
+    return ScreenWrapper(
+      child: DefaultTabController(
         length: 3,
         child: Scaffold(
           appBar: TopAppBar('tasks-screen-title'.i18n(), [
@@ -32,6 +33,8 @@ class TasksMainScreen extends ConsumerWidget {
               TaskListScreen(appSide, TaskStatus.passed)
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
