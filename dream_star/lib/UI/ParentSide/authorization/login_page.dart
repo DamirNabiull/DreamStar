@@ -14,9 +14,12 @@ class LoginParentScreen extends StatefulWidget {
 }
 
 class LoginParentScreenState extends State<LoginParentScreen> {
+  bool passwordVisible=false;
+
   @override
   void initState() {
     super.initState();
+    passwordVisible=true;
   }
 
   @override
@@ -112,10 +115,19 @@ class LoginParentScreenState extends State<LoginParentScreen> {
                       color: white,
                     ),
                     child:  TextField(
+                      obscureText: passwordVisible,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         labelText: 'Пароль',
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
+                        suffixIcon: IconButton(
+                          icon: Icon(passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off),
+                          onPressed: () {
+                            setState(() { passwordVisible = !passwordVisible; },);
+                          },
+                        ),
                       ),
                       style: titleSmallStyle,
                     ),
