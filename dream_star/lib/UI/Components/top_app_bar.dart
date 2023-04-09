@@ -30,9 +30,7 @@ class TopAppBar extends AppBar {
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute<void>(
                       builder: (BuildContext context) {
-                        return const TaskCreationScreen(
-                            childrenNamesList: ["Никита", "Соня", "Аня"]
-                        );
+                        return const TaskCreationScreen();
                       },
                     ));
                   },
