@@ -10,17 +10,18 @@ import 'mapping_client.dart';
 class FireStoreClient {
   final FirebaseFirestore db = FirebaseFirestore.instance;
   late final CollectionReference<Map<String, dynamic>> _tasksCollection;
-  late final CollectionReference<Map<String, dynamic>> _dreamsCollection;
+  // late final CollectionReference<Map<String, dynamic>> _dreamsCollection;
 
   final container = ProviderContainer();
   late final MappingClient _mapper = container.read(mappingProvider);
 
   FireStoreClient() {
     _tasksCollection = db.collection("tasks");
-    _dreamsCollection = db.collection("dreams");
+    // _dreamsCollection = db.collection("dreams");
   }
 
-  void createTask(TaskDTO taskDTO) async {
+  void createTask(TaskInfo taskInfo) async {
+    final taskDTO = _mapper.taskInfoToTaskDTO(taskInfo);
     final taskRef = _tasksCollection.doc();
     taskDTO.id = taskRef.id;
 
