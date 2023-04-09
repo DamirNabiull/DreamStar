@@ -1,3 +1,4 @@
+import 'package:dream_star/DTO/task_dto.dart';
 import 'package:dream_star/UI/themes.dart';
 import 'package:dream_star/UI/Components/custom_date_input_field.dart';
 import 'package:flutter/material.dart';
@@ -279,7 +280,14 @@ class TaskCreationScreenState extends State<TaskCreationScreen> {
             ),
             minimumSize: const Size.fromHeight(54)
         ),
-        onPressed: isButtonDisabled ? null : (){},
+        onPressed: isButtonDisabled ? null : (){
+          print(_titleController.text);
+          print(_descriptionController.text);
+          print(dropdownCostValue);
+          print(dropdownNameValue);
+          // print(_dateInput.text);
+          // print(dropdownPenaltyValue);
+        },
         child: Text(
           'create-task'.i18n(),
           style: titleLargeStyle.copyWith(color: isButtonDisabled ? secondary : white),
