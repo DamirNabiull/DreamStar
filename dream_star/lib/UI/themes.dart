@@ -154,8 +154,8 @@ List<Color> cardLineColors = [
   const Color(0xffa855f7),
   const Color(0xffd946ef),
   const Color(0xffec4899),
-  const Color(0xfff43f5e),];
-
+  const Color(0xfff43f5e),
+];
 
 TextStyle sendTaskButtonText = labelMediumStyle;
 BoxDecoration sendTaskButton = BoxDecoration(
@@ -163,13 +163,11 @@ BoxDecoration sendTaskButton = BoxDecoration(
   borderRadius: BorderRadius.circular(12.0),
 );
 
-
 TextStyle onReviewTaskButtonText = labelMediumStyle.copyWith(color: secondary);
 BoxDecoration onReviewTaskButton = BoxDecoration(
   color: primaryMuted,
   borderRadius: BorderRadius.circular(12.0),
 );
-
 
 TextStyle acceptTaskButtonText = labelMediumStyle.copyWith(color: white);
 BoxDecoration acceptTaskButton = BoxDecoration(
@@ -177,11 +175,8 @@ BoxDecoration acceptTaskButton = BoxDecoration(
   borderRadius: BorderRadius.circular(12.0),
 );
 
-
-ButtonStyle buttonWithoutBackingText = TextButton.styleFrom(
-  textStyle: titleSmallStyle.copyWith(color: primary)
-);
-
+ButtonStyle buttonWithoutBackingText =
+    TextButton.styleFrom(textStyle: titleSmallStyle.copyWith(color: primary));
 
 @immutable
 class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
@@ -237,7 +232,5 @@ final ThemeData customTheme = ThemeData(
     brightness: Brightness.light,
   ),
   inputDecorationTheme: const InputDecorationTheme(isDense: true),
-  extensions: [
-    ThemeExtensions()
-  ],
+  extensions: [ThemeExtensions()],
 );

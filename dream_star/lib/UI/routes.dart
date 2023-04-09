@@ -13,6 +13,8 @@ class InitPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ref.read(userProvider).isAuth ? const TasksMainScreen() : const MainHomeScreen();
+    return ref.read(userProvider).isAuth
+        ? const TasksMainScreen()
+        : const MainHomeScreen();
   }
 }

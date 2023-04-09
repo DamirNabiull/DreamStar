@@ -282,15 +282,17 @@ class TaskCreationScreenState extends ConsumerState<TaskCreationScreen> {
         onPressed: isButtonDisabled
             ? null
             : () {
-                ref.read(fireStoreProvider).createTask(TaskInfo(
-                    "",
-                    _titleController.text,
-                    _descriptionController.text,
-                    dropdownCostValue,
-                    TaskStatus.progress,
-                    null,
-                    dropdownNameValue,
-                    "test"),);
+                ref.read(fireStoreProvider).createTask(
+                      TaskInfo(
+                          "",
+                          _titleController.text,
+                          _descriptionController.text,
+                          dropdownCostValue,
+                          TaskStatus.progress,
+                          null,
+                          dropdownNameValue,
+                          "test"),
+                    );
                 Navigator.pop(context);
                 // print(_titleController.text);
                 // print(_descriptionController.text);

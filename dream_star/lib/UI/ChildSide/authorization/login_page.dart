@@ -47,18 +47,21 @@ class LoginChildScreenState extends State<LoginChildScreen> {
     return Scaffold(
       backgroundColor: white,
       body: Stack(children: [
-        SvgPicture.asset('assets/background/green-blured-blobs-background.svg',
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
-            alignment: Alignment.center,),
+        SvgPicture.asset(
+          'assets/background/green-blured-blobs-background.svg',
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
+          alignment: Alignment.center,
+        ),
         Positioned.fill(
-            child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-          child: Container(
-            color: Colors.transparent,
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: Container(
+              color: Colors.transparent,
+            ),
           ),
-        ),),
+        ),
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
@@ -139,18 +142,20 @@ class LoginChildScreenState extends State<LoginChildScreen> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(8),
                                 border: Border.all(
-                                    color: focusedBorderColor, width: 6,),
+                                  color: focusedBorderColor,
+                                  width: 6,
+                                ),
                               ),
                               textStyle:
                                   displayLargeStyle.copyWith(color: primary)),
                           submittedPinTheme: defaultPinTheme.copyWith(
-                              decoration: defaultPinTheme.decoration!.copyWith(
-                                color: fillColor,
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: focusedBorderColor),
-                              ),
-                              textStyle:
-                                  displayLargeStyle.copyWith(color: white),),
+                            decoration: defaultPinTheme.decoration!.copyWith(
+                              color: fillColor,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: focusedBorderColor),
+                            ),
+                            textStyle: displayLargeStyle.copyWith(color: white),
+                          ),
                           followingPinTheme: defaultPinTheme.copyWith(
                             decoration: defaultPinTheme.decoration!.copyWith(
                               color: white,
@@ -186,7 +191,9 @@ class LoginChildScreenState extends State<LoginChildScreen> {
                               borderRadius: BorderRadius.circular(22.0),
                             ),
                           ),
-                          child: Text("enter-submit-text".i18n(),),
+                          child: Text(
+                            "enter-submit-text".i18n(),
+                          ),
                         ),
                       ),
                     ],

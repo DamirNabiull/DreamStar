@@ -8,4 +8,5 @@ import 'user_client.dart';
 final mappingProvider = Provider((ref) => MappingClient());
 final fireStoreProvider = Provider((ref) => FireStoreClient());
 final userProvider = Provider((ref) => UserClient());
-final connectionProvider = NotifierProvider<ConnectionClient, bool>(ConnectionClient.new);
+final connectionProvider =
+    NotifierProvider<ConnectionClient, bool>(ConnectionClient.new);
