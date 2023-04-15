@@ -100,7 +100,7 @@ class TaskCard extends ConsumerWidget {
   }
 
   Widget buildOverdue() {
-    return taskInfo.overdue
+    return taskInfo.isOverdue()
         ? SizedBox(
             height: 14.0,
             child: Text(
