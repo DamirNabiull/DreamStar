@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'connection_client.dart';
-import 'firebase_client.dart';
+import 'firestore_client.dart';
 import 'mapping_client.dart';
 import 'user_client.dart';
 
