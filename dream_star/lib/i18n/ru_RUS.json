@@ -47,5 +47,6 @@
   "info-login-parent-bottom-btn-text": "Зарегистрируйтесь!",
   "child-login-welcome-text": "Привет!",
   "child-login-info-text": "Введи код, который ты получил от родителей",
-  "child-login-incorrect-code-text": "Код неверный"
+  "child-login-incorrect-code-text": "Код неверный",
+  "complete-before-text": "Сделать до:"
 }
