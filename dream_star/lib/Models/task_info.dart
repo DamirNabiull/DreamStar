@@ -21,12 +21,22 @@ class TaskInfo {
   final String childId;
   DateTime? deadline;
   int? penalty;
+  DateTime? createdAt;
 
-  TaskInfo(this.id, this.title, this.description, this.cost, this.status,
-      Color? color, this.childName, this.childId,
-      [this.deadline, this.penalty]) {
+  TaskInfo(this.title, this.description, this.cost, this.status, Color? color,
+      this.childName, this.childId,
+      [this.id = "-1", this.createdAt, this.deadline, this.penalty]) {
     if (color != null) {
       lineColor = color;
     }
+    overdue = isOverdue();
+  }
+
+  bool isOverdue() {
+    if (deadline != null && deadline!.isBefore(DateTime.now())) {
+      overdue = true;
+    }
+
+    return overdue;
   }
 }
