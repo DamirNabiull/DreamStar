@@ -16,7 +16,8 @@ class MappingClient {
       taskDTO.id,
       taskDTO.createdAt,
       taskDTO.deadline,
-      taskDTO.penalty);
+      taskDTO.penalty,
+      taskDTO.overdue);
 
   TaskDTO taskInfoToTaskDTO(TaskInfo task) => TaskDTO(
       task.childId,
@@ -29,7 +30,8 @@ class MappingClient {
       task.id,
       task.createdAt,
       task.deadline,
-      task.penalty);
+      task.penalty,
+      task.overdue);
 
   TaskStatus _taskStatusToEnum(String status) =>
       TaskStatus.values.firstWhere((e) => e.toString() == status);

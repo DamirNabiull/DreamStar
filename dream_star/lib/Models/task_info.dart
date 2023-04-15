@@ -16,7 +16,7 @@ class TaskInfo {
   final int cost;
   final TaskStatus status;
   Color lineColor = cardLineColors[Random().nextInt(cardLineColors.length)];
-  bool overdue = false;
+  bool overdue;
   final String childName;
   final String childId;
   DateTime? deadline;
@@ -25,15 +25,22 @@ class TaskInfo {
 
   TaskInfo(this.title, this.description, this.cost, this.status, Color? color,
       this.childName, this.childId,
-      [this.id = "-1", this.createdAt, this.deadline, this.penalty]) {
+      [this.id = "-1",
+      this.createdAt,
+      this.deadline,
+      this.penalty,
+      this.overdue = false]) {
     if (color != null) {
       lineColor = color;
     }
+
     overdue = isOverdue();
   }
 
   bool isOverdue() {
-    if (deadline != null && deadline!.isBefore(DateTime.now())) {
+    if (status == TaskStatus.progress &&
+        deadline != null &&
+        deadline!.isBefore(DateTime.now())) {
       overdue = true;
     }
 

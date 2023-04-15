@@ -18,10 +18,15 @@ class TaskDTO {
   DateTime? deadline;
   int? penalty;
   DateTime? createdAt;
+  final bool overdue;
 
   TaskDTO(this.childId, this.childName, this.title, this.description,
       this.status, this.cost, this.color,
-      [this.id = "-1", this.createdAt, this.deadline, this.penalty]);
+      [this.id = "-1",
+      this.createdAt,
+      this.deadline,
+      this.penalty,
+      this.overdue = false]);
 
   factory TaskDTO.fromJson(Map<String, dynamic> json) =>
       _$TaskDTOFromJson(json);
