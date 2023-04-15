@@ -113,29 +113,29 @@ class TaskCard extends ConsumerWidget {
   }
 
   Widget buildCompleteUntil() {
-    return taskInfo.deadline == null
+    return taskInfo.deadline == null || taskInfo.status != TaskStatus.progress
         ? const SizedBox.shrink()
         : Row(
-      children: [
-        SizedBox(
-          height: 14.0,
-          child: Text(
-            'complete-before-text'.i18n(),
-            style: labelMediumStyle,
-          ),
-        ),
-        const SizedBox(
-          width: 3.0,
-        ),
-        SizedBox(
-          height: 14.0,
-          child: Text(
-            DateFormat('dd.MM.yyyy').format(taskInfo.deadline!),
-            style: labelMediumStyle,
-          ),
-        ),
-      ],
-    );
+            children: [
+              SizedBox(
+                height: 14.0,
+                child: Text(
+                  'complete-before-text'.i18n(),
+                  style: labelMediumStyle,
+                ),
+              ),
+              const SizedBox(
+                width: 3.0,
+              ),
+              SizedBox(
+                height: 14.0,
+                child: Text(
+                  DateFormat('dd.MM.yyyy').format(taskInfo.deadline!),
+                  style: labelMediumStyle,
+                ),
+              ),
+            ],
+          );
   }
 
   Widget buildCostLabel() {
