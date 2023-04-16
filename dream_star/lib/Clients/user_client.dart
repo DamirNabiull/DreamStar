@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserClient {
   bool isAuth = false;
-  AppSide? _role;
+  AppSide? role;
   UserDTO? _userInfo;
   String? _userId;
 
@@ -20,7 +20,7 @@ class UserClient {
   UserClient() {
     _firebaseAuth.authStateChanges().listen((User? user) async {
       if (user == null) {
-        _role = null;
+        role = null;
         _userInfo = null;
         _userId = null;
         isAuth = false;
@@ -41,12 +41,10 @@ class UserClient {
 
   Future childSignIn(String token) async {}
 
-  AppSide getUserRole() => _role!;
-
   List<String> getChildrenList() => _userInfo!.children!;
 
   void setUserRole(bool isParent) {
-    _role = isParent ? AppSide.parent : AppSide.child;
+    role = isParent ? AppSide.parent : AppSide.child;
   }
 
   Future _setAuthInfo(bool authStatus, String id) async {

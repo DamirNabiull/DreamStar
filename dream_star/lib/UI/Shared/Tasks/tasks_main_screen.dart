@@ -12,7 +12,7 @@ class TasksMainScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appSide = ref.read(userProvider).getUserRole();
+    final appSide = ref.watch(userProvider).role!; // Add wrapper for auth
     return ScreenWrapper(
       child: DefaultTabController(
         length: 3,
