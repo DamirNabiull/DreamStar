@@ -106,9 +106,17 @@ class MainHomeScreen extends ConsumerWidget {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () {
-                                      userInfo.setUserRole(true);
-                                      Navigator.pushReplacement(
-                                          context, tasksScreenRoute);
+                                      // userInfo.setUserRole(true);
+                                      userInfo
+                                          .parentSignIn(
+                                            "test@test.ru",
+                                            "test123",
+                                          )
+                                          .then(
+                                            (value) =>
+                                                Navigator.pushReplacement(
+                                                    context, tasksScreenRoute),
+                                          );
                                       // print('Parrent Button Pressed');
                                     },
                                     style: ElevatedButton.styleFrom(

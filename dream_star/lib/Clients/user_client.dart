@@ -11,14 +11,15 @@ class UserClient {
   UserDTO? _userInfo;
   String? _userId;
 
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
   final container = ProviderContainer();
-  late final FireStoreClient _fireStoreClient = container.read(fireStoreProvider);
+  late final FireStoreClient _fireStoreClient =
+      container.read(fireStoreProvider);
 
   UserClient() {
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user != null) {
-        _setAuthInfo(true, user.uid);
-      } else {
+    _firebaseAuth.authStateChanges().listen((User? user) async {
+      if (user == null) {
         _role = null;
         _userInfo = null;
         _userId = null;
@@ -27,18 +28,18 @@ class UserClient {
     });
   }
 
-  Stream<User?> authState = FirebaseAuth.instance.authStateChanges();
+  Stream<User?> authState() => _firebaseAuth.authStateChanges();
 
   Future parentSignIn(String email, String password) async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
+    await _firebaseAuth.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
+
+    await _setAuthInfo(true, _firebaseAuth.currentUser!.uid);
   }
 
-  Future childSignIn(String token) async {
-
-  }
+  Future childSignIn(String token) async {}
 
   AppSide getUserRole() => _role!;
 
@@ -48,19 +49,18 @@ class UserClient {
     _role = isParent ? AppSide.parent : AppSide.child;
   }
 
-  void _setAuthInfo(bool authStatus, String id) {
+  Future _setAuthInfo(bool authStatus, String id) async {
     isAuth = authStatus;
     _userId = id;
-    _getUserInfo();
+    await _getUserInfo();
   }
 
-  void _getUserInfo() {
-    var user = _fireStoreClient.getUser(_userId!);
-    user.then((val) {
-      if (val != null) {
-        _userInfo = val;
-        setUserRole(_userInfo!.isParent);
-      }
-    });
+  Future _getUserInfo() async {
+    var user = await _fireStoreClient.getUser(_userId!);
+
+    if (user != null) {
+      _userInfo = user;
+      setUserRole(_userInfo!.isParent);
+    }
   }
 }
