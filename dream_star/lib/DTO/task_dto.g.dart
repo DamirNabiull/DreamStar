@@ -15,6 +15,11 @@ TaskDTO _$TaskDTOFromJson(Map<String, dynamic> json) => TaskDTO(
       json['cost'] as int,
       json['color'] as int,
       json['id'] as String? ?? "-1",
+      const TimestampOrNullConverter()
+          .fromJson(json['createdAt'] as Timestamp?),
+      const TimestampOrNullConverter().fromJson(json['deadline'] as Timestamp?),
+      json['penalty'] as int?,
+      json['overdue'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$TaskDTOToJson(TaskDTO instance) => <String, dynamic>{
@@ -26,4 +31,8 @@ Map<String, dynamic> _$TaskDTOToJson(TaskDTO instance) => <String, dynamic>{
       'status': instance.status,
       'cost': instance.cost,
       'color': instance.color,
+      'deadline': const TimestampOrNullConverter().toJson(instance.deadline),
+      'penalty': instance.penalty,
+      'createdAt': const TimestampOrNullConverter().toJson(instance.createdAt),
+      'overdue': instance.overdue,
     };
