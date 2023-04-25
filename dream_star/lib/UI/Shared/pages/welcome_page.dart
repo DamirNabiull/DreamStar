@@ -13,7 +13,6 @@ class MainHomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    double wlcm_h = MediaQuery.of(context).size.height * 0.1;
     return Scaffold(
       backgroundColor: white,
       body: Stack(
