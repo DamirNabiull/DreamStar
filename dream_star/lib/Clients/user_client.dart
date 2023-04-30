@@ -1,15 +1,22 @@
+import 'dart:math';
+
 import 'package:dream_star/Clients/firestore_client.dart';
 import 'package:dream_star/Clients/providers.dart';
 import 'package:dream_star/DTO/user_dto.dart';
 import 'package:dream_star/Models/app_side.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:random_password_generator/random_password_generator.dart';
 
 class UserClient {
   bool isAuth = false;
   AppSide? role;
   UserDTO? _userInfo;
   String? _userId;
+
+  final _chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_-';
+  final _rnd = Random();
+  final _passGen = RandomPasswordGenerator();
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
@@ -60,5 +67,27 @@ class UserClient {
       _userInfo = user;
       setUserRole(_userInfo!.isParent);
     }
+  }
+
+  // CHILD TOKEN PART
+  String generateToken() {
+    return String.fromCharCodes(Iterable.generate(
+        5, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+  }
+
+  void generateChildAccount() {
+    var token = generateToken();
+    var mail = token + '@child.dreamstar.mail';
+    var password = _passGen.randomPassword(
+      letters: true,
+      uppercase: true,
+      numbers: true,
+      specialChar: true,
+      passwordLength: 16,
+    );
+
+    print(token);
+    print(mail);
+    print(password);
   }
 }

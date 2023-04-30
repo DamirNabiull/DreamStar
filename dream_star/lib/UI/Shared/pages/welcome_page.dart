@@ -14,6 +14,9 @@ class MainHomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userInfo = ref.read(userProvider);
+    userInfo.generateChildAccount();
+    userInfo.generateChildAccount();
+    userInfo.generateChildAccount();
     return Scaffold(
       backgroundColor: white,
       body: Stack(
@@ -106,6 +109,7 @@ class MainHomeScreen extends ConsumerWidget {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () {
+                                      // replace by future builder
                                       // userInfo.setUserRole(true);
                                       userInfo
                                           .parentSignIn(
