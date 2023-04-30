@@ -1,6 +1,7 @@
 import 'package:dream_star/Clients/providers.dart';
 import 'package:dream_star/UI/routes.dart';
 import 'package:dream_star/UI/themes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localization/localization.dart';
@@ -14,9 +15,6 @@ class MainHomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userInfo = ref.read(userProvider);
-    userInfo.generateChildAccount();
-    userInfo.generateChildAccount();
-    userInfo.generateChildAccount();
     return Scaffold(
       backgroundColor: white,
       body: Stack(
@@ -116,11 +114,11 @@ class MainHomeScreen extends ConsumerWidget {
                                             "test@test.ru",
                                             "test123",
                                           )
-                                          .then(
-                                            (value) =>
-                                                Navigator.pushReplacement(
-                                                    context, tasksScreenRoute),
-                                          );
+                                          .then((value) =>
+                                              Navigator.pushReplacement(
+                                                  context, tasksScreenRoute))
+                                          .catchError((error, stackTrace) =>
+                                              print(error.toString()));
                                       // print('Parrent Button Pressed');
                                     },
                                     style: ElevatedButton.styleFrom(
@@ -139,9 +137,13 @@ class MainHomeScreen extends ConsumerWidget {
                                   const SizedBox(width: 20),
                                   ElevatedButton(
                                     onPressed: () {
-                                      userInfo.setUserRole(false);
-                                      Navigator.pushReplacement(
-                                          context, tasksScreenRoute);
+                                      userInfo
+                                          .createParentAccount('Имя', 'Фамилия', 'mail@mail.ru', 'asdaew!31')
+                                          .then((value) => null).catchError((error, stackTrace) =>
+                                              print(error.toString()));
+                                      // userInfo.setUserRole(false);
+                                      // Navigator.pushReplacement(
+                                      //     context, tasksScreenRoute);
                                       // print('Child Button Pressed');
                                     },
                                     style: ElevatedButton.styleFrom(

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dream_star/UI/Shared/pages/welcome_page.dart';
+import 'package:dream_star/UI/routes.dart';
 import 'package:dream_star/UI/themes.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
           }
           if (snapshot.connectionState == ConnectionState.done) {
             FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-            return const MainHomeScreen();
+            return const InitPage();
           }
           return const CircularProgressIndicator();
         },

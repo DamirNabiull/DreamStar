@@ -1,3 +1,4 @@
+import 'package:dream_star/Clients/login_status_client.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'connection_client.dart';
@@ -7,6 +8,6 @@ import 'user_client.dart';
 
 final mappingProvider = Provider((ref) => MappingClient());
 final fireStoreProvider = Provider((ref) => FireStoreClient());
-final userProvider = Provider((ref) => UserClient());
 final connectionProvider =
     NotifierProvider<ConnectionClient, bool>(ConnectionClient.new);
+final userProvider = Provider((ref) => UserClient());

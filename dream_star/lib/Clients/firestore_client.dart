@@ -37,15 +37,18 @@ class FireStoreClient {
   }
 
   Stream<List<TaskInfo>> getTasks(List<String> childIds, TaskStatus status) {
-    return _tasksCollection
-        .where("childId", whereIn: childIds)
-        .where("status", isEqualTo: status.toString())
-        .orderBy('createdAt', descending: true)
-        .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((doc) =>
-                _mapper.taskDTOToTaskInfo(TaskDTO.fromJson(doc.data())))
-            .toList());
+    if (childIds.isNotEmpty) {
+      return _tasksCollection
+          .where("childId", whereIn: childIds)
+          .where("status", isEqualTo: status.toString())
+          .orderBy('createdAt', descending: true)
+          .snapshots()
+          .map((snapshot) => snapshot.docs
+          .map((doc) =>
+          _mapper.taskDTOToTaskInfo(TaskDTO.fromJson(doc.data())))
+          .toList());
+    }
+    return const Stream.empty();
   }
 
   void createUser(UserDTO userDTO, String id) {
@@ -58,5 +61,10 @@ class FireStoreClient {
       return UserDTO.fromJson(snapshot.data()!);
     }
     return null;
+  }
+
+  void updateUser(UserDTO userDTO, String id) {
+    final user = _usersCollection.doc(id);
+    user.update(userDTO.toJson());
   }
 }
