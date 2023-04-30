@@ -48,5 +48,9 @@
   "child-login-welcome-text": "Hello!",
   "child-login-info-text": "Enter the code you received from your parents",
   "child-login-incorrect-code-text": "The code is incorrect",
-  "complete-before-text": "Complete before:"
+  "complete-before-text": "Complete before:",
+  "dream-title": "Dream title",
+  "dream-description": "Dream description",
+  "new-dream-title": "New dream",
+  "create-dream": "Create dream"
 }
