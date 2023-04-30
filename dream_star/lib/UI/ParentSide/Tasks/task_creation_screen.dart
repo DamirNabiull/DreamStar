@@ -295,12 +295,6 @@ class TaskCreationScreenState extends ConsumerState<TaskCreationScreen> {
                           "test"),
                     );
                 Navigator.pop(context);
-                // print(_titleController.text);
-                // print(_descriptionController.text);
-                // print(dropdownCostValue);
-                // print(dropdownNameValue);
-                // print(_dateInput.text);
-                // print(dropdownPenaltyValue);
               },
         child: Text(
           'create-task'.i18n(),
