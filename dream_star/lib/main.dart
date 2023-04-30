@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:dream_star/UI/Shared/pages/welcome_page.dart';
+import 'package:dream_star/UI/routes.dart';
 import 'package:dream_star/UI/themes.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,10 +12,11 @@ import 'package:localization/localization.dart';
 
 import 'firebase_options.dart';
 
-Future main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  runApp(ProviderScope(child: MyApp()));
+void main() async {
+  runZonedGuarded<Future<void>>(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    runApp(ProviderScope(child: MyApp()));
+  }, (error, stack) => FirebaseCrashlytics.instance.recordError(error, stack));
 }
 
 class MyApp extends StatelessWidget {
@@ -44,7 +49,8 @@ class MyApp extends StatelessWidget {
             throw Exception(snapshot.error.toString());
           }
           if (snapshot.connectionState == ConnectionState.done) {
-            return const MainHomeScreen();
+            FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+            return const InitPage();
           }
           return const CircularProgressIndicator();
         },

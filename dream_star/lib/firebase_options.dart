@@ -69,8 +69,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '870317025836',
     projectId: 'dreamstar-1d71c',
     storageBucket: 'dreamstar-1d71c.appspot.com',
-    iosClientId:
-        '870317025836-racnhao9qptfenjnp2tamsa1ul051uql.apps.googleusercontent.com',
+    iosClientId: '870317025836-racnhao9qptfenjnp2tamsa1ul051uql.apps.googleusercontent.com',
     iosBundleId: 'dev.dada.dreamStar',
   );
 }
