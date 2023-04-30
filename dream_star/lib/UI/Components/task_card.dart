@@ -4,6 +4,7 @@ import 'package:dream_star/Models/task_info.dart';
 import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -100,14 +101,41 @@ class TaskCard extends ConsumerWidget {
   }
 
   Widget buildOverdue() {
-    return taskInfo.overdue
+    return taskInfo.isOverdue()
         ? SizedBox(
             height: 14.0,
             child: Text(
               'overdue-text'.i18n(),
               style: labelMediumStyle,
-            ))
-        : const SizedBox.shrink();
+            ),
+          )
+        : buildCompleteUntil();
+  }
+
+  Widget buildCompleteUntil() {
+    return taskInfo.deadline == null || taskInfo.status != TaskStatus.progress
+        ? const SizedBox.shrink()
+        : Row(
+            children: [
+              SizedBox(
+                height: 14.0,
+                child: Text(
+                  'complete-before-text'.i18n(),
+                  style: labelMediumStyle,
+                ),
+              ),
+              const SizedBox(
+                width: 3.0,
+              ),
+              SizedBox(
+                height: 14.0,
+                child: Text(
+                  DateFormat('dd.MM.yyyy').format(taskInfo.deadline!),
+                  style: labelMediumStyle,
+                ),
+              ),
+            ],
+          );
   }
 
   Widget buildCostLabel() {

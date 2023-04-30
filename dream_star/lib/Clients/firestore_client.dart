@@ -76,6 +76,7 @@ class FireStoreClient {
     return _tasksCollection
         .where("childId", whereIn: childIds)
         .where("status", isEqualTo: status.toString())
+        .orderBy('createdAt', descending: true)
         .snapshots()
         .map((snapshot) => snapshot.docs
             .map((doc) =>

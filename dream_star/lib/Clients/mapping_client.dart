@@ -6,14 +6,18 @@ import 'package:dream_star/UI/themes.dart';
 
 class MappingClient {
   TaskInfo taskDTOToTaskInfo(TaskDTO taskDTO) => TaskInfo(
-      taskDTO.id,
       taskDTO.title,
       taskDTO.description,
       taskDTO.cost,
       _taskStatusToEnum(taskDTO.status),
       _stringToColor(taskDTO.color),
       taskDTO.childName,
-      taskDTO.childId);
+      taskDTO.childId,
+      taskDTO.id,
+      taskDTO.createdAt,
+      taskDTO.deadline,
+      taskDTO.penalty,
+      taskDTO.overdue);
 
   TaskDTO taskInfoToTaskDTO(TaskInfo task) => TaskDTO(
       task.childId,
@@ -23,7 +27,11 @@ class MappingClient {
       _taskStatusToString(task.status),
       task.cost,
       _colorToInt(task.lineColor),
-      task.id);
+      task.id,
+      task.createdAt,
+      task.deadline,
+      task.penalty,
+      task.overdue);
 
   TaskStatus _taskStatusToEnum(String status) =>
       TaskStatus.values.firstWhere((e) => e.toString() == status);

@@ -283,17 +283,23 @@ class TaskCreationScreenState extends ConsumerState<TaskCreationScreen> {
         onPressed: isButtonDisabled
             ? null
             : () {
-                ref.read(fireStoreProvider).createTask(
-                      TaskInfo(
-                          "",
-                          _titleController.text,
-                          _descriptionController.text,
-                          dropdownCostValue,
-                          TaskStatus.progress,
-                          null,
-                          dropdownNameValue,
-                          "test"),
-                    );
+                TaskInfo task = TaskInfo(
+                    _titleController.text,
+                    _descriptionController.text,
+                    dropdownCostValue,
+                    TaskStatus.progress,
+                    null,
+                    dropdownNameValue,
+                    "test");
+                task.deadline = deadlineFlag
+                    ? DateFormat("dd.MM.yyyy").parse(_dateInput.text).add(
+                          const Duration(hours: 23, minutes: 59, seconds: 59),
+                        )
+                    : null;
+                task.penalty = penaltyFlag ? dropdownPenaltyValue : null;
+                task.createdAt = DateTime.now();
+
+                ref.read(fireStoreProvider).createTask(task);
                 Navigator.pop(context);
               },
         child: Text(
