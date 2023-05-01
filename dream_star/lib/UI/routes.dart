@@ -15,6 +15,19 @@ class InitPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // only for debug
+    print("REMOVE SIGN OUT IN INIT PAGE");
+
+    return FutureBuilder(
+      future: ref.read(userProvider).signOut(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          throw Exception(snapshot.error.toString());
+        }
+        return const MainHomeScreen();
+      },
+    );
+
     return StreamBuilder<User?>(
       stream: ref.read(userProvider).authState(),
       builder: (context, snapshot) {
