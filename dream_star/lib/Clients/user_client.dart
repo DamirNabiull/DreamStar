@@ -14,6 +14,7 @@ class UserClient {
   UserDTO? _userInfo;
   String? _userId;
   String? childToken;
+  List<String> childTokens = [];
   List<String> _childNames = [];
 
   final _chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_-';
@@ -79,6 +80,19 @@ class UserClient {
     await _setAuthInfo();
   }
 
+  Future _setChildrenTokensList(bool isParent) async {
+    if (!isParent) {
+      return;
+    }
+
+    childTokens = [];
+    var ids = childrenList();
+    for (var id in ids) {
+      String? token = await _fireStoreClient.getTokenById(id);
+      childTokens.add(token!);
+    }
+  }
+
   Future _setChildrenNamesList(bool isParent) async {
     if (!isParent) {
       return;
@@ -106,6 +120,7 @@ class UserClient {
     _userInfo = user;
     _setUserRole(_userInfo!.isParent);
     await _setChildrenNamesList(_userInfo!.isParent);
+    await _setChildrenTokensList(_userInfo!.isParent);
   }
 
   Future _saveDataAboutUser(
