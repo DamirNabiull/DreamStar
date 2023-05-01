@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dream_star/Helpers/JsonConverter.dart';
+import 'package:dream_star/Helpers/json_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'task_dto.g.dart';

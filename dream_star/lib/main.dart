@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:dream_star/UI/Shared/pages/welcome_page.dart';
 import 'package:dream_star/UI/routes.dart';
 import 'package:dream_star/UI/themes.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
