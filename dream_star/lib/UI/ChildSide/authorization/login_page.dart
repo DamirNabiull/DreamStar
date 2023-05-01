@@ -45,6 +45,9 @@ class LoginChildScreenState extends State<LoginChildScreen> {
     const int codeLength = 5;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       backgroundColor: white,
       body: Stack(children: [
         SvgPicture.asset(
@@ -70,7 +73,7 @@ class LoginChildScreenState extends State<LoginChildScreen> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.4,
+                  height: MediaQuery.of(context).size.height * 0.3,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
