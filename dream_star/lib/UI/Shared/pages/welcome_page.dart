@@ -116,8 +116,8 @@ class MainHomeScreen extends ConsumerWidget {
                                           .then((value) =>
                                               Navigator.pushReplacement(
                                                   context, tasksScreenRoute));
-                                          // .catchError((error, stackTrace) =>
-                                          //     error.toString());
+                                      // .catchError((error, stackTrace) =>
+                                      //     error.toString());
                                       // print('Parrent Button Pressed');
                                     },
                                     style: ElevatedButton.styleFrom(
@@ -140,8 +140,8 @@ class MainHomeScreen extends ConsumerWidget {
                                           .createParentAccount('Имя', 'Фамилия',
                                               'mail@mail.ru', 'asdaew!31')
                                           .then((value) => null);
-                                          // .catchError((error, stackTrace) =>
-                                          //     error.toString());
+                                      // .catchError((error, stackTrace) =>
+                                      //     error.toString());
                                       // userInfo.setUserRole(false);
                                       // Navigator.pushReplacement(
                                       //     context, tasksScreenRoute);
