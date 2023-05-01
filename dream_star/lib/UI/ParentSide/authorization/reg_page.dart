@@ -48,68 +48,76 @@ class RegParentScreenState extends State<RegParentScreen> {
             ),
           )),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(23.0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const SizedBox(height: 30),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: ElevatedButton.icon(
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        color: secondary,
-                        size: 20.0,
-                      ),
-                      label: Text(
-                        "change-role-text".i18n(),
-                        style: const TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 18,
-                          color: Colors.grey,
+                    const SizedBox(height: 30),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: ElevatedButton.icon(
+                        icon: const Icon(
+                          Icons.arrow_back,
+                          color: secondary,
+                          size: 20.0,
                         ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        elevation: 0,
-                        shadowColor: Colors.transparent,
-                      ),
-                      onPressed: () {
-                        // print('Button Pressed');
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 30),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: RichText(
-                      text: TextSpan(
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: "create-account-text".i18n(),
-                            style: displayMediumStyle.copyWith(color: primary),
+                        label: Text(
+                          "change-role-text".i18n(),
+                          style: const TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 18,
+                            color: Colors.grey,
                           ),
-                        ],
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          elevation: 0,
+                          shadowColor: Colors.transparent,
+                        ),
+                        onPressed: () {
+                          // print('Button Pressed');
+                        },
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 15),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: RichText(
-                      text: TextSpan(
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: "create-account-info-text".i18n(),
-                            style: titleSmallStyle.copyWith(color: secondary),
+                    SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.23,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Align(
+                          alignment: Alignment.bottomLeft,
+                          child: RichText(
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: "create-account-text".i18n(),
+                                  style: displayMediumStyle.copyWith(color: primary),
+                                ),
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
+                        ),
+                        const SizedBox(height: 15),
+                        Align(
+                          alignment: Alignment.bottomLeft,
+                          child: RichText(
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: "create-account-info-text".i18n(),
+                                  style: titleSmallStyle.copyWith(color: secondary),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 30),
+
                   Container(
                     padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
                     decoration: BoxDecoration(
@@ -186,7 +194,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                           title: Text(
                             "switch-female-text".i18n(),
                             style: const TextStyle(
-                                fontWeight: FontWeight.normal, fontSize: 15),
+                                fontWeight: FontWeight.normal, fontSize: 18,color: Colors.grey),
                           ),
                           value: Switch.female,
                           groupValue: _character,
@@ -206,7 +214,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                           title: Text(
                             "switch-male-text".i18n(),
                             style: const TextStyle(
-                                fontWeight: FontWeight.normal, fontSize: 15),
+                                fontWeight: FontWeight.normal, fontSize: 18,color: Colors.grey),
                           ),
                           value: Switch.male,
                           groupValue: _character,
@@ -305,39 +313,51 @@ class RegParentScreenState extends State<RegParentScreen> {
                       child: Text("submit-reg-text".i18n()),
                     ),
                   ),
-                  const SizedBox(height: 30),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Row(children: <Widget>[
-                      RichText(
-                        text: TextSpan(
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: "info-reg-text".i18n(),
-                              style: titleSmallStyle.copyWith(color: secondary),
-                            ),
-                          ],
-                        ),
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          textStyle: const TextStyle(fontSize: 13),
-                        ),
-                        onPressed: () {},
-                        child: Text(
-                          "info-btn-reg-text".i18n(),
-                          style: titleSmallStyle.copyWith(color: primary),
-                        ),
-                      ),
-                    ]),
-                  ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 80),
                 ],
               ),
             ),
           ),
         ],
       ),
+      bottomSheet: Container(
+        width: double.infinity,
+        color: Colors.transparent,
+        height: 70,
+        child: Center(child: FooterBtnReg()),
+      ),
     );
   }
+}
+
+Widget FooterBtnReg(){
+  return Container(
+      width: double.infinity,
+      height: 50,
+      color: Colors.transparent,
+      child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+      RichText(
+        text: TextSpan(
+          children: <TextSpan>[
+            TextSpan(
+              text: "info-reg-text".i18n(),
+              style: titleSmallStyle.copyWith(color: secondary),
+            ),
+          ],
+        ),
+      ),
+      TextButton(
+        style: TextButton.styleFrom(
+          textStyle: const TextStyle(fontSize: 13),
+        ),
+        onPressed: () {},
+        child: Text(
+          "info-btn-reg-text".i18n(),
+          style: titleSmallStyle.copyWith(color: primary),
+        ),
+      ),
+    ]),
+  );
 }

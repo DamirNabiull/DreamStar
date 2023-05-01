@@ -63,41 +63,49 @@ class LoginChildScreenState extends State<LoginChildScreen> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(23.0),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                const SizedBox(height: 100),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: RichText(
-                    text: TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: "child-login-welcome-text".i18n(),
-                          style: displayMediumStyle.copyWith(color: primary),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: "child-login-welcome-text".i18n(),
+                                style: displayMediumStyle.copyWith(color: primary),
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 15),
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: "child-login-info-text".i18n(),
+                                style: titleSmallStyle.copyWith(color: secondary),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 15),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: RichText(
-                    text: TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: "child-login-info-text".i18n(),
-                          style: titleSmallStyle.copyWith(color: secondary),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 90),
+                const SizedBox(height: 0),
                 Form(
                   key: formKey,
                   child: Column(
