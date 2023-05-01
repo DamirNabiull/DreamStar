@@ -2,6 +2,7 @@ import 'package:dream_star/Clients/providers.dart';
 import 'package:dream_star/Models/app_side.dart';
 import 'package:dream_star/Models/task_info.dart';
 import 'package:dream_star/UI/Components/task_card.dart';
+import 'package:dream_star/UI/Shared/NoChildAdded/no_child_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -44,10 +45,13 @@ class TaskListScreen extends ConsumerWidget {
                 ),
               ),
             );
-          } else {
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
               child: CircularProgressIndicator(),
             );
+          }
+          else {
+            return const NoChildScreen();
           }
         },
       ),

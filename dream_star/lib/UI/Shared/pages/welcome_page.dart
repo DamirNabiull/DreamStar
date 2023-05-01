@@ -109,7 +109,7 @@ class MainHomeScreen extends ConsumerWidget {
                                       // replace by future builder
                                       // userInfo.setUserRole(true);
                                       userInfo
-                                          .parentSignIn(
+                                          .signIn(
                                             "test@test.ru",
                                             "test123",
                                           )
@@ -136,10 +136,9 @@ class MainHomeScreen extends ConsumerWidget {
                                   const SizedBox(width: 20),
                                   ElevatedButton(
                                     onPressed: () {
-                                      userInfo
-                                          .createParentAccount('Имя', 'Фамилия',
-                                              'mail@mail.ru', 'asdaew!31')
-                                          .then((value) => null);
+                                      userInfo.childSignIn('JNF6R').then(
+                                          (value) => Navigator.pushReplacement(
+                                              context, tasksScreenRoute));
                                       // .catchError((error, stackTrace) =>
                                       //     error.toString());
                                       // userInfo.setUserRole(false);

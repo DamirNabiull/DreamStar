@@ -52,5 +52,6 @@
   "dream-title": "Название мечты",
   "dream-description": "Описание мечты",
   "new-dream-title": "Новая мечта",
-  "create-dream": "Создать мечту"
+  "create-dream": "Создать мечту",
+  "no-children": "Нет добавленного ребенка"
 }
