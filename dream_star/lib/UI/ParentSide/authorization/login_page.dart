@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:dream_star/Clients/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -190,8 +191,10 @@ class LoginParentScreenState extends ConsumerState<LoginParentScreen> {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        print(_emailController.text);
-                        print(_passController.text);
+                        // ref
+                        //     .read(userProvider)
+                        //     .signIn(_emailController.text, _passController.text)
+                        //     .then((value) => Navigator.);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: primary,
