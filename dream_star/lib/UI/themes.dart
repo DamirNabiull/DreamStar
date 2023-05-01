@@ -205,7 +205,8 @@ BoxDecoration approvedDreamButton = BoxDecoration(
   borderRadius: BorderRadius.circular(12.0),
 );
 
-TextStyle approvedMutedDreamButtonText = labelMediumStyle.copyWith(color: secondary);
+TextStyle approvedMutedDreamButtonText =
+    labelMediumStyle.copyWith(color: secondary);
 BoxDecoration approvedMutedDreamButton = BoxDecoration(
   color: secondPrimaryMuted,
   borderRadius: BorderRadius.circular(12.0),
@@ -233,7 +234,8 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
   final BoxDecoration completeDreamButtonStyle = completeDreamButton;
   final TextStyle approvedDreamButtonTextStyle = approvedDreamButtonText;
   final BoxDecoration approvedDreamButtonStyle = approvedDreamButton;
-  final TextStyle approvedMutedDreamButtonTextStyle = approvedMutedDreamButtonText;
+  final TextStyle approvedMutedDreamButtonTextStyle =
+      approvedMutedDreamButtonText;
   final BoxDecoration approvedMutedDreamButtonStyle = approvedMutedDreamButton;
 
   @override
@@ -278,8 +280,6 @@ final ThemeData customTheme = ThemeData(
     onError: white,
     brightness: Brightness.light,
   ),
-  inputDecorationTheme: const InputDecorationTheme(
-      isDense: true
-  ),
+  inputDecorationTheme: const InputDecorationTheme(isDense: true),
   extensions: [ThemeExtensions()],
 );

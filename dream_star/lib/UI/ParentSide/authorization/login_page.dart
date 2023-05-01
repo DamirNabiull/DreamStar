@@ -197,11 +197,13 @@ class LoginParentScreenState extends ConsumerState<LoginParentScreen> {
                           _isLogging = true;
                           ref
                               .read(userProvider)
-                              .signIn(_emailController.text, _passController.text)
+                              .signIn(
+                                  _emailController.text, _passController.text)
                               .then((value) {
                             Navigator.pop(context);
                             _isLogging = false;
-                            Navigator.pushReplacement(context, tasksScreenRoute);
+                            Navigator.pushReplacement(
+                                context, tasksScreenRoute);
                           });
                         }
                       },

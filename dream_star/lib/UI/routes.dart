@@ -16,7 +16,9 @@ class InitPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // only for debug
-    print("REMOVE SIGN OUT IN INIT PAGE");
+    // print("REMOVE SIGN OUT IN INIT PAGE");
+
+    // REMOVE WHEN EXIT BUTTON WILL BE CREATED
 
     return FutureBuilder(
       future: ref.read(userProvider).signOut(),
@@ -43,8 +45,5 @@ class InitPage extends ConsumerWidget {
         return const MainHomeScreen();
       },
     );
-    // return ref.read(userProvider).authState()
-    //     ? const TasksMainScreen()
-    //     : const MainHomeScreen();
   }
 }

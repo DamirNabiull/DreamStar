@@ -49,8 +49,7 @@ class TaskListScreen extends ConsumerWidget {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          }
-          else {
+          } else {
             return const NoChildScreen();
           }
         },

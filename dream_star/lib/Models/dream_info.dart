@@ -3,12 +3,7 @@ import 'dart:ui';
 
 import 'package:dream_star/UI/themes.dart';
 
-enum DreamStatus {
-  review,
-  approved,
-  await,
-  complete
-}
+enum DreamStatus { review, approved, await, complete }
 
 class DreamInfo {
   final String id;

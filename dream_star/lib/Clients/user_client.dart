@@ -159,14 +159,14 @@ class UserClient {
   }
 
   Future<String> createChildAccount(String name, String surname) async {
-    print('Token generation');
+    // print('Token generation');
 
     var token = _generateToken();
     while (!_fireStoreClient.isTokenFree(token)) {
       token = _generateToken();
     }
 
-    print(token);
+    // print(token);
 
     var mail = '$token@child.dreamstar.mail';
     var password = _passGen.randomPassword(

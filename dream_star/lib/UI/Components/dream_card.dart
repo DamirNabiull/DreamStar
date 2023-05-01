@@ -4,7 +4,6 @@ import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -41,7 +40,7 @@ class DreamCardState extends ConsumerState<DreamCard> {
       _costController.value = _costController.value.copyWith(
         text: text,
         selection:
-        TextSelection(baseOffset: text.length, extentOffset: text.length),
+            TextSelection(baseOffset: text.length, extentOffset: text.length),
         composing: TextRange.empty,
       );
     });
@@ -72,7 +71,7 @@ class DreamCardState extends ConsumerState<DreamCard> {
         width: MediaQuery.of(context).size.width - 32,
         child: Padding(
             padding:
-            const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
             child: IntrinsicHeight(
               child: Row(
                 children: [
@@ -113,7 +112,8 @@ class DreamCardState extends ConsumerState<DreamCard> {
     return Container(
       width: 6,
       decoration: BoxDecoration(
-          color: widget.dreamInfo.lineColor, borderRadius: BorderRadius.circular(3)),
+          color: widget.dreamInfo.lineColor,
+          borderRadius: BorderRadius.circular(3)),
     );
   }
 
@@ -140,22 +140,28 @@ class DreamCardState extends ConsumerState<DreamCard> {
           case DreamStatus.review:
             return const SizedBox.shrink();
           case DreamStatus.approved:
-            return buildCostLabel(SvgPicture.asset('assets/star-empty-14px-yellow.svg'));
+            return buildCostLabel(
+                SvgPicture.asset('assets/star-empty-14px-yellow.svg'));
           case DreamStatus.await:
-            return buildCostLabel(SvgPicture.asset('assets/star-empty-14px-yellow.svg'));
+            return buildCostLabel(
+                SvgPicture.asset('assets/star-empty-14px-yellow.svg'));
           case DreamStatus.complete:
-            return buildCostLabel(SvgPicture.asset('assets/star-filled-14px-yellow.svg'));
+            return buildCostLabel(
+                SvgPicture.asset('assets/star-filled-14px-yellow.svg'));
         }
       case AppSide.parent:
         switch (widget.dreamInfo.status) {
           case DreamStatus.review:
             return buildCostTextField();
           case DreamStatus.approved:
-            return buildCostLabel(SvgPicture.asset('assets/star-empty-14px-yellow.svg'));
+            return buildCostLabel(
+                SvgPicture.asset('assets/star-empty-14px-yellow.svg'));
           case DreamStatus.await:
-            return buildCostLabel(SvgPicture.asset('assets/star-empty-14px-yellow.svg'));
+            return buildCostLabel(
+                SvgPicture.asset('assets/star-empty-14px-yellow.svg'));
           case DreamStatus.complete:
-            return buildCostLabel(SvgPicture.asset('assets/star-filled-14px-yellow.svg'));
+            return buildCostLabel(
+                SvgPicture.asset('assets/star-filled-14px-yellow.svg'));
         }
     }
   }
@@ -165,9 +171,8 @@ class DreamCardState extends ConsumerState<DreamCard> {
       padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 8),
       alignment: AlignmentDirectional.center,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6.0),
-        border: Border.all(width:1, color: secondary)
-      ),
+          borderRadius: BorderRadius.circular(6.0),
+          border: Border.all(width: 1, color: secondary)),
       child: Row(
         children: [
           SizedBox(
@@ -175,22 +180,23 @@ class DreamCardState extends ConsumerState<DreamCard> {
             child: TextField(
                 maxLength: 3,
                 keyboardType: TextInputType.number,
-                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^[1-9][0-9]*'))],
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'^[1-9][0-9]*'))
+                ],
                 decoration: const InputDecoration(
                     counterText: "",
                     hintText: "0",
                     hintStyle: labelMediumStyleSecondary,
                     border: InputBorder.none,
-                    contentPadding: EdgeInsets.zero
-                ),
+                    contentPadding: EdgeInsets.zero),
                 style: labelMediumStylePrimary,
                 onChanged: (String text) {
                   _costController.text = text;
-                }
-            ),
+                }),
           ),
-          SvgPicture.asset('assets/star-empty-14px-yellow.svg',
-          color: isButtonDisabled? secondary : null)
+          SvgPicture.asset(
+            'assets/star-empty-14px-tertiary.svg',
+          )
         ],
       ),
     );
@@ -199,29 +205,29 @@ class DreamCardState extends ConsumerState<DreamCard> {
   Widget buildCostLabel(Widget starImage) {
     return SizedBox(
         child: Row(
-          children: [
-            Text(
-              widget.dreamInfo.cost.toString(),
-              style: labelMediumStyle.copyWith(color: primary),
-            ),
-            const SizedBox(width: 5.0),
-            starImage
-          ],
-        ));
+      children: [
+        Text(
+          widget.dreamInfo.cost.toString(),
+          style: labelMediumStyle.copyWith(color: primary),
+        ),
+        const SizedBox(width: 5.0),
+        starImage
+      ],
+    ));
   }
 
   Widget buildChildName() {
     return widget.appSide == AppSide.parent
         ? RichText(
-        text: TextSpan(
-            text: 'child-text'.i18n(),
-            style: labelMediumStyle.copyWith(color: secondary),
-            children: [
-              TextSpan(
-                text: widget.dreamInfo.childName,
-                style: labelMediumStyle.copyWith(color: primary),
-              )
-            ]))
+            text: TextSpan(
+                text: 'child-text'.i18n(),
+                style: labelMediumStyle.copyWith(color: secondary),
+                children: [
+                TextSpan(
+                  text: widget.dreamInfo.childName,
+                  style: labelMediumStyle.copyWith(color: primary),
+                )
+              ]))
         : const SizedBox.shrink();
   }
 
@@ -232,29 +238,39 @@ class DreamCardState extends ConsumerState<DreamCard> {
           case DreamStatus.review:
             return buildInactiveButton(
                 "child-review-dream-button-title".i18n(),
-                customTheme.extension<ThemeExtensions>()!.onReviewDreamButtonStyle,
-                customTheme.extension<ThemeExtensions>()!.inactiveDreamButtonTextStyle
-            );
+                customTheme
+                    .extension<ThemeExtensions>()!
+                    .onReviewDreamButtonStyle,
+                customTheme
+                    .extension<ThemeExtensions>()!
+                    .inactiveDreamButtonTextStyle);
           case DreamStatus.approved:
             return buildBuyButton();
           case DreamStatus.await:
             return buildInactiveButton(
                 "child-await-dream-button-title".i18n(),
-                customTheme.extension<ThemeExtensions>()!.onAwaitDreamButtonStyle,
-                customTheme.extension<ThemeExtensions>()!.inactiveDreamButtonTextStyle
-            );
+                customTheme
+                    .extension<ThemeExtensions>()!
+                    .onAwaitDreamButtonStyle,
+                customTheme
+                    .extension<ThemeExtensions>()!
+                    .inactiveDreamButtonTextStyle);
           case DreamStatus.complete:
             return const SizedBox.shrink();
         }
       case AppSide.parent:
         switch (widget.dreamInfo.status) {
           case DreamStatus.review:
-            return isButtonDisabled ?
-                buildInactiveButton(
+            return isButtonDisabled
+                ? buildInactiveButton(
                     "parent-approved-dream-button-title".i18n(),
-                    customTheme.extension<ThemeExtensions>()!.approvedMutedDreamButtonStyle,
-                    customTheme.extension<ThemeExtensions>()!.approvedMutedDreamButtonTextStyle) :
-            buildApproveButton();
+                    customTheme
+                        .extension<ThemeExtensions>()!
+                        .approvedMutedDreamButtonStyle,
+                    customTheme
+                        .extension<ThemeExtensions>()!
+                        .approvedMutedDreamButtonTextStyle)
+                : buildApproveButton();
           case DreamStatus.approved:
             return const SizedBox.shrink();
           case DreamStatus.await:
@@ -265,7 +281,8 @@ class DreamCardState extends ConsumerState<DreamCard> {
     }
   }
 
-  Widget buildInactiveButton(String title, Decoration style, TextStyle textStyle) {
+  Widget buildInactiveButton(
+      String title, Decoration style, TextStyle textStyle) {
     return Container(
       alignment: Alignment.center,
       decoration: style,
@@ -282,12 +299,13 @@ class DreamCardState extends ConsumerState<DreamCard> {
       child: Container(
         alignment: Alignment.center,
         decoration:
-        customTheme.extension<ThemeExtensions>()!.acceptDreamButtonStyle,
+            customTheme.extension<ThemeExtensions>()!.acceptDreamButtonStyle,
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
         child: Text(
           "child-approved-dream-button-title".i18n(),
-          style:
-          customTheme.extension<ThemeExtensions>()!.acceptDreamButtonTextStyle,
+          style: customTheme
+              .extension<ThemeExtensions>()!
+              .acceptDreamButtonTextStyle,
         ),
       ),
       onTap: () => {},
@@ -299,12 +317,13 @@ class DreamCardState extends ConsumerState<DreamCard> {
       child: Container(
         alignment: Alignment.center,
         decoration:
-        customTheme.extension<ThemeExtensions>()!.approvedDreamButtonStyle,
+            customTheme.extension<ThemeExtensions>()!.approvedDreamButtonStyle,
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
         child: Text(
           "parent-approved-dream-button-title".i18n(),
-          style:
-          customTheme.extension<ThemeExtensions>()!.approvedDreamButtonTextStyle,
+          style: customTheme
+              .extension<ThemeExtensions>()!
+              .approvedDreamButtonTextStyle,
         ),
       ),
       onTap: () => {},
@@ -316,7 +335,7 @@ class DreamCardState extends ConsumerState<DreamCard> {
       child: Container(
         alignment: Alignment.center,
         decoration:
-        customTheme.extension<ThemeExtensions>()!.completeDreamButtonStyle,
+            customTheme.extension<ThemeExtensions>()!.completeDreamButtonStyle,
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
         child: Text(
           "parent-complete-dream-button-title".i18n(),

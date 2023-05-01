@@ -1,7 +1,5 @@
-import 'package:dream_star/Clients/providers.dart';
 import 'package:dream_star/UI/ChildSide/authorization/login_page.dart';
 import 'package:dream_star/UI/ParentSide/authorization/login_page.dart';
-import 'package:dream_star/UI/routes.dart';
 import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
