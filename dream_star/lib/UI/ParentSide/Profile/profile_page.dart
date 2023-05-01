@@ -19,9 +19,7 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
   Switch? _character = Switch.female;
   bool passwordVisible = false;
   bool passwordVisibleRep = false;
-  // ignore: non_constant_identifier_names
   var name_input_text = TextEditingController();
-  // ignore: non_constant_identifier_names
   var birth_day_input_text = TextEditingController();
   int _selectedIndex = 0;
 
