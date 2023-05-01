@@ -4,6 +4,7 @@ import 'package:dream_star/Models/task_info.dart';
 import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:localization/localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -23,7 +24,7 @@ class TaskCard extends ConsumerWidget {
             BoxShadow(
               color: tertiary.withOpacity(0.5),
               spreadRadius: 0,
-              blurRadius: 6,
+              blurRadius: 12,
               offset: const Offset(0, 0), // changes position of shadow
             ),
           ],
@@ -31,7 +32,7 @@ class TaskCard extends ConsumerWidget {
         width: MediaQuery.of(context).size.width - 32,
         child: Padding(
             padding:
-            const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
             child: IntrinsicHeight(
               child: Row(
                 children: [
@@ -100,29 +101,57 @@ class TaskCard extends ConsumerWidget {
   }
 
   Widget buildOverdue() {
-    return taskInfo.overdue
+    return taskInfo.isOverdue()
         ? SizedBox(
-        height: 14.0,
-        child: Text(
-          'overdue-text'.i18n(),
-          style: labelMediumStyle,
-        ))
-        : const SizedBox.shrink();
+            height: 14.0,
+            child: Text(
+              'overdue-text'.i18n(),
+              style: labelMediumStyle,
+            ),
+          )
+        : buildCompleteUntil();
+  }
+
+  Widget buildCompleteUntil() {
+    return taskInfo.deadline == null || taskInfo.status != TaskStatus.progress
+        ? const SizedBox.shrink()
+        : Row(
+            children: [
+              SizedBox(
+                height: 14.0,
+                child: Text(
+                  'complete-before-text'.i18n(),
+                  style: labelMediumStyle,
+                ),
+              ),
+              const SizedBox(
+                width: 3.0,
+              ),
+              SizedBox(
+                height: 14.0,
+                child: Text(
+                  DateFormat('dd.MM.yyyy').format(taskInfo.deadline!),
+                  style: labelMediumStyle,
+                ),
+              ),
+            ],
+          );
   }
 
   Widget buildCostLabel() {
     return SizedBox(
         child: Row(
-          children: [
-            Text(getCost().toString(),
-                style: taskInfo.overdue
-                    ? labelMediumStyle.copyWith(color: red)
-                    : labelMediumStyle.copyWith(color: primary),
-            ),
-            const SizedBox(width: 5.0),
-            buildStar()
-          ],
-        ));
+      children: [
+        Text(
+          getCost().toString(),
+          style: taskInfo.overdue
+              ? labelMediumStyle.copyWith(color: red)
+              : labelMediumStyle.copyWith(color: primary),
+        ),
+        const SizedBox(width: 5.0),
+        buildStar()
+      ],
+    ));
   }
 
   int getCost() {
@@ -151,7 +180,8 @@ class TaskCard extends ConsumerWidget {
         if (taskInfo.penalty == null) {
           return SvgPicture.asset('assets/star-filled-14px-yellow.svg');
         } else {
-          return SvgPicture.asset('assets/star-half-dashed-filled-14px-red.svg');
+          return SvgPicture.asset(
+              'assets/star-half-dashed-filled-14px-red.svg');
         }
     }
   }
@@ -159,15 +189,15 @@ class TaskCard extends ConsumerWidget {
   Widget buildChildName() {
     return appSide == AppSide.parent
         ? RichText(
-        text: TextSpan(
-            text: 'child-text'.i18n(),
-            style: labelMediumStyle.copyWith(color: secondary),
-            children: [
-              TextSpan(
-                text: taskInfo.childName,
-                style: labelMediumStyle.copyWith(color: primary),
-              )
-            ]))
+            text: TextSpan(
+                text: 'child-text'.i18n(),
+                style: labelMediumStyle.copyWith(color: secondary),
+                children: [
+                TextSpan(
+                  text: taskInfo.childName,
+                  style: labelMediumStyle.copyWith(color: primary),
+                )
+              ]))
         : const SizedBox.shrink();
   }
 
@@ -198,11 +228,13 @@ class TaskCard extends ConsumerWidget {
     return GestureDetector(
       child: Container(
         alignment: Alignment.center,
-        decoration: customTheme.extension<ThemeExtensions>()!.sendTaskButtonStyle,
+        decoration:
+            customTheme.extension<ThemeExtensions>()!.sendTaskButtonStyle,
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
         child: Text(
           'progress-button-title'.i18n(),
-          style: customTheme.extension<ThemeExtensions>()!.sendTaskButtonTextStyle,
+          style:
+              customTheme.extension<ThemeExtensions>()!.sendTaskButtonTextStyle,
         ),
       ),
       onTap: () => updateTask(taskInfo.id, TaskStatus.review),
@@ -212,11 +244,14 @@ class TaskCard extends ConsumerWidget {
   Widget buildOnReviewLabel() {
     return Container(
       alignment: Alignment.center,
-      decoration: customTheme.extension<ThemeExtensions>()!.onReviewTaskButtonStyle,
+      decoration:
+          customTheme.extension<ThemeExtensions>()!.onReviewTaskButtonStyle,
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
       child: Text(
         'review-button-title'.i18n(),
-        style: customTheme.extension<ThemeExtensions>()!.onReviewTaskButtonTextStyle,
+        style: customTheme
+            .extension<ThemeExtensions>()!
+            .onReviewTaskButtonTextStyle,
       ),
     );
   }
@@ -225,11 +260,14 @@ class TaskCard extends ConsumerWidget {
     return GestureDetector(
       child: Container(
         alignment: Alignment.center,
-        decoration: customTheme.extension<ThemeExtensions>()!.acceptTaskButtonStyle,
+        decoration:
+            customTheme.extension<ThemeExtensions>()!.acceptTaskButtonStyle,
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
         child: Text(
           'pass-button-title'.i18n(),
-          style: customTheme.extension<ThemeExtensions>()!.acceptTaskButtonTextStyle,
+          style: customTheme
+              .extension<ThemeExtensions>()!
+              .acceptTaskButtonTextStyle,
         ),
       ),
       onTap: () => updateTask(taskInfo.id, TaskStatus.passed),
