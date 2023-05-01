@@ -130,6 +130,7 @@ const Color primary = Color(0xFF6E5AF6);
 const Color primaryMuted = Color(0xFFDEDAFF);
 const Color primaryBackground = Color(0xFFF6F5FF);
 const Color secondPrimary = Color(0xFFB6E147);
+const Color secondPrimaryMuted = Color(0xFFDAECAD);
 const Color secondary = Color(0xFF8A8A8E);
 const Color tertiary = Color(0xFFC5C5C7);
 const Color blockBackground = Color(0xFF414141);
@@ -175,6 +176,41 @@ BoxDecoration acceptTaskButton = BoxDecoration(
   borderRadius: BorderRadius.circular(12.0),
 );
 
+TextStyle inactiveDreamButtonText = labelMediumStyle.copyWith(color: secondary);
+BoxDecoration onReviewDreamButton = BoxDecoration(
+  color: secondPrimaryMuted,
+  borderRadius: BorderRadius.circular(12.0),
+);
+
+BoxDecoration onAwaitDreamButton = BoxDecoration(
+  color: primaryMuted,
+  borderRadius: BorderRadius.circular(12.0),
+);
+
+TextStyle acceptDreamButtonText = labelMediumStyle.copyWith(color: white);
+BoxDecoration acceptDreamButton = BoxDecoration(
+  color: primary,
+  borderRadius: BorderRadius.circular(12.0),
+);
+
+TextStyle completeDreamButtonText = labelMediumStyle.copyWith(color: white);
+BoxDecoration completeDreamButton = BoxDecoration(
+  color: primary,
+  borderRadius: BorderRadius.circular(12.0),
+);
+
+TextStyle approvedDreamButtonText = labelMediumStyle.copyWith(color: black);
+BoxDecoration approvedDreamButton = BoxDecoration(
+  color: secondPrimary,
+  borderRadius: BorderRadius.circular(12.0),
+);
+
+TextStyle approvedMutedDreamButtonText = labelMediumStyle.copyWith(color: secondary);
+BoxDecoration approvedMutedDreamButton = BoxDecoration(
+  color: secondPrimaryMuted,
+  borderRadius: BorderRadius.circular(12.0),
+);
+
 ButtonStyle buttonWithoutBackingText =
     TextButton.styleFrom(textStyle: titleSmallStyle.copyWith(color: primary));
 
@@ -188,6 +224,17 @@ class ThemeExtensions extends ThemeExtension<ThemeExtensions> {
   final BoxDecoration sendTaskButtonStyle = sendTaskButton;
   final TextStyle onReviewTaskButtonTextStyle = onReviewTaskButtonText;
   final BoxDecoration onReviewTaskButtonStyle = onReviewTaskButton;
+  final TextStyle inactiveDreamButtonTextStyle = inactiveDreamButtonText;
+  final BoxDecoration onReviewDreamButtonStyle = onReviewDreamButton;
+  final BoxDecoration onAwaitDreamButtonStyle = onAwaitDreamButton;
+  final TextStyle acceptDreamButtonTextStyle = acceptDreamButtonText;
+  final BoxDecoration acceptDreamButtonStyle = acceptDreamButton;
+  final TextStyle completeDreamButtonTextStyle = completeDreamButtonText;
+  final BoxDecoration completeDreamButtonStyle = completeDreamButton;
+  final TextStyle approvedDreamButtonTextStyle = approvedDreamButtonText;
+  final BoxDecoration approvedDreamButtonStyle = approvedDreamButton;
+  final TextStyle approvedMutedDreamButtonTextStyle = approvedMutedDreamButtonText;
+  final BoxDecoration approvedMutedDreamButtonStyle = approvedMutedDreamButton;
 
   @override
   ThemeExtensions copyWith() {
@@ -231,6 +278,8 @@ final ThemeData customTheme = ThemeData(
     onError: white,
     brightness: Brightness.light,
   ),
-  inputDecorationTheme: const InputDecorationTheme(isDense: true),
+  inputDecorationTheme: const InputDecorationTheme(
+      isDense: true
+  ),
   extensions: [ThemeExtensions()],
 );

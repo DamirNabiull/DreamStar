@@ -62,5 +62,10 @@
   "dream-description": "Описание мечты",
   "new-dream-title": "Новая мечта",
   "create-dream": "Создать мечту",
+  "child-review-dream-button-title": "Ожидает оценки",
+  "child-approved-dream-button-title": "Купить мечту!",
+  "child-await-dream-button-title": "Ожидает исполнения",
+  "parent-complete-dream-button-title": "Исполнить мечту!",
+  "parent-approved-dream-button-title": "Подтвердить цену"
   "no-children": "Нет добавленного ребенка"
 }
