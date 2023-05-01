@@ -52,5 +52,10 @@
   "dream-title": "Dream title",
   "dream-description": "Dream description",
   "new-dream-title": "New dream",
-  "create-dream": "Create dream"
+  "create-dream": "Create dream",
+  "child-review-dream-button-title": "Waiting for evaluation",
+  "child-approved-dream-button-title": "Buy a dream!",
+  "child-await-dream-button-title": "Waiting for completion",
+  "parent-complete-dream-button-title": "Fulfill the dream!",
+  "parent-approved-dream-button-title": "Confirm cost"
 }
