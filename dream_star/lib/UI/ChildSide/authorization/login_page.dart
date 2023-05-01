@@ -22,6 +22,7 @@ class LoginChildScreenState extends ConsumerState<LoginChildScreen> {
   final _pinController = TextEditingController();
   final focusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
+  bool _isLogging = false;
 
   @override
   void initState() {
@@ -132,6 +133,7 @@ class LoginChildScreenState extends ConsumerState<LoginChildScreen> {
                       Directionality(
                         textDirection: TextDirection.ltr,
                         child: Pinput(
+                          keyboardType: TextInputType.text,
                           length: codeLength,
                           controller: _pinController,
                           focusNode: focusNode,
@@ -141,7 +143,7 @@ class LoginChildScreenState extends ConsumerState<LoginChildScreen> {
                           defaultPinTheme: defaultPinTheme,
                           hapticFeedbackType: HapticFeedbackType.lightImpact,
                           onChanged: (value) {
-                            _pinController.text = value;
+                            _pinController.text = value.toUpperCase();
                           },
                           cursor: Column(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -195,16 +197,20 @@ class LoginChildScreenState extends ConsumerState<LoginChildScreen> {
                       Center(
                         child: ElevatedButton(
                           onPressed: () {
-                            focusNode.unfocus();
-                            formKey.currentState!.validate();
-                            ref
-                                .read(userProvider)
-                                .childSignIn(_pinController.text)
-                                .then((value) {
-                              Navigator.pop(context);
-                              Navigator.pushReplacement(
-                                  context, tasksScreenRoute);
-                            }).onError((error, stackTrace) => null);
+                            if (!_isLogging) {
+                              _isLogging = true;
+                              focusNode.unfocus();
+                              formKey.currentState!.validate();
+                              ref
+                                  .read(userProvider)
+                                  .childSignIn(_pinController.text)
+                                  .then((value) {
+                                Navigator.pop(context);
+                                _isLogging = false;
+                                Navigator.pushReplacement(
+                                    context, tasksScreenRoute);
+                              }).onError((error, stackTrace) => null);
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: primary,

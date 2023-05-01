@@ -20,6 +20,7 @@ class LoginParentScreenState extends ConsumerState<LoginParentScreen> {
   bool passwordVisible = false;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
+  bool _isLogging = false;
 
   @override
   void initState() {
@@ -192,13 +193,17 @@ class LoginParentScreenState extends ConsumerState<LoginParentScreen> {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        ref
-                            .read(userProvider)
-                            .signIn(_emailController.text, _passController.text)
-                            .then((value) {
-                          Navigator.pop(context);
-                          Navigator.pushReplacement(context, tasksScreenRoute);
-                        });
+                        if (!_isLogging) {
+                          _isLogging = true;
+                          ref
+                              .read(userProvider)
+                              .signIn(_emailController.text, _passController.text)
+                              .then((value) {
+                            Navigator.pop(context);
+                            _isLogging = false;
+                            Navigator.pushReplacement(context, tasksScreenRoute);
+                          });
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: primary,
