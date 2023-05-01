@@ -10,5 +10,6 @@ class TimestampOrNullConverter implements JsonConverter<DateTime?, Timestamp?> {
   }
 
   @override
-  Timestamp? toJson(DateTime? date) => date == null ? null : Timestamp.fromDate(date);
+  Timestamp? toJson(DateTime? date) =>
+      date == null ? null : Timestamp.fromDate(date);
 }

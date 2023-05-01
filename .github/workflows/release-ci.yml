@@ -6,7 +6,7 @@ on:
   push:
     branches:
     - master
-    - version-1.0.1
+    - release
     
 # on: push    # Default will running for every branch.
     
@@ -14,30 +14,40 @@ jobs:
   build:
     # This job will run on ubuntu virtual machine
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./dream_star
+
     steps:
-    
     # Setup Java environment in order to build the Android app.
     - uses: actions/checkout@v1
     - uses: actions/setup-java@v1
       with:
-        java-version: '12.x'
+        java-version: '17.x'
+
+    # Cache dependencies
+    - name: Cache Flutter dependencies
+      uses: actions/cache@v1
+      with:
+        path: /opt/hostedtoolcache/flutter
+        key: ${{ runner.os }}-flutter
     
     # Setup the flutter environment.
     - uses: subosito/flutter-action@v1
       with:
-        channel: 'beta' # 'dev', 'alpha', default to: 'stable'
+        channel: 'stable' # 'dev', 'alpha', default to: 'stable'
         # flutter-version: '1.12.x' # you can also specify exact version of flutter
     
     # Get flutter dependencies.
     - run: flutter pub get
     
     # Check for any formatting issues in the code.
-    - run: flutter format --set-exit-if-changed .
+    - run: dart format --set-exit-if-changed .
     
     # Statically analyze the Dart code for any errors.
     - run: flutter analyze .
     
-    # Run widget tests for our flutter project.
+    # Run tests for our flutter project.
     - run: flutter test
     
     # Build apk.
@@ -47,4 +57,4 @@ jobs:
     - uses: actions/upload-artifact@v1
       with:
         name: release-apk
-        path: build/app/outputs/apk/release/app-release.apk
+        path: dream_star/build/app/outputs/flutter-apk/app-release.apk

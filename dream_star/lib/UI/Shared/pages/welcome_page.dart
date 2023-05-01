@@ -1,7 +1,6 @@
 import 'package:dream_star/Clients/providers.dart';
 import 'package:dream_star/UI/routes.dart';
 import 'package:dream_star/UI/themes.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localization/localization.dart';
@@ -116,9 +115,9 @@ class MainHomeScreen extends ConsumerWidget {
                                           )
                                           .then((value) =>
                                               Navigator.pushReplacement(
-                                                  context, tasksScreenRoute))
-                                          .catchError((error, stackTrace) =>
-                                              print(error.toString()));
+                                                  context, tasksScreenRoute));
+                                      // .catchError((error, stackTrace) =>
+                                      //     error.toString());
                                       // print('Parrent Button Pressed');
                                     },
                                     style: ElevatedButton.styleFrom(
@@ -138,9 +137,11 @@ class MainHomeScreen extends ConsumerWidget {
                                   ElevatedButton(
                                     onPressed: () {
                                       userInfo
-                                          .createParentAccount('Имя', 'Фамилия', 'mail@mail.ru', 'asdaew!31')
-                                          .then((value) => null).catchError((error, stackTrace) =>
-                                              print(error.toString()));
+                                          .createParentAccount('Имя', 'Фамилия',
+                                              'mail@mail.ru', 'asdaew!31')
+                                          .then((value) => null);
+                                      // .catchError((error, stackTrace) =>
+                                      //     error.toString());
                                       // userInfo.setUserRole(false);
                                       // Navigator.pushReplacement(
                                       //     context, tasksScreenRoute);
