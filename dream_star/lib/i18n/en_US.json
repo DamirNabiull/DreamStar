@@ -30,6 +30,7 @@
   "name-input-text": "Name",
   "second-name-input-text": "Second name",
   "birth-day-input-text": "Date of Birth",
+  "sex": "Sex",
   "switch-female-text": "Female",
   "switch-male-text": "Male",
   "email-input-text": "Email",
@@ -55,5 +56,11 @@
   "bottom-nav-bar-tasks-text": "Tasks",
   "bottom-nav-bar-dreams-text": "Dreams",
   "bottom-nav-bar-balance-text": "Balance",
-  "bottom-nav-bar-profile-text": "Profile"
+  "bottom-nav-bar-profile-text": "Profile",
+  "complete-before-text": "Complete before:",
+  "dream-title": "Dream title",
+  "dream-description": "Dream description",
+  "new-dream-title": "New dream",
+  "create-dream": "Create dream",
+  "no-children": "No added child"
 }

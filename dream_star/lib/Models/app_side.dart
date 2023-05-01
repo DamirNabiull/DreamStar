@@ -1,3 +1,1 @@
-enum AppSide {
-  child, parent;
-}
+enum AppSide { child, parent }

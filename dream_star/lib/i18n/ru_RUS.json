@@ -30,6 +30,7 @@
   "name-input-text": "Имя",
   "second-name-input-text": "Фамилия",
   "birth-day-input-text": "Дата рождения",
+  "sex": "Пол",
   "switch-female-text": "Женский",
   "switch-male-text": "Мужской",
   "email-input-text": "Электронная почта",
@@ -55,5 +56,11 @@
   "bottom-nav-bar-tasks-text": "Задачи",
   "bottom-nav-bar-dreams-text": "Мечты",
   "bottom-nav-bar-balance-text": "Баланс",
-  "bottom-nav-bar-profile-text": "Профиль"
+  "bottom-nav-bar-profile-text": "Профиль",
+  "complete-before-text": "Сделать до:",
+  "dream-title": "Название мечты",
+  "dream-description": "Описание мечты",
+  "new-dream-title": "Новая мечта",
+  "create-dream": "Создать мечту",
+  "no-children": "Нет добавленного ребенка"
 }

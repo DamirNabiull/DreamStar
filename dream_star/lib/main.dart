@@ -1,26 +1,28 @@
+import 'dart:async';
+
 import 'package:dream_star/UI/routes.dart';
 import 'package:dream_star/UI/themes.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:localization/localization.dart';
 
-import 'UI/ParentSide/Tasks/task_creation_screen.dart';
 import 'firebase_options.dart';
 
-Future main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  runApp(ProviderScope(child: MyApp()));
+void main() async {
+  runZonedGuarded<Future<void>>(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    runApp(ProviderScope(child: MyApp()));
+  }, (error, stack) => FirebaseCrashlytics.instance.recordError(error, stack));
 }
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform
-  );
+  final Future<FirebaseApp> _initialization =
+      Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   // This widget is the root of your application.
   @override
@@ -42,9 +44,12 @@ class MyApp extends StatelessWidget {
         future: _initialization,
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            print(snapshot.error.toString());
+            // print(snapshot.error.toString());
+            throw Exception(snapshot.error.toString());
           }
           if (snapshot.connectionState == ConnectionState.done) {
+            FlutterError.onError =
+                FirebaseCrashlytics.instance.recordFlutterError;
             return const InitPage();
           }
           return const CircularProgressIndicator();

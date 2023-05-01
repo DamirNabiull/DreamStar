@@ -205,10 +205,8 @@ Widget FooterContainer(BuildContext context, WidgetRef ref){
                           ],
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
+                    ],
+                  )),
             ],
           )
         );
