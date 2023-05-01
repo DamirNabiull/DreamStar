@@ -45,7 +45,7 @@ dependencies:
   flutter_svg: ^2.0.4
   localization: ^2.1.0
   firebase_auth: ^4.4.0
-  intl: ^0.18.0
+  intl: ^0.17.0
   connectivity_plus: ^3.0.3
   internet_connection_checker: ^1.0.0+1
   pinput: ^2.2.31
