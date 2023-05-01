@@ -28,7 +28,9 @@ class WaitLoginScreen extends StatelessWidget {
             ),
           ),
           const Center(
-            child: CircularProgressIndicator(color: Colors.white,),
+            child: CircularProgressIndicator(
+              color: Colors.white,
+            ),
           ),
         ],
       ),

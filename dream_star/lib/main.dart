@@ -49,7 +49,8 @@ class MyApp extends StatelessWidget {
             throw Exception(snapshot.error.toString());
           }
           if (snapshot.connectionState == ConnectionState.done) {
-            FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+            FlutterError.onError =
+                FirebaseCrashlytics.instance.recordFlutterError;
             return const InitPage();
           }
           return const CircularProgressIndicator();

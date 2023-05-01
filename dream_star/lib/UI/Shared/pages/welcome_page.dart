@@ -138,8 +138,10 @@ class MainHomeScreen extends ConsumerWidget {
                                   ElevatedButton(
                                     onPressed: () {
                                       userInfo
-                                          .createParentAccount('Имя', 'Фамилия', 'mail@mail.ru', 'asdaew!31')
-                                          .then((value) => null).catchError((error, stackTrace) =>
+                                          .createParentAccount('Имя', 'Фамилия',
+                                              'mail@mail.ru', 'asdaew!31')
+                                          .then((value) => null)
+                                          .catchError((error, stackTrace) =>
                                               print(error.toString()));
                                       // userInfo.setUserRole(false);
                                       // Navigator.pushReplacement(

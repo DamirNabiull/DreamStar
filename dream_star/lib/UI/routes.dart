@@ -23,8 +23,7 @@ class InitPage extends ConsumerWidget {
         }
         if (snapshot.hasData) {
           return const TasksMainScreen();
-        }
-        else if (snapshot.connectionState == ConnectionState.waiting) {
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
           return const WaitLoginScreen();
         }
 

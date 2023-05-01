@@ -44,9 +44,9 @@ class FireStoreClient {
           .orderBy('createdAt', descending: true)
           .snapshots()
           .map((snapshot) => snapshot.docs
-          .map((doc) =>
-          _mapper.taskDTOToTaskInfo(TaskDTO.fromJson(doc.data())))
-          .toList());
+              .map((doc) =>
+                  _mapper.taskDTOToTaskInfo(TaskDTO.fromJson(doc.data())))
+              .toList());
     }
     return const Stream.empty();
   }

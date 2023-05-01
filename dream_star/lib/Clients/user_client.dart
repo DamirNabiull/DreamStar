@@ -82,7 +82,8 @@ class UserClient {
     }
   }
 
-  Future _saveDataAboutUser(String name, String surname, bool isParent, String id) async {
+  Future _saveDataAboutUser(
+      String name, String surname, bool isParent, String id) async {
     UserDTO dto;
     if (isParent) {
       dto = UserDTO(name, surname, 'empty', isParent, []);
@@ -94,15 +95,17 @@ class UserClient {
 
   // PARENT REGISTER
 
-  Future createParentAccount(String name, String surname, String mail, String password) async {
+  Future createParentAccount(
+      String name, String surname, String mail, String password) async {
     String id = await _registerParent(mail, password);
     await _saveDataAboutUser(name, surname, true, id);
   }
 
   Future<String> _registerParent(String email, String password) async {
-    UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
+    UserCredential userCredential =
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
     );
 
     return userCredential.user!.uid;

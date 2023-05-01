@@ -11,7 +11,8 @@ class UserDTO {
   List<String>? children;
   int? stars;
 
-  UserDTO(this.name, this.surname, this.lastname, this.isParent, [this.children, this.stars]);
+  UserDTO(this.name, this.surname, this.lastname, this.isParent,
+      [this.children, this.stars]);
 
   factory UserDTO.fromJson(Map<String, dynamic> json) =>
       _$UserDTOFromJson(json);

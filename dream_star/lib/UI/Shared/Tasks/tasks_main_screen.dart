@@ -36,9 +36,12 @@ class TasksMainScreen extends ConsumerWidget {
                 ),
                 body: TabBarView(
                   children: [
-                    TaskListScreen(ref.read(userProvider).role!, TaskStatus.progress),
-                    TaskListScreen(ref.read(userProvider).role!, TaskStatus.review),
-                    TaskListScreen(ref.read(userProvider).role!, TaskStatus.passed)
+                    TaskListScreen(
+                        ref.read(userProvider).role!, TaskStatus.progress),
+                    TaskListScreen(
+                        ref.read(userProvider).role!, TaskStatus.review),
+                    TaskListScreen(
+                        ref.read(userProvider).role!, TaskStatus.passed)
                   ],
                 ),
               ),

@@ -35,7 +35,7 @@ class DreamCreationScreenState extends ConsumerState<DreamCreationScreen> {
       _titleController.value = _titleController.value.copyWith(
         text: text,
         selection:
-        TextSelection(baseOffset: text.length, extentOffset: text.length),
+            TextSelection(baseOffset: text.length, extentOffset: text.length),
         composing: TextRange.empty,
       );
     });
@@ -45,7 +45,7 @@ class DreamCreationScreenState extends ConsumerState<DreamCreationScreen> {
       _descriptionController.value = _descriptionController.value.copyWith(
         text: text,
         selection:
-        TextSelection(baseOffset: text.length, extentOffset: text.length),
+            TextSelection(baseOffset: text.length, extentOffset: text.length),
         composing: TextRange.empty,
       );
     });
@@ -73,13 +73,13 @@ class DreamCreationScreenState extends ConsumerState<DreamCreationScreen> {
               children: [
                 Expanded(
                     child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 28),
-                          buildDescriptionSection()
-                        ],
-                      ),
-                    )),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 28),
+                      buildDescriptionSection()
+                    ],
+                  ),
+                )),
                 buildButton(),
                 const SizedBox(height: 20),
               ],
@@ -113,9 +113,9 @@ class DreamCreationScreenState extends ConsumerState<DreamCreationScreen> {
         onPressed: isButtonDisabled
             ? null
             : () {
-          // Создание мечты
-          Navigator.pop(context);
-        },
+                // Создание мечты
+                Navigator.pop(context);
+              },
         child: Text(
           'create-dream'.i18n(),
           style: titleLargeStyle.copyWith(
