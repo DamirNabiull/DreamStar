@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:dream_star/Clients/providers.dart';
+import 'package:dream_star/UI/ParentSide/authorization/reg_page.dart';
 import 'package:dream_star/UI/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -88,7 +89,7 @@ class LoginParentScreenState extends ConsumerState<LoginParentScreen> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.3,
+                    height: MediaQuery.of(context).size.height * 0.25,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -261,7 +262,17 @@ class LoginParentScreenState extends ConsumerState<LoginParentScreen> {
           ),
           TextButton(
             style: buttonWithoutBackingText,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) {
+                    return const RegParentScreen();
+                  },
+                ),
+              );
+            },
             child: Text("info-login-parent-bottom-btn-text".i18n()),
           ),
         ],

@@ -135,7 +135,9 @@ class MainHomeScreen extends ConsumerWidget {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: primary,
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 25, vertical: 20),
+                            horizontal: 25,
+                            vertical: 20,
+                          ),
                           textStyle: titleLargeStyle.copyWith(color: white),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(22.0),
@@ -158,7 +160,9 @@ class MainHomeScreen extends ConsumerWidget {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: primary,
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 25, vertical: 20),
+                            horizontal: 25,
+                            vertical: 20,
+                          ),
                           textStyle: titleLargeStyle.copyWith(color: white),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(22.0),

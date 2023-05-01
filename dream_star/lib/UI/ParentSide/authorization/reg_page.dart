@@ -1,5 +1,5 @@
+import 'package:dream_star/UI/ParentSide/authorization/login_page.dart';
 import 'package:flutter/material.dart';
-// import 'package:localization/localization.dart';
 
 import 'package:flutter_svg/svg.dart';
 import 'package:localization/localization.dart';
@@ -30,6 +30,9 @@ class RegParentScreenState extends State<RegParentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       backgroundColor: white,
       body: Stack(
         children: [
@@ -41,12 +44,13 @@ class RegParentScreenState extends State<RegParentScreen> {
             alignment: Alignment.center,
           ),
           Positioned.fill(
-              child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: Container(
-              color: Colors.transparent,
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+              child: Container(
+                color: Colors.transparent,
+              ),
             ),
-          )),
+          ),
           Padding(
             padding: const EdgeInsets.all(23.0),
             child: SingleChildScrollView(
@@ -54,35 +58,8 @@ class RegParentScreenState extends State<RegParentScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const SizedBox(height: 30),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: ElevatedButton.icon(
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        color: secondary,
-                        size: 20.0,
-                      ),
-                      label: Text(
-                        "change-role-text".i18n(),
-                        style: const TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 18,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        elevation: 0,
-                        shadowColor: Colors.transparent,
-                      ),
-                      onPressed: () {
-                        // print('Button Pressed');
-                      },
-                    ),
-                  ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.23,
+                    height: MediaQuery.of(context).size.height * 0.25,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -357,7 +334,17 @@ class RegParentScreenState extends State<RegParentScreen> {
             style: TextButton.styleFrom(
               textStyle: const TextStyle(fontSize: 13),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) {
+                    return const LoginParentScreen();
+                  },
+                ),
+              );
+            },
             child: Text(
               "info-btn-reg-text".i18n(),
               style: titleSmallStyle.copyWith(color: primary),
