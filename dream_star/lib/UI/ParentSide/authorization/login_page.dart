@@ -195,8 +195,10 @@ class LoginParentScreenState extends ConsumerState<LoginParentScreen> {
                         ref
                             .read(userProvider)
                             .signIn(_emailController.text, _passController.text)
-                            .then((value) => Navigator.pushReplacement(
-                                context, tasksScreenRoute));
+                            .then((value) {
+                          Navigator.pop(context);
+                          Navigator.pushReplacement(context, tasksScreenRoute);
+                        });
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: primary,

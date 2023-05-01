@@ -1,4 +1,7 @@
+import 'package:dream_star/Clients/providers.dart';
+import 'package:dream_star/UI/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localization/localization.dart';
 
 import 'package:pinput/pinput.dart';
@@ -8,21 +11,32 @@ import 'package:flutter_svg/svg.dart';
 import 'dart:ui';
 import '../../themes.dart';
 
-class LoginChildScreen extends StatefulWidget {
+class LoginChildScreen extends ConsumerStatefulWidget {
   const LoginChildScreen({super.key});
 
   @override
   LoginChildScreenState createState() => LoginChildScreenState();
 }
 
-class LoginChildScreenState extends State<LoginChildScreen> {
-  final pinController = TextEditingController();
+class LoginChildScreenState extends ConsumerState<LoginChildScreen> {
+  final _pinController = TextEditingController();
   final focusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
+
+    _pinController.addListener(() {
+      final String text = _pinController.text;
+
+      _pinController.value = _pinController.value.copyWith(
+        text: text,
+        selection:
+            TextSelection(baseOffset: text.length, extentOffset: text.length),
+        composing: TextRange.empty,
+      );
+    });
   }
 
   @override
@@ -30,8 +44,6 @@ class LoginChildScreenState extends State<LoginChildScreen> {
     const focusedBorderColor = primary;
     const fillColor = primary;
     const borderColor = secondary;
-
-    String codeValidate = "BW401";
 
     final defaultPinTheme = PinTheme(
       width: 46,
@@ -85,7 +97,8 @@ class LoginChildScreenState extends State<LoginChildScreen> {
                             children: <TextSpan>[
                               TextSpan(
                                 text: "child-login-welcome-text".i18n(),
-                                style: displayMediumStyle.copyWith(color: primary),
+                                style:
+                                    displayMediumStyle.copyWith(color: primary),
                               ),
                             ],
                           ),
@@ -99,7 +112,8 @@ class LoginChildScreenState extends State<LoginChildScreen> {
                             children: <TextSpan>[
                               TextSpan(
                                 text: "child-login-info-text".i18n(),
-                                style: titleSmallStyle.copyWith(color: secondary),
+                                style:
+                                    titleSmallStyle.copyWith(color: secondary),
                               ),
                             ],
                           ),
@@ -119,23 +133,15 @@ class LoginChildScreenState extends State<LoginChildScreen> {
                         textDirection: TextDirection.ltr,
                         child: Pinput(
                           length: codeLength,
-                          controller: pinController,
+                          controller: _pinController,
                           focusNode: focusNode,
                           androidSmsAutofillMethod:
                               AndroidSmsAutofillMethod.smsUserConsentApi,
                           listenForMultipleSmsOnAndroid: true,
                           defaultPinTheme: defaultPinTheme,
-                          validator: (value) {
-                            return value == codeValidate
-                                ? null
-                                : "child-login-incorrect-code-text".i18n();
-                          },
                           hapticFeedbackType: HapticFeedbackType.lightImpact,
-                          onCompleted: (pin) {
-                            debugPrint('onCompleted: $pin');
-                          },
                           onChanged: (value) {
-                            debugPrint('onChanged: $value');
+                            _pinController.text = value;
                           },
                           cursor: Column(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -191,7 +197,14 @@ class LoginChildScreenState extends State<LoginChildScreen> {
                           onPressed: () {
                             focusNode.unfocus();
                             formKey.currentState!.validate();
-                            // print('Button Pressed');
+                            ref
+                                .read(userProvider)
+                                .childSignIn(_pinController.text)
+                                .then((value) {
+                              Navigator.pop(context);
+                              Navigator.pushReplacement(
+                                  context, tasksScreenRoute);
+                            }).onError((error, stackTrace) => null);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: primary,
