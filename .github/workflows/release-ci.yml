@@ -6,7 +6,7 @@ on:
   push:
     branches:
     - master
-    - ci_fix
+    - release
     
 # on: push    # Default will running for every branch.
     
@@ -16,7 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        using: 'node16'
         working-directory: ./dream_star
 
     steps:
