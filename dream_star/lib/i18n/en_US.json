@@ -72,5 +72,6 @@
   "child-await-dream-button-title": "Waiting for completion",
   "parent-complete-dream-button-title": "Fulfill the dream!",
   "parent-approved-dream-button-title": "Confirm cost",
-  "no-children": "No added child"
+  "no-children": "No added child",
+  "loading-user-info": "Loading user information"
 }

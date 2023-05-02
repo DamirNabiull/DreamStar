@@ -72,5 +72,6 @@
   "child-await-dream-button-title": "Ожидает исполнения",
   "parent-complete-dream-button-title": "Исполнить мечту!",
   "parent-approved-dream-button-title": "Подтвердить цену",
-  "no-children": "Нет добавленного ребенка"
+  "no-children": "Нет добавленного ребенка",
+  "loading-user-info": "Загружаем информацию о пользователе"
 }
