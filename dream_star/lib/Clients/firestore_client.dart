@@ -67,9 +67,9 @@ class FireStoreClient {
     await taskRef.set(taskDTO.toJson());
   }
 
-  void updateTaskStatus(String taskId, TaskStatus status) async {
+  void updateTaskStatus(String taskId, TaskStatus status, bool isOverdue) async {
     final taskRef = _tasksCollection.doc(taskId);
-    taskRef.update({"status": status.toString()});
+    taskRef.update({"status": status.toString(), 'overdue': isOverdue});
   }
 
   Stream<List<TaskInfo>> getTasks(List<String> childIds, TaskStatus status) {
@@ -102,5 +102,10 @@ class FireStoreClient {
   void updateUser(UserDTO userDTO, String id) {
     final user = _usersCollection.doc(id);
     user.update(userDTO.toJson());
+  }
+
+  void updateStars(String id, int stars) {
+    final user = _usersCollection.doc(id);
+    user.update({'stars': stars});
   }
 }
