@@ -77,7 +77,7 @@ class BalanceParentScreenState extends State<BalanceParentScreen> {
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(color: secondary),
                     ),
-                    child: ltsv(
+                    child: childrenListing(
                       childrenListNames,
                       childrenListBalances,
                     ),
@@ -88,35 +88,10 @@ class BalanceParentScreenState extends State<BalanceParentScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        //!!!!
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.format_list_bulleted),
-            label: "bottom-nav-bar-tasks-text".i18n(),
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.grade),
-            label: "bottom-nav-bar-dreams-text".i18n(),
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.account_balance_wallet),
-            label: "bottom-nav-bar-balance-text".i18n(),
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.person),
-            label: "bottom-nav-bar-profile-text".i18n(),
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.deepPurpleAccent,
-        unselectedItemColor: const Color.fromRGBO(106, 105, 105, 1),
-        onTap: _onItemTapped,
-      ),
     );
   }
 
-  Widget ltsv(childrenList, childrenListCodes) {
+  Widget childrenListing(childrenList, childrenListCodes) {
     return ListView.separated(
       padding: const EdgeInsets.all(8),
       itemCount: childrenList.length,

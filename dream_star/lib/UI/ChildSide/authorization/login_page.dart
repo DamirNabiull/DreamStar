@@ -213,11 +213,12 @@ class LoginChildScreenState extends ConsumerState<LoginChildScreen> {
                                   .read(userProvider)
                                   .childSignIn(_pinController.text)
                                   .then((value) {
-                                Navigator.pop(context);
+                                Navigator.of(context).pop();
                                 _isLogging = false;
-                                Navigator.pushReplacement(
-                                    context, tasksScreenRoute);
+                                Navigator.pushReplacementNamed(
+                                  context, '/main',);
                               }).onError((error, stackTrace) => showHint());
+                              _isLogging = false;
                             }
                           },
                           style: ElevatedButton.styleFrom(

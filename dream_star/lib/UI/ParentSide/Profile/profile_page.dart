@@ -1,33 +1,35 @@
+import 'package:dream_star/Clients/providers.dart';
+import 'package:dream_star/UI/routes.dart';
 import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:localization/localization.dart';
 
 import 'package:localization/localization.dart';
 
-class ProfileParentScreen extends StatefulWidget {
+class ProfileParentScreen extends ConsumerStatefulWidget {
   const ProfileParentScreen({super.key});
 
   @override
   ProfileParentScreenState createState() => ProfileParentScreenState();
 }
 
-class ProfileParentScreenState extends State<ProfileParentScreen> {
+class ProfileParentScreenState extends ConsumerState<ProfileParentScreen> {
   // Switch? _character = Switch.female;
   bool passwordVisible = false;
   bool passwordVisibleRep = false;
-  // ignore: non_constant_identifier_names
-  var name_input_text = TextEditingController();
-  var birth_day_input_text = TextEditingController();
+  var nameInputText = TextEditingController();
+  var birthDayInputText = TextEditingController();
   int _selectedIndex = 3;
-  final List childrenListNames = <String>["Олег","Никита","Ева"];
-  final List childrenListCodes = <String>["NEQ13","BY2W7","3LFB3"];
+  final List childrenListNames = <String>["Олег", "Никита", "Ева"];
+  final List childrenListCodes = <String>["NEQ13", "BY2W7", "3LFB3"];
 
   @override
   void initState() {
     super.initState();
     //example
-    name_input_text.text = "Сергей Нечалов";
-    birth_day_input_text.text = "12.10.1986";
+    nameInputText.text = "Сергей Нечалов";
+    birthDayInputText.text = "12.10.1986";
   }
 
   void _onItemTapped(int index) {
@@ -87,7 +89,7 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
                       border: Border.all(color: secondary),
                     ),
                     child: TextField(
-                      controller: name_input_text,
+                      controller: nameInputText,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         labelText: "parent-profile-name-input-text".i18n(),
@@ -104,14 +106,18 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
                       border: Border.all(color: secondary),
                     ),
                     child: TextField(
-                        controller: birth_day_input_text,
+                        controller: birthDayInputText,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           labelText:
                               "parent-profile-birth-day-input-text".i18n(),
-                          labelStyle: titleSmallStyle.copyWith(color: primary),
+                          labelStyle: titleSmallStyle.copyWith(
+                            color: primary,
+                          ),
                         ),
-                        style: const TextStyle(color: Colors.black),
+                        style: const TextStyle(
+                          color: Colors.black,
+                        ),
                         readOnly: true,
                         onTap: () {}),
                   ),
@@ -127,8 +133,11 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
                             text: TextSpan(
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: "my-children-parent-profile-text".i18n(),
-                                  style: titleSmallStyle.copyWith(color: secondary),
+                                  text:
+                                      "my-children-parent-profile-text".i18n(),
+                                  style: titleSmallStyle.copyWith(
+                                    color: secondary,
+                                  ),
                                 ),
                               ],
                             ),
@@ -144,7 +153,8 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(color: secondary),
                     ),
-                    child: ltsv(childrenListNames,childrenListCodes)
+                    child:
+                        childrenListing(childrenListNames, childrenListCodes),
                   ),
                   const SizedBox(height: 10),
                   Align(
@@ -165,24 +175,28 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
                         ),
                       ),
                       child: RichText(
-                        text: TextSpan(
-                        children: [
-                            TextSpan(
-                              text: "add-child-text".i18n(),
-                              style: const TextStyle(fontSize: 16,color: Colors.white)
+                        text: TextSpan(children: [
+                          TextSpan(
+                            text: "add-child-text".i18n(),
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
                             ),
-                            WidgetSpan(
-                              child: Container(
-                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0.9),
-                                child: const Icon(Icons.add, size: 16,color: Colors.white),
+                          ),
+                          WidgetSpan(
+                            child: Container(
+                              padding: const EdgeInsets.fromLTRB(10, 0, 0, 0.9),
+                              child: const Icon(
+                                Icons.add,
+                                size: 16,
+                                color: Colors.white,
                               ),
                             ),
-                          ]
-                        ),
+                          ),
+                        ]),
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 15),
                   Align(
                     alignment: Alignment.bottomLeft,
@@ -191,9 +205,14 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
                         foregroundColor: Colors.red,
                       ),
                       onPressed: () {
-                        //
+                        ref.read(userProvider).signOut();
+                        Navigator.pushReplacementNamed(
+                          context, '/',);
                       },
-                      child: Text("parent-profile-exit-text".i18n(),style: const TextStyle(fontSize: 17)),
+                      child: Text(
+                        "parent-profile-exit-text".i18n(),
+                        style: const TextStyle(fontSize: 17),
+                      ),
                     ),
                   ),
                 ],
@@ -202,35 +221,10 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        //!!!!
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.format_list_bulleted),
-            label: "bottom-nav-bar-tasks-text".i18n(),
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.grade),
-            label: "bottom-nav-bar-dreams-text".i18n(),
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.account_balance_wallet),
-            label: "bottom-nav-bar-balance-text".i18n(),
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.person),
-            label: "bottom-nav-bar-profile-text".i18n(),
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.deepPurpleAccent,
-        unselectedItemColor: const Color.fromRGBO(106, 105, 105, 1),
-        onTap: _onItemTapped,
-      ),
     );
   }
-  
-  Widget ltsv(childrenList,childrenListCodes){
+
+  Widget childrenListing(childrenList, childrenListCodes) {
     return ListView.separated(
       padding: const EdgeInsets.all(8),
       itemCount: childrenList.length,
@@ -243,13 +237,19 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
               Expanded(
                 child: Align(
                   alignment: Alignment.centerLeft,
-                  child: Text('${childrenList[index]}',style: const TextStyle(fontSize: 16))
+                  child: Text(
+                    '${childrenList[index]}',
+                    style: const TextStyle(fontSize: 16),
+                  ),
                 ),
               ),
               Expanded(
                 child: Align(
                   alignment: Alignment.centerRight,
-                  child: Text('${childrenListCodes[index]}',style: titleSmallStyle.copyWith(color: primary))
+                  child: Text(
+                    '${childrenListCodes[index]}',
+                    style: titleSmallStyle.copyWith(color: primary),
+                  ),
                 ),
               ),
             ],

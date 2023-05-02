@@ -209,11 +209,12 @@ class LoginParentScreenState extends ConsumerState<LoginParentScreen> {
                               .signIn(
                                   _emailController.text, _passController.text)
                               .then((value) {
-                            Navigator.pop(context);
+                            Navigator.of(context).pop();
                             _isLogging = false;
-                            Navigator.pushReplacement(
-                                context, tasksScreenRoute);
+                            Navigator.pushReplacementNamed(
+                                context, '/main',);
                           }).onError((error, stackTrace) => showHint());
+                          _isLogging = false;
                         }
                       },
                       style: ElevatedButton.styleFrom(
