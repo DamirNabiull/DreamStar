@@ -112,7 +112,7 @@ class BalanceChildScreenState extends State<BalanceChildScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar( //!!!!
+      bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: const Icon(Icons.format_list_bulleted),

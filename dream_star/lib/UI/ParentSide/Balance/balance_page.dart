@@ -15,8 +15,8 @@ class BalanceParentScreen extends StatefulWidget {
 
 class BalanceParentScreenState extends State<BalanceParentScreen> {
   int _selectedIndex = 2;
-  final List childrenListNames = <String>["Олег","Никита","Ева"];
-  final List childrenListBalances = <String>["21","123","33"];
+  final List childrenListNames = <String>["Олег", "Никита", "Ева"];
+  final List childrenListBalances = <String>["21", "123", "33"];
 
   @override
   void initState() {
@@ -34,7 +34,7 @@ class BalanceParentScreenState extends State<BalanceParentScreen> {
     return Scaffold(
       backgroundColor: white,
       appBar: AppBar(
-        title: const Text('Balance'), 
+        title: const Text('Balance'),
       ),
       body: Stack(
         children: [
@@ -45,7 +45,7 @@ class BalanceParentScreenState extends State<BalanceParentScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                    SizedBox(
+                  SizedBox(
                     height: 60,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -57,8 +57,11 @@ class BalanceParentScreenState extends State<BalanceParentScreen> {
                             text: TextSpan(
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: "my-children-balances-parent-profile-text".i18n(),
-                                  style: titleSmallStyle.copyWith(color: secondary),
+                                  text:
+                                      "my-children-balances-parent-profile-text"
+                                          .i18n(),
+                                  style: titleSmallStyle.copyWith(
+                                      color: secondary),
                                 ),
                               ],
                             ),
@@ -68,13 +71,16 @@ class BalanceParentScreenState extends State<BalanceParentScreen> {
                     ),
                   ),
                   Container(
-                    height:120,
+                    height: 120,
                     padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(color: secondary),
                     ),
-                    child: ltsv(childrenListNames,childrenListBalances)
+                    child: ltsv(
+                      childrenListNames,
+                      childrenListBalances,
+                    ),
                   ),
                 ],
               ),
@@ -82,7 +88,8 @@ class BalanceParentScreenState extends State<BalanceParentScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar( //!!!!
+      bottomNavigationBar: BottomNavigationBar(
+        //!!!!
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: const Icon(Icons.format_list_bulleted),
@@ -108,50 +115,50 @@ class BalanceParentScreenState extends State<BalanceParentScreen> {
       ),
     );
   }
-}
 
-
-Widget ltsv(childrenList,childrenListCodes){
-  return ListView.separated(
-    padding: const EdgeInsets.all(8),
-    itemCount: childrenList.length,
-    itemBuilder: (BuildContext context, int index) {
-      return Container(
-        height: 22,
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text('${childrenList[index]}',style: titleSmallStyle.copyWith(color: primary))
+  Widget ltsv(childrenList, childrenListCodes) {
+    return ListView.separated(
+      padding: const EdgeInsets.all(8),
+      itemCount: childrenList.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Container(
+          height: 22,
+          color: Colors.white,
+          child: Row(
+            children: [
+              Expanded(
+                child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('${childrenList[index]}',
+                        style: titleSmallStyle.copyWith(color: primary))),
               ),
-            ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.centerRight,
-                child:RichText(
-                  text: TextSpan(
-                  children: [
+              Expanded(
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: RichText(
+                    text: TextSpan(children: [
                       TextSpan(
-                        text: '${childrenListCodes[index]}',
-                        style: const TextStyle(fontSize: 16)
-                      ),
+                          text: '${childrenListCodes[index]}',
+                          style: const TextStyle(fontSize: 16)),
                       WidgetSpan(
                         child: Container(
                           padding: const EdgeInsets.all(2.2),
-                          child: const Icon(Icons.grade, size: 14,color: Colors.yellow,),
+                          child: const Icon(
+                            Icons.grade,
+                            size: 14,
+                            color: Colors.yellow,
+                          ),
                         ),
                       ),
-                    ]
+                    ]),
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-      );
-    },
-    separatorBuilder: (BuildContext context, int index) => const Divider(),
-  );
+            ],
+          ),
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) => const Divider(),
+    );
+  }
 }
