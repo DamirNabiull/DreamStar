@@ -16,6 +16,7 @@ class TaskCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var updateTask = ref.read(fireStoreProvider).updateTaskStatus;
+    var updateStars = ref.read(fireStoreProvider).updateStars;
     return Container(
         decoration: BoxDecoration(
           color: white,
@@ -65,7 +66,7 @@ class TaskCard extends ConsumerWidget {
                               ],
                             ),
                             const Spacer(),
-                            buildButton(updateTask)
+                            buildButton(updateTask, updateStars)
                           ],
                         )
                       ],
@@ -140,22 +141,23 @@ class TaskCard extends ConsumerWidget {
 
   Widget buildCostLabel() {
     return SizedBox(
-        child: Row(
-      children: [
-        Text(
-          getCost().toString(),
-          style: taskInfo.overdue
-              ? labelMediumStyle.copyWith(color: red)
-              : labelMediumStyle.copyWith(color: primary),
-        ),
-        const SizedBox(width: 5.0),
-        buildStar()
-      ],
-    ));
+      child: Row(
+        children: [
+          Text(
+            getCost().toString(),
+            style: taskInfo.isOverdue()
+                ? labelMediumStyle.copyWith(color: red)
+                : labelMediumStyle.copyWith(color: primary),
+          ),
+          const SizedBox(width: 5.0),
+          buildStar(),
+        ],
+      ),
+    );
   }
 
   int getCost() {
-    if (taskInfo.penalty == null) {
+    if (taskInfo.penalty == null || !taskInfo.isOverdue()) {
       return taskInfo.cost;
     } else {
       return taskInfo.cost - taskInfo.penalty!;
@@ -165,19 +167,19 @@ class TaskCard extends ConsumerWidget {
   Widget buildStar() {
     switch (taskInfo.status) {
       case TaskStatus.progress:
-        if (taskInfo.penalty == null) {
+        if (taskInfo.penalty == null || !taskInfo.isOverdue()) {
           return SvgPicture.asset('assets/star-empty-14px-yellow.svg');
         } else {
           return SvgPicture.asset('assets/star-half-dashed-empty-14px-red.svg');
         }
       case TaskStatus.review:
-        if (taskInfo.penalty == null) {
+        if (taskInfo.penalty == null || !taskInfo.isOverdue()) {
           return SvgPicture.asset('assets/star-empty-14px-yellow.svg');
         } else {
           return SvgPicture.asset('assets/star-half-dashed-empty-14px-red.svg');
         }
       case TaskStatus.passed:
-        if (taskInfo.penalty == null) {
+        if (taskInfo.penalty == null || !taskInfo.isOverdue()) {
           return SvgPicture.asset('assets/star-filled-14px-yellow.svg');
         } else {
           return SvgPicture.asset(
@@ -201,7 +203,7 @@ class TaskCard extends ConsumerWidget {
         : const SizedBox.shrink();
   }
 
-  Widget buildButton(updateTask) {
+  Widget buildButton(updateTask, updateStars) {
     switch (appSide) {
       case AppSide.child:
         switch (taskInfo.status) {
@@ -217,7 +219,7 @@ class TaskCard extends ConsumerWidget {
           case TaskStatus.progress:
             return const SizedBox.shrink();
           case TaskStatus.review:
-            return buildPassButton(updateTask);
+            return buildPassButton(updateTask, updateStars);
           case TaskStatus.passed:
             return const SizedBox.shrink();
         }
@@ -237,7 +239,11 @@ class TaskCard extends ConsumerWidget {
               customTheme.extension<ThemeExtensions>()!.sendTaskButtonTextStyle,
         ),
       ),
-      onTap: () => updateTask(taskInfo.id, TaskStatus.review),
+      onTap: () => updateTask(
+        taskInfo.id,
+        TaskStatus.review,
+        taskInfo.isOverdue(),
+      ),
     );
   }
 
@@ -256,7 +262,7 @@ class TaskCard extends ConsumerWidget {
     );
   }
 
-  Widget buildPassButton(updateTask) {
+  Widget buildPassButton(updateTask, updateStars) {
     return GestureDetector(
       child: Container(
         alignment: Alignment.center,
@@ -270,7 +276,13 @@ class TaskCard extends ConsumerWidget {
               .acceptTaskButtonTextStyle,
         ),
       ),
-      onTap: () => updateTask(taskInfo.id, TaskStatus.passed),
+      onTap: () {
+        updateTask(taskInfo.id, TaskStatus.passed, taskInfo.isOverdue());
+        var cost = taskInfo.penalty == null || !taskInfo.isOverdue()
+            ? taskInfo.cost
+            : taskInfo.cost - taskInfo.penalty!;
+        updateStars(taskInfo.childId, cost);
+      },
     );
   }
 }

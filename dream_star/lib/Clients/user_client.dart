@@ -10,10 +10,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:random_password_generator/random_password_generator.dart';
 
 class UserClient {
+  bool isLogin = false;
   AppSide? role;
   UserDTO? _userInfo;
   String? _userId;
   String? childToken;
+  List<String> childTokens = [];
+  List<String> _childNames = [];
+  final List<int> _stars = [];
 
   final _chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_-';
   final _rnd = Random();
@@ -46,40 +50,88 @@ class UserClient {
 
   Stream<User?> authState() => _firebaseAuth.authStateChanges();
 
-  Future parentSignIn(String email, String password) async {
+  // SIGN IN PART
+
+  Future signIn(String email, String password) async {
     await _firebaseAuth.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
-    setAuthInfo(_firebaseAuth.currentUser!.uid);
+    _userId = _firebaseAuth.currentUser!.uid;
+    // _setAuthInfo();
   }
 
   Future childSignIn(String token) async {
     childToken = token;
+    Map<String, String> data =
+        (await _fireStoreClient.getIdAndPassByToken(token))!;
+
+    var email = '$token@child.dreamstar.mail';
+    var password = data['password']!;
+
+    await signIn(email, password);
   }
 
-  List<String> getChildrenList() => _userInfo!.children!;
+  // DATA FUNCTIONS
 
-  void setUserRole(bool isParent) {
-    role = isParent ? AppSide.parent : AppSide.child;
+  List<int> getParentStars() {
+    return _stars;
+  }
+
+  int getChildStars() {
+    return _userInfo!.stars!;
+  }
+
+  List<String> getChildrenNamesList() {
+    return _childNames;
   }
 
   Future updateAuthInfo() async {
-    await setAuthInfo(_userId!);
+    await _setAuthInfo();
   }
 
-  Future setAuthInfo(String id) async {
-    _userId = id;
+  Future _setChildrenTokensList(bool isParent) async {
+    if (!isParent) {
+      return;
+    }
+
+    childTokens = [];
+    var ids = childrenList();
+    for (var id in ids) {
+      String? token = await _fireStoreClient.getTokenById(id);
+      childTokens.add(token!);
+    }
+  }
+
+  Future _setChildrenNamesList(bool isParent) async {
+    if (!isParent) {
+      return;
+    }
+
+    _childNames = [];
+    var ids = childrenList();
+    for (var id in ids) {
+      UserDTO? userDTO = await _fireStoreClient.getUser(id);
+      _childNames.add(userDTO!.name);
+    }
+  }
+
+  void _setUserRole(bool isParent) {
+    role = isParent ? AppSide.parent : AppSide.child;
+  }
+
+  Future _setAuthInfo() async {
     await _getUserInfo();
   }
 
   Future _getUserInfo() async {
     var user = await _fireStoreClient.getUser(_userId!);
 
-    if (user != null) {
-      _userInfo = user;
-      setUserRole(_userInfo!.isParent);
-    }
+    _userInfo = user;
+    _setUserRole(_userInfo!.isParent);
+    await _setChildrenNamesList(_userInfo!.isParent);
+    await _setChildrenTokensList(_userInfo!.isParent);
+    isLogin = true;
   }
 
   Future _saveDataAboutUser(
@@ -103,7 +155,7 @@ class UserClient {
 
   Future<String> _registerParent(String email, String password) async {
     UserCredential userCredential =
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        await _firebaseAuth.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
@@ -118,7 +170,15 @@ class UserClient {
   }
 
   Future<String> createChildAccount(String name, String surname) async {
+    // print('Token generation');
+
     var token = _generateToken();
+    while (!_fireStoreClient.isTokenFree(token)) {
+      token = _generateToken();
+    }
+
+    // print(token);
+
     var mail = '$token@child.dreamstar.mail';
     var password = _passGen.randomPassword(
       letters: true,
@@ -130,6 +190,7 @@ class UserClient {
 
     String id = await _registerChild(mail, password);
     _userInfo!.children!.add(id);
+    _fireStoreClient.createToken(token, id, password);
 
     await _saveDataAboutUser(name, surname, false, id);
 
@@ -146,5 +207,12 @@ class UserClient {
     await app.delete();
 
     return userCredential.user!.uid;
+  }
+
+  // SIGN OUT
+
+  Future signOut() async {
+    isLogin = false;
+    await _firebaseAuth.signOut();
   }
 }

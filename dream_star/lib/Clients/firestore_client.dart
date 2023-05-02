@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dream_star/Clients/providers.dart';
 import 'package:dream_star/DTO/task_dto.dart';
@@ -12,6 +14,7 @@ class FireStoreClient {
   final FirebaseFirestore db = FirebaseFirestore.instance;
   late final CollectionReference<Map<String, dynamic>> _tasksCollection;
   late final CollectionReference<Map<String, dynamic>> _usersCollection;
+  late final CollectionReference<Map<String, dynamic>> _tokensCollection;
   // late final CollectionReference<Map<String, dynamic>> _dreamsCollection;
 
   final container = ProviderContainer();
@@ -20,7 +23,40 @@ class FireStoreClient {
   FireStoreClient() {
     _tasksCollection = db.collection("tasks");
     _usersCollection = db.collection("users");
+    _tokensCollection = db.collection("tokens");
     // _dreamsCollection = db.collection("dreams");
+  }
+
+  void createToken(String token, String id, String password) {
+    _tokensCollection.doc(token).set({'id': id, 'password': password});
+  }
+
+  Future<Map<String, String>?> getIdAndPassByToken(String token) async {
+    final snapshot = await _tokensCollection.doc(token).get();
+    if (snapshot.exists) {
+      var data = snapshot.data()!;
+      return {'id': data['id'], 'password': data['password']};
+    }
+    return null;
+  }
+
+  Future<String?> getTokenById(String id) async {
+    return await _tokensCollection.where('id', isEqualTo: id).get().then(
+      (querySnapshot) {
+        return querySnapshot.docs[0].id;
+      },
+      onError: (e) => null,
+    );
+  }
+
+  bool isTokenFree(String token) {
+    bool ans = true;
+    _tokensCollection
+        .doc(token)
+        .get()
+        .then((value) => ans = false)
+        .onError((error, stackTrace) => ans = true);
+    return ans;
   }
 
   void createTask(TaskInfo taskInfo) async {
@@ -31,9 +67,10 @@ class FireStoreClient {
     await taskRef.set(taskDTO.toJson());
   }
 
-  void updateTaskStatus(String taskId, TaskStatus status) async {
+  void updateTaskStatus(
+      String taskId, TaskStatus status, bool isOverdue) async {
     final taskRef = _tasksCollection.doc(taskId);
-    taskRef.update({"status": status.toString()});
+    taskRef.update({"status": status.toString(), 'overdue': isOverdue});
   }
 
   Stream<List<TaskInfo>> getTasks(List<String> childIds, TaskStatus status) {
@@ -66,5 +103,10 @@ class FireStoreClient {
   void updateUser(UserDTO userDTO, String id) {
     final user = _usersCollection.doc(id);
     user.update(userDTO.toJson());
+  }
+
+  void updateStars(String id, int stars) {
+    final user = _usersCollection.doc(id);
+    user.update({'stars': stars});
   }
 }

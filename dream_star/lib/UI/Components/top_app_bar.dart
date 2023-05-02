@@ -32,11 +32,14 @@ class TopAppBar extends AppBar {
                     padding: const EdgeInsets.only(right: 20.0),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute<void>(
-                          builder: (BuildContext context) {
-                            return const TaskCreationScreen();
-                          },
-                        ));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) {
+                              return const TaskCreationScreen();
+                            },
+                          ),
+                        );
                       },
                       child: SvgPicture.asset("assets/plus-24px-white.svg"),
                     ))

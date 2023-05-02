@@ -1,28 +1,48 @@
+import 'package:dream_star/Clients/providers.dart';
+import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localization/localization.dart';
-
 import 'package:pinput/pinput.dart';
-// import 'package:localization/localization.dart';
-
 import 'package:flutter_svg/svg.dart';
 import 'dart:ui';
-import '../../themes.dart';
 
-class LoginChildScreen extends StatefulWidget {
+class LoginChildScreen extends ConsumerStatefulWidget {
   const LoginChildScreen({super.key});
 
   @override
   LoginChildScreenState createState() => LoginChildScreenState();
 }
 
-class LoginChildScreenState extends State<LoginChildScreen> {
-  final pinController = TextEditingController();
+class LoginChildScreenState extends ConsumerState<LoginChildScreen> {
+  final _pinController = TextEditingController();
   final focusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
+  bool _isLogging = false;
+
+  final snackBar = const SnackBar(
+    content: Text('Check your input field again',
+        style: TextStyle(color: Colors.black, fontSize: 17)),
+  );
+
+  Future<void> showHint() async {
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
   @override
   void initState() {
     super.initState();
+
+    _pinController.addListener(() {
+      final String text = _pinController.text;
+
+      _pinController.value = _pinController.value.copyWith(
+        text: text,
+        selection:
+            TextSelection(baseOffset: text.length, extentOffset: text.length),
+        composing: TextRange.empty,
+      );
+    });
   }
 
   @override
@@ -30,8 +50,6 @@ class LoginChildScreenState extends State<LoginChildScreen> {
     const focusedBorderColor = primary;
     const fillColor = primary;
     const borderColor = secondary;
-
-    String codeValidate = "BW401";
 
     final defaultPinTheme = PinTheme(
       width: 46,
@@ -45,6 +63,9 @@ class LoginChildScreenState extends State<LoginChildScreen> {
     const int codeLength = 5;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       backgroundColor: white,
       body: Stack(children: [
         SvgPicture.asset(
@@ -63,41 +84,51 @@ class LoginChildScreenState extends State<LoginChildScreen> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(23.0),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                const SizedBox(height: 100),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: RichText(
-                    text: TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: "child-login-welcome-text".i18n(),
-                          style: displayMediumStyle.copyWith(color: primary),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.25,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: "child-login-welcome-text".i18n(),
+                                style:
+                                    displayMediumStyle.copyWith(color: primary),
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 15),
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: "child-login-info-text".i18n(),
+                                style:
+                                    titleSmallStyle.copyWith(color: secondary),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 15),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: RichText(
-                    text: TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: "child-login-info-text".i18n(),
-                          style: titleSmallStyle.copyWith(color: secondary),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 90),
+                const SizedBox(height: 0),
                 Form(
                   key: formKey,
                   child: Column(
@@ -107,24 +138,17 @@ class LoginChildScreenState extends State<LoginChildScreen> {
                       Directionality(
                         textDirection: TextDirection.ltr,
                         child: Pinput(
+                          keyboardType: TextInputType.text,
                           length: codeLength,
-                          controller: pinController,
+                          controller: _pinController,
                           focusNode: focusNode,
                           androidSmsAutofillMethod:
                               AndroidSmsAutofillMethod.smsUserConsentApi,
                           listenForMultipleSmsOnAndroid: true,
                           defaultPinTheme: defaultPinTheme,
-                          validator: (value) {
-                            return value == codeValidate
-                                ? null
-                                : "child-login-incorrect-code-text".i18n();
-                          },
                           hapticFeedbackType: HapticFeedbackType.lightImpact,
-                          onCompleted: (pin) {
-                            debugPrint('onCompleted: $pin');
-                          },
                           onChanged: (value) {
-                            debugPrint('onChanged: $value');
+                            _pinController.text = value.toUpperCase();
                           },
                           cursor: Column(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -178,9 +202,26 @@ class LoginChildScreenState extends State<LoginChildScreen> {
                       Center(
                         child: ElevatedButton(
                           onPressed: () {
-                            focusNode.unfocus();
-                            formKey.currentState!.validate();
-                            // print('Button Pressed');
+                            if (!_isLogging) {
+                              _isLogging = true;
+                              focusNode.unfocus();
+                              formKey.currentState!.validate();
+                              ref
+                                  .read(userProvider)
+                                  .childSignIn(_pinController.text)
+                                  .then((value) {
+                                Navigator.of(context).pop();
+                                _isLogging = false;
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  '/main',
+                                );
+                              }).onError((error, stackTrace) {
+                                showHint();
+                                null;
+                              });
+                              _isLogging = false;
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: primary,

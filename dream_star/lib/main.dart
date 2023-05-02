@@ -14,15 +14,15 @@ import 'firebase_options.dart';
 void main() async {
   runZonedGuarded<Future<void>>(() async {
     WidgetsFlutterBinding.ensureInitialized();
-    runApp(ProviderScope(child: MyApp()));
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+    runApp(const ProviderScope(child: MyApp()));
   }, (error, stack) => FirebaseCrashlytics.instance.recordError(error, stack));
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-
-  final Future<FirebaseApp> _initialization =
-      Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -40,21 +40,8 @@ class MyApp extends StatelessWidget {
         Locale('en', 'US'),
         Locale('ru', 'RUS'),
       ],
-      home: FutureBuilder(
-        future: _initialization,
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            // print(snapshot.error.toString());
-            throw Exception(snapshot.error.toString());
-          }
-          if (snapshot.connectionState == ConnectionState.done) {
-            FlutterError.onError =
-                FirebaseCrashlytics.instance.recordFlutterError;
-            return const InitPage();
-          }
-          return const CircularProgressIndicator();
-        },
-      ),
+      initialRoute: '/',
+      routes: namedRoutes,
     );
   }
 }
