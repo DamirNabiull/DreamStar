@@ -24,7 +24,7 @@ class LoginParentScreenState extends ConsumerState<LoginParentScreen> {
   bool _isLogging = false;
 
   final snackBar = const SnackBar(
-    content: Text('Check your input field again'),
+    content: Text('Check your input field again',style: TextStyle(color:Colors.black,fontSize: 17)),
   );
 
   Future<Null> showHint() async {

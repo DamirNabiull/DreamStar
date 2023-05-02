@@ -1,5 +1,5 @@
+import 'package:dream_star/UI/ParentSide/authorization/login_page.dart';
 import 'package:flutter/material.dart';
-// import 'package:localization/localization.dart';
 
 import 'package:flutter_svg/svg.dart';
 import 'package:localization/localization.dart';
@@ -30,6 +30,9 @@ class RegParentScreenState extends State<RegParentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       backgroundColor: white,
       body: Stack(
         children: [
@@ -41,12 +44,13 @@ class RegParentScreenState extends State<RegParentScreen> {
             alignment: Alignment.center,
           ),
           Positioned.fill(
-              child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: Container(
-              color: Colors.transparent,
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+              child: Container(
+                color: Colors.transparent,
+              ),
             ),
-          )),
+          ),
           Padding(
             padding: const EdgeInsets.all(23.0),
             child: SingleChildScrollView(
@@ -54,35 +58,8 @@ class RegParentScreenState extends State<RegParentScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                    const SizedBox(height: 30),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: ElevatedButton.icon(
-                        icon: const Icon(
-                          Icons.arrow_back,
-                          color: secondary,
-                          size: 20.0,
-                        ),
-                        label: Text(
-                          "change-role-text".i18n(),
-                          style: const TextStyle(
-                            fontWeight: FontWeight.normal,
-                            fontSize: 18,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          elevation: 0,
-                          shadowColor: Colors.transparent,
-                        ),
-                        onPressed: () {
-                          // print('Button Pressed');
-                        },
-                      ),
-                    ),
-                    SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.23,
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.25,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -94,7 +71,8 @@ class RegParentScreenState extends State<RegParentScreen> {
                               children: <TextSpan>[
                                 TextSpan(
                                   text: "create-account-text".i18n(),
-                                  style: displayMediumStyle.copyWith(color: primary),
+                                  style: displayMediumStyle.copyWith(
+                                      color: primary),
                                 ),
                               ],
                             ),
@@ -108,7 +86,8 @@ class RegParentScreenState extends State<RegParentScreen> {
                               children: <TextSpan>[
                                 TextSpan(
                                   text: "create-account-info-text".i18n(),
-                                  style: titleSmallStyle.copyWith(color: secondary),
+                                  style: titleSmallStyle.copyWith(
+                                      color: secondary),
                                 ),
                               ],
                             ),
@@ -130,6 +109,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                         labelText: "name-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
                       ),
+                      style: const TextStyle(color:Colors.black),
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -145,6 +125,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                         labelText: "second-name-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
                       ),
+                      style: const TextStyle(color:Colors.black),
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -160,6 +141,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                         labelText: "birth-day-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
                       ),
+                      style: const TextStyle(color:Colors.black),
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -194,8 +176,11 @@ class RegParentScreenState extends State<RegParentScreen> {
                           title: Text(
                             "switch-female-text".i18n(),
                             style: const TextStyle(
-                                fontWeight: FontWeight.normal, fontSize: 18,color: Colors.grey),
+                                fontWeight: FontWeight.normal,
+                                fontSize: 18,
+                                color: Colors.grey),
                           ),
+                          activeColor: Colors.deepPurpleAccent,
                           value: Switch.female,
                           groupValue: _character,
                           onChanged: (Switch? value) {
@@ -214,8 +199,11 @@ class RegParentScreenState extends State<RegParentScreen> {
                           title: Text(
                             "switch-male-text".i18n(),
                             style: const TextStyle(
-                                fontWeight: FontWeight.normal, fontSize: 18,color: Colors.grey),
+                                fontWeight: FontWeight.normal,
+                                fontSize: 18,
+                                color: Colors.grey),
                           ),
+                          activeColor: Colors.deepPurpleAccent,
                           value: Switch.male,
                           groupValue: _character,
                           onChanged: (Switch? value) {
@@ -240,6 +228,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                         labelText: "email-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
                       ),
+                      style: const TextStyle(color:Colors.black),
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -266,6 +255,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                           },
                         ),
                       ),
+                      style: const TextStyle(color:Colors.black),
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -292,6 +282,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                           },
                         ),
                       ),
+                      style: const TextStyle(color:Colors.black),
                     ),
                   ),
                   const SizedBox(height: 30),
@@ -303,11 +294,10 @@ class RegParentScreenState extends State<RegParentScreen> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: primary,
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 25, vertical: 20),
-                        textStyle: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                            horizontal: 100, vertical: 20),
+                        textStyle: titleLargeStyle.copyWith(color: white),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
+                          borderRadius: BorderRadius.circular(22.0),
                         ),
                       ),
                       child: Text("submit-reg-text".i18n()),
@@ -324,40 +314,51 @@ class RegParentScreenState extends State<RegParentScreen> {
         width: double.infinity,
         color: Colors.transparent,
         height: 70,
-        child: Center(child: FooterBtnReg()),
+        child: Center(child: footerBtnReg()),
       ),
     );
   }
-}
 
-Widget FooterBtnReg(){
-  return Container(
+  Widget footerBtnReg() {
+    return Container(
       width: double.infinity,
       height: 50,
       color: Colors.transparent,
       child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-      RichText(
-        text: TextSpan(
-          children: <TextSpan>[
-            TextSpan(
-              text: "info-reg-text".i18n(),
-              style: titleSmallStyle.copyWith(color: secondary),
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          RichText(
+            text: TextSpan(
+              children: <TextSpan>[
+                TextSpan(
+                  text: "info-reg-text".i18n(),
+                  style: titleSmallStyle.copyWith(color: secondary),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: const TextStyle(fontSize: 13),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) {
+                    return const LoginParentScreen();
+                  },
+                ),
+              );
+            },
+            child: Text(
+              "info-btn-reg-text".i18n(),
+              style: titleSmallStyle.copyWith(color: primary),
+            ),
+          ),
+        ],
       ),
-      TextButton(
-        style: TextButton.styleFrom(
-          textStyle: const TextStyle(fontSize: 13),
-        ),
-        onPressed: () {},
-        child: Text(
-          "info-btn-reg-text".i18n(),
-          style: titleSmallStyle.copyWith(color: primary),
-        ),
-      ),
-    ]),
-  );
+    );
+  }
 }
