@@ -10,12 +10,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:random_password_generator/random_password_generator.dart';
 
 class UserClient {
+  bool isLogin = false;
   AppSide? role;
   UserDTO? _userInfo;
   String? _userId;
   String? childToken;
   List<String> childTokens = [];
   List<String> _childNames = [];
+  List<int> _stars = [];
 
   final _chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_-';
   final _rnd = Random();
@@ -72,6 +74,14 @@ class UserClient {
 
   // DATA FUNCTIONS
 
+  List<int> getParentStars() {
+    return _stars;
+  }
+
+  int getChildStars() {
+    return _userInfo!.stars!;
+  }
+
   List<String> getChildrenNamesList() {
     return _childNames;
   }
@@ -121,6 +131,7 @@ class UserClient {
     _setUserRole(_userInfo!.isParent);
     await _setChildrenNamesList(_userInfo!.isParent);
     await _setChildrenTokensList(_userInfo!.isParent);
+    isLogin = true;
   }
 
   Future _saveDataAboutUser(
@@ -201,6 +212,7 @@ class UserClient {
   // SIGN OUT
 
   Future signOut() async {
+    isLogin = false;
     await _firebaseAuth.signOut();
   }
 }
