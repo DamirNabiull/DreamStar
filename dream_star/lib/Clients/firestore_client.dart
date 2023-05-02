@@ -67,7 +67,8 @@ class FireStoreClient {
     await taskRef.set(taskDTO.toJson());
   }
 
-  void updateTaskStatus(String taskId, TaskStatus status, bool isOverdue) async {
+  void updateTaskStatus(
+      String taskId, TaskStatus status, bool isOverdue) async {
     final taskRef = _tasksCollection.doc(taskId);
     taskRef.update({"status": status.toString(), 'overdue': isOverdue});
   }

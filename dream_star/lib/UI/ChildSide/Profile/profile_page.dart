@@ -131,7 +131,9 @@ class ProfileChildScreenState extends ConsumerState<ProfileChildScreen> {
                       onPressed: () {
                         ref.read(userProvider).signOut();
                         Navigator.pushReplacementNamed(
-                          context, '/',);
+                          context,
+                          '/',
+                        );
                       },
                       child: Text(
                         "parent-profile-exit-text".i18n(),

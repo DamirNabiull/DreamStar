@@ -16,7 +16,9 @@ class WaitLoginScreen extends StatelessWidget {
               children: [
                 const Spacer(),
                 Text('loading-user-info'.i18n()),
-                const SizedBox(height: 15,),
+                const SizedBox(
+                  height: 15,
+                ),
                 CircularProgressIndicator(
                   color: Theme.of(context).primaryColor,
                 ),

@@ -15,8 +15,10 @@ void main() {
   test('Mapper test', () {
     final mapper = MappingClient();
 
-    TaskInfo taskInfo = TaskInfo('title', 'description', 0, TaskStatus.passed, cardLineColors[0], 'childName', 'childId');
-    TaskDTO taskDTO = TaskDTO('childId', 'childName', 'title', 'description', 'TaskStatus.passed', 0, 0);
+    TaskInfo taskInfo = TaskInfo('title', 'description', 0, TaskStatus.passed,
+        cardLineColors[0], 'childName', 'childId');
+    TaskDTO taskDTO = TaskDTO('childId', 'childName', 'title', 'description',
+        'TaskStatus.passed', 0, 0);
 
     TaskDTO mappedInfo = mapper.taskInfoToTaskDTO(taskInfo);
     expect(mappedInfo.id, taskDTO.id);
