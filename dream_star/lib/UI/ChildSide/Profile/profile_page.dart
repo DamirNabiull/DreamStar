@@ -19,9 +19,9 @@ class ProfileChildScreenState extends ConsumerState<ProfileChildScreen> {
   @override
   void initState() {
     super.initState();
-    nameInputText.text = "Сергей Нечалов";
-    birthDayInputText.text = "12.10.1986";
-    loginCodeInputText.text = "BY2W7";
+    nameInputText.text = ref.read(userProvider).getUserNameSurname();
+    birthDayInputText.text = "12.10.2015";
+    loginCodeInputText.text = ref.read(userProvider).childToken!;
   }
 
   @override
@@ -82,6 +82,7 @@ class ProfileChildScreenState extends ConsumerState<ProfileChildScreen> {
                         labelStyle: titleSmallStyle.copyWith(color: primary),
                       ),
                       style: const TextStyle(color: Colors.black),
+                      enabled: false,
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -92,16 +93,16 @@ class ProfileChildScreenState extends ConsumerState<ProfileChildScreen> {
                       border: Border.all(color: secondary),
                     ),
                     child: TextField(
-                        controller: birthDayInputText,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          labelText:
-                              "parent-profile-birth-day-input-text".i18n(),
-                          labelStyle: titleSmallStyle.copyWith(color: primary),
-                        ),
-                        style: const TextStyle(color: Colors.black),
-                        readOnly: true,
-                        onTap: () {}),
+                      controller: birthDayInputText,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        labelText: "parent-profile-birth-day-input-text".i18n(),
+                        labelStyle: titleSmallStyle.copyWith(color: primary),
+                      ),
+                      style: const TextStyle(color: Colors.black),
+                      readOnly: true,
+                      enabled: false,
+                    ),
                   ),
                   const SizedBox(height: 15),
                   Container(
@@ -111,15 +112,16 @@ class ProfileChildScreenState extends ConsumerState<ProfileChildScreen> {
                       border: Border.all(color: secondary),
                     ),
                     child: TextField(
-                        controller: loginCodeInputText,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          labelText: "child-profile-code-input-text".i18n(),
-                          labelStyle: titleSmallStyle.copyWith(color: primary),
-                        ),
-                        style: const TextStyle(color: Colors.black),
-                        readOnly: true,
-                        onTap: () {}),
+                      controller: loginCodeInputText,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        labelText: "child-profile-code-input-text".i18n(),
+                        labelStyle: titleSmallStyle.copyWith(color: primary),
+                      ),
+                      style: const TextStyle(color: Colors.black),
+                      readOnly: true,
+                      enabled: false,
+                    ),
                   ),
                   const SizedBox(height: 15),
                   Align(

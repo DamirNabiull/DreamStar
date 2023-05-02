@@ -20,31 +20,24 @@ class BottomBarWrapper extends ConsumerStatefulWidget {
 
 class BottomBarWrapperState extends ConsumerState<ConsumerStatefulWidget> {
   int _index = 0;
-  final List<Widget> _pages = [const TasksMainScreen()];
+  final List<Widget> _parentPages = [
+    const TasksMainScreen(),
+    const WaitLoginScreen(),
+    const BalanceParentScreen(),
+    const ProfileParentScreen(),
+  ];
+
+  final List<Widget> _childPages = [
+    const TasksMainScreen(),
+    const WaitLoginScreen(),
+    const BalanceChildScreen(),
+    const ProfileChildScreen(),
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
       _index = index;
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    if (ref.read(userProvider).role == AppSide.parent) {
-      _pages.addAll([
-        const WaitLoginScreen(),
-        const BalanceParentScreen(),
-        const ProfileParentScreen(),
-      ]);
-    } else {
-      _pages.addAll([
-        const WaitLoginScreen(),
-        const BalanceChildScreen(),
-        const ProfileChildScreen(),
-      ]);
-    }
   }
 
   @override
@@ -59,7 +52,9 @@ class BottomBarWrapperState extends ConsumerState<ConsumerStatefulWidget> {
           if (snapshot.connectionState == ConnectionState.done ||
               ref.read(userProvider).isLogin) {
             return Scaffold(
-              body: _pages[_index],
+              body: ref.watch(userProvider).role == AppSide.parent
+                  ? _parentPages[_index]
+                  : _childPages[_index],
               bottomNavigationBar: BottomNavigationBar(
                 items: <BottomNavigationBarItem>[
                   BottomNavigationBarItem(

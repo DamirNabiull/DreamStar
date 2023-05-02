@@ -74,6 +74,10 @@ class UserClient {
 
   // DATA FUNCTIONS
 
+  String getUserNameSurname() {
+    return '${_userInfo!.name} ${_userInfo!.surname}';
+  }
+
   List<int> getParentStars() {
     return _stars;
   }

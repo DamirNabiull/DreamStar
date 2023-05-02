@@ -24,8 +24,7 @@ class ProfileParentScreenState extends ConsumerState<ProfileParentScreen> {
   @override
   void initState() {
     super.initState();
-    //example
-    nameInputText.text = "Сергей Нечалов";
+    nameInputText.text = ref.read(userProvider).getUserNameSurname();
     birthDayInputText.text = "12.10.1986";
   }
 
@@ -87,6 +86,7 @@ class ProfileParentScreenState extends ConsumerState<ProfileParentScreen> {
                         labelStyle: titleSmallStyle.copyWith(color: primary),
                       ),
                       style: const TextStyle(color: Colors.black),
+                      enabled: false,
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -110,7 +110,7 @@ class ProfileParentScreenState extends ConsumerState<ProfileParentScreen> {
                           color: Colors.black,
                         ),
                         readOnly: true,
-                        onTap: () {}),
+                    enabled: false,),
                   ),
                   SizedBox(
                     height: 60,
