@@ -62,10 +62,15 @@
   "dream-description": "Dream description",
   "new-dream-title": "New dream",
   "create-dream": "Create dream",
-  "no-children": "No added child",
   "my-children-balances-parent-profile-text": "Children's balance",
   "add-child-text":"Add child",
   "child-profile-code-input-text":"Login code",
   "stars-earned-child-balance-text":"Stars earned",
-  "my-balance-child-profile-text":"My balance"
+  "my-balance-child-profile-text":"My balance",
+  "child-review-dream-button-title": "Waiting for evaluation",
+  "child-approved-dream-button-title": "Buy a dream!",
+  "child-await-dream-button-title": "Waiting for completion",
+  "parent-complete-dream-button-title": "Fulfill the dream!",
+  "parent-approved-dream-button-title": "Confirm cost",
+  "no-children": "No added child"
 }

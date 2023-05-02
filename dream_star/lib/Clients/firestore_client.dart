@@ -40,6 +40,15 @@ class FireStoreClient {
     return null;
   }
 
+  Future<String?> getTokenById(String id) async {
+    return await _tokensCollection.where('id', isEqualTo: id).get().then(
+      (querySnapshot) {
+        return querySnapshot.docs[0].id;
+      },
+      onError: (e) => null,
+    );
+  }
+
   bool isTokenFree(String token) {
     bool ans = true;
     _tokensCollection

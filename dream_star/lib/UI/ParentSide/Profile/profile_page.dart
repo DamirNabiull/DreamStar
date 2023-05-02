@@ -1,10 +1,8 @@
+import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
 // import 'package:localization/localization.dart';
 
-import 'package:flutter_svg/svg.dart';
 import 'package:localization/localization.dart';
-import 'dart:ui';
-import '../../themes.dart';
 
 class ProfileParentScreen extends StatefulWidget {
   const ProfileParentScreen({super.key});
@@ -14,6 +12,10 @@ class ProfileParentScreen extends StatefulWidget {
 }
 
 class ProfileParentScreenState extends State<ProfileParentScreen> {
+  // Switch? _character = Switch.female;
+  bool passwordVisible = false;
+  bool passwordVisibleRep = false;
+  // ignore: non_constant_identifier_names
   var name_input_text = TextEditingController();
   var birth_day_input_text = TextEditingController();
   int _selectedIndex = 3;
@@ -38,17 +40,14 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: white,
-      appBar: AppBar(
-        title: const Text('Profile'), 
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              //
-            },
-          ),
-        ]
-      ),
+      appBar: AppBar(title: const Text('Profile'), actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.settings),
+          onPressed: () {
+            //
+          },
+        ),
+      ]),
       body: Stack(
         children: [
           Padding(
@@ -58,7 +57,7 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                    SizedBox(
+                  SizedBox(
                     height: 60,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -71,7 +70,8 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
                               children: <TextSpan>[
                                 TextSpan(
                                   text: "my-data-parent-profile-text".i18n(),
-                                  style: titleSmallStyle.copyWith(color: secondary),
+                                  style: titleSmallStyle.copyWith(
+                                      color: secondary),
                                 ),
                               ],
                             ),
@@ -104,18 +104,16 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
                       border: Border.all(color: secondary),
                     ),
                     child: TextField(
-                      controller: birth_day_input_text,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        labelText: "parent-profile-birth-day-input-text".i18n(),
-                        labelStyle: titleSmallStyle.copyWith(color: primary),
-                      ),
-                      style: const TextStyle(color: Colors.black),
-                      readOnly: true,
-                      onTap: () {
-
-                      }
-                    ),
+                        controller: birth_day_input_text,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          labelText:
+                              "parent-profile-birth-day-input-text".i18n(),
+                          labelStyle: titleSmallStyle.copyWith(color: primary),
+                        ),
+                        style: const TextStyle(color: Colors.black),
+                        readOnly: true,
+                        onTap: () {}),
                   ),
                   SizedBox(
                     height: 60,
@@ -204,7 +202,8 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar( //!!!!
+      bottomNavigationBar: BottomNavigationBar(
+        //!!!!
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: const Icon(Icons.format_list_bulleted),
@@ -230,35 +229,34 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
       ),
     );
   }
-}
-
-
-Widget ltsv(childrenList,childrenListCodes){
-  return ListView.separated(
-    padding: const EdgeInsets.all(8),
-    itemCount: childrenList.length,
-    itemBuilder: (BuildContext context, int index) {
-      return Container(
-        height: 22,
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text('${childrenList[index]}',style: const TextStyle(fontSize: 16))
+  
+  Widget ltsv(childrenList,childrenListCodes){
+    return ListView.separated(
+      padding: const EdgeInsets.all(8),
+      itemCount: childrenList.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Container(
+          height: 22,
+          color: Colors.white,
+          child: Row(
+            children: [
+              Expanded(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text('${childrenList[index]}',style: const TextStyle(fontSize: 16))
+                ),
               ),
-            ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Text('${childrenListCodes[index]}',style: titleSmallStyle.copyWith(color: primary))
+              Expanded(
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Text('${childrenListCodes[index]}',style: titleSmallStyle.copyWith(color: primary))
+                ),
               ),
-            ),
-          ],
-        ),
-      );
-    },
-    separatorBuilder: (BuildContext context, int index) => const Divider(),
-  );
+            ],
+          ),
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) => const Divider(),
+    );
+  }
 }

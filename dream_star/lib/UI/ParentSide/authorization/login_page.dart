@@ -22,7 +22,7 @@ class LoginParentScreenState extends ConsumerState<LoginParentScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
   bool _isLogging = false;
-
+  
   final snackBar = const SnackBar(
     content: Text('Check your input field again',style: TextStyle(color:Colors.black,fontSize: 17)),
   );
