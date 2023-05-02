@@ -11,23 +11,20 @@ class ProfileParentScreen extends StatefulWidget {
   ProfileParentScreenState createState() => ProfileParentScreenState();
 }
 
-enum Switch { female, male }
-
 class ProfileParentScreenState extends State<ProfileParentScreen> {
   // Switch? _character = Switch.female;
   bool passwordVisible = false;
   bool passwordVisibleRep = false;
   // ignore: non_constant_identifier_names
   var name_input_text = TextEditingController();
-  // ignore: non_constant_identifier_names
   var birth_day_input_text = TextEditingController();
-  int _selectedIndex = 0;
+  int _selectedIndex = 3;
+  final List childrenListNames = <String>["Олег","Никита","Ева"];
+  final List childrenListCodes = <String>["NEQ13","BY2W7","3LFB3"];
 
   @override
   void initState() {
     super.initState();
-    passwordVisible = true;
-    passwordVisibleRep = true;
     //example
     name_input_text.text = "Сергей Нечалов";
     birth_day_input_text.text = "12.10.1986";
@@ -118,6 +115,74 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
                         readOnly: true,
                         onTap: () {}),
                   ),
+                  SizedBox(
+                    height: 60,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Align(
+                          alignment: Alignment.bottomLeft,
+                          child: RichText(
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: "my-children-parent-profile-text".i18n(),
+                                  style: titleSmallStyle.copyWith(color: secondary),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 120,
+                    padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: secondary),
+                    ),
+                    child: ltsv(childrenListNames,childrenListCodes)
+                  ),
+                  const SizedBox(height: 10),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // print('Button Pressed');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: primary,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 10,
+                        ),
+                        textStyle: titleSmallStyle.copyWith(color: secondary),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: RichText(
+                        text: TextSpan(
+                        children: [
+                            TextSpan(
+                              text: "add-child-text".i18n(),
+                              style: const TextStyle(fontSize: 16,color: Colors.white)
+                            ),
+                            WidgetSpan(
+                              child: Container(
+                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0.9),
+                                child: const Icon(Icons.add, size: 16,color: Colors.white),
+                              ),
+                            ),
+                          ]
+                        ),
+                      ),
+                    ),
+                  ),
+
                   const SizedBox(height: 15),
                   Align(
                     alignment: Alignment.bottomLeft,
@@ -128,10 +193,7 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
                       onPressed: () {
                         //
                       },
-                      child: Text(
-                        "parent-profile-exit-text".i18n(),
-                        style: const TextStyle(fontSize: 17),
-                      ),
+                      child: Text("parent-profile-exit-text".i18n(),style: const TextStyle(fontSize: 17)),
                     ),
                   ),
                 ],
@@ -165,6 +227,36 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
         unselectedItemColor: const Color.fromRGBO(106, 105, 105, 1),
         onTap: _onItemTapped,
       ),
+    );
+  }
+  
+  Widget ltsv(childrenList,childrenListCodes){
+    return ListView.separated(
+      padding: const EdgeInsets.all(8),
+      itemCount: childrenList.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Container(
+          height: 22,
+          color: Colors.white,
+          child: Row(
+            children: [
+              Expanded(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text('${childrenList[index]}',style: const TextStyle(fontSize: 16))
+                ),
+              ),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Text('${childrenListCodes[index]}',style: titleSmallStyle.copyWith(color: primary))
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) => const Divider(),
     );
   }
 }

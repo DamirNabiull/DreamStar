@@ -23,6 +23,14 @@ class LoginChildScreenState extends ConsumerState<LoginChildScreen> {
   final focusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   bool _isLogging = false;
+  
+  final snackBar = const SnackBar(
+    content: Text('Check your input field again',style: TextStyle(color:Colors.black,fontSize: 17)),
+  );
+
+  Future<Null> showHint() async {
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
   @override
   void initState() {
@@ -209,7 +217,7 @@ class LoginChildScreenState extends ConsumerState<LoginChildScreen> {
                                 _isLogging = false;
                                 Navigator.pushReplacement(
                                     context, tasksScreenRoute);
-                              }).onError((error, stackTrace) => null);
+                              }).onError((error, stackTrace) => showHint());
                             }
                           },
                           style: ElevatedButton.styleFrom(

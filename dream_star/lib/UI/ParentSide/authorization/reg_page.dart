@@ -109,6 +109,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                         labelText: "name-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
                       ),
+                      style: const TextStyle(color:Colors.black),
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -124,6 +125,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                         labelText: "second-name-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
                       ),
+                      style: const TextStyle(color:Colors.black),
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -139,6 +141,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                         labelText: "birth-day-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
                       ),
+                      style: const TextStyle(color:Colors.black),
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -177,6 +180,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                                 fontSize: 18,
                                 color: Colors.grey),
                           ),
+                          activeColor: Colors.deepPurpleAccent,
                           value: Switch.female,
                           groupValue: _character,
                           onChanged: (Switch? value) {
@@ -199,6 +203,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                                 fontSize: 18,
                                 color: Colors.grey),
                           ),
+                          activeColor: Colors.deepPurpleAccent,
                           value: Switch.male,
                           groupValue: _character,
                           onChanged: (Switch? value) {
@@ -223,6 +228,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                         labelText: "email-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
                       ),
+                      style: const TextStyle(color:Colors.black),
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -249,6 +255,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                           },
                         ),
                       ),
+                      style: const TextStyle(color:Colors.black),
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -275,6 +282,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                           },
                         ),
                       ),
+                      style: const TextStyle(color:Colors.black),
                     ),
                   ),
                   const SizedBox(height: 30),
@@ -286,11 +294,10 @@ class RegParentScreenState extends State<RegParentScreen> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: primary,
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 25, vertical: 20),
-                        textStyle: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                            horizontal: 100, vertical: 20),
+                        textStyle: titleLargeStyle.copyWith(color: white),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
+                          borderRadius: BorderRadius.circular(22.0),
                         ),
                       ),
                       child: Text("submit-reg-text".i18n()),

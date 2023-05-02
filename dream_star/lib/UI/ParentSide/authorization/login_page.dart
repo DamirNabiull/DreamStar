@@ -22,6 +22,14 @@ class LoginParentScreenState extends ConsumerState<LoginParentScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
   bool _isLogging = false;
+  
+  final snackBar = const SnackBar(
+    content: Text('Check your input field again',style: TextStyle(color:Colors.black,fontSize: 17)),
+  );
+
+  Future<Null> showHint() async {
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
   @override
   void initState() {
@@ -205,7 +213,7 @@ class LoginParentScreenState extends ConsumerState<LoginParentScreen> {
                             _isLogging = false;
                             Navigator.pushReplacement(
                                 context, tasksScreenRoute);
-                          });
+                          }).onError((error, stackTrace) => showHint());
                         }
                       },
                       style: ElevatedButton.styleFrom(
