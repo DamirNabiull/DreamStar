@@ -65,5 +65,7 @@
   "no-children": "Нет добавленного ребенка",
   "my-children-balances-parent-profile-text": "Баланс детей",
   "add-child-text":"Добавить ребёнка",
-  "child-profile-code-input-text":"Код для входа"
+  "child-profile-code-input-text":"Код для входа",
+  "stars-earned-child-balance-text":"Звёзд заработано",
+  "my-balance-child-profile-text":"Мой баланс"
 }

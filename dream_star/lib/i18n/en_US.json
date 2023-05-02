@@ -65,5 +65,7 @@
   "no-children": "No added child",
   "my-children-balances-parent-profile-text": "Children's balance",
   "add-child-text":"Add child",
-  "child-profile-code-input-text":"Login code"
+  "child-profile-code-input-text":"Login code",
+  "stars-earned-child-balance-text":"Stars earned",
+  "my-balance-child-profile-text":"My balance"
 }
