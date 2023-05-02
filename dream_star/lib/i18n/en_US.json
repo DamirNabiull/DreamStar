@@ -62,5 +62,8 @@
   "dream-description": "Dream description",
   "new-dream-title": "New dream",
   "create-dream": "Create dream",
-  "no-children": "No added child"
+  "no-children": "No added child",
+  "my-children-balances-parent-profile-text": "Children's balance",
+  "add-child-text":"Add child",
+  "child-profile-code-input-text":"Login code"
 }

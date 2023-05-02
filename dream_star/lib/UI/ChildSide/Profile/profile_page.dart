@@ -6,19 +6,18 @@ import 'package:localization/localization.dart';
 import 'dart:ui';
 import '../../themes.dart';
 
-class ProfileParentScreen extends StatefulWidget {
-  const ProfileParentScreen({super.key});
+class ProfileChildScreen extends StatefulWidget {
+  const ProfileChildScreen({super.key});
 
   @override
-  ProfileParentScreenState createState() => ProfileParentScreenState();
+  ProfileChildScreenState createState() => ProfileChildScreenState();
 }
 
-class ProfileParentScreenState extends State<ProfileParentScreen> {
+class ProfileChildScreenState extends State<ProfileChildScreen> {
   var name_input_text = TextEditingController();
   var birth_day_input_text = TextEditingController();
+  var login_code_input_text = TextEditingController();
   int _selectedIndex = 3;
-  final List childrenListNames = <String>["Олег","Никита","Ева"];
-  final List childrenListCodes = <String>["NEQ13","BY2W7","3LFB3"];
 
   @override
   void initState() {
@@ -26,6 +25,7 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
     //example
     name_input_text.text = "Сергей Нечалов";
     birth_day_input_text.text = "12.10.1986";
+    login_code_input_text.text = "BY2W7";
   }
 
   void _onItemTapped(int index) {
@@ -117,74 +117,27 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
                       }
                     ),
                   ),
-                  SizedBox(
-                    height: 60,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Align(
-                          alignment: Alignment.bottomLeft,
-                          child: RichText(
-                            text: TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(
-                                  text: "my-children-parent-profile-text".i18n(),
-                                  style: titleSmallStyle.copyWith(color: secondary),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  const SizedBox(height: 15),
                   Container(
-                    height: 120,
                     padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(color: secondary),
                     ),
-                    child: ltsv(childrenListNames,childrenListCodes)
-                  ),
-                  const SizedBox(height: 10),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // print('Button Pressed');
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: primary,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 10,
-                        ),
-                        textStyle: titleSmallStyle.copyWith(color: secondary),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
+                    child: TextField(
+                      controller: login_code_input_text,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        labelText: "child-profile-code-input-text".i18n(),
+                        labelStyle: titleSmallStyle.copyWith(color: primary),
                       ),
-                      child: RichText(
-                        text: TextSpan(
-                        children: [
-                            TextSpan(
-                              text: "add-child-text".i18n(),
-                              style: const TextStyle(fontSize: 16,color: Colors.white)
-                            ),
-                            WidgetSpan(
-                              child: Container(
-                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0.9),
-                                child: const Icon(Icons.add, size: 16,color: Colors.white),
-                              ),
-                            ),
-                          ]
-                        ),
-                      ),
+                      style: const TextStyle(color: Colors.black),
+                      readOnly: true,
+                      onTap: () {
+
+                      }
                     ),
                   ),
-
                   const SizedBox(height: 15),
                   Align(
                     alignment: Alignment.bottomLeft,
@@ -230,35 +183,4 @@ class ProfileParentScreenState extends State<ProfileParentScreen> {
       ),
     );
   }
-}
-
-
-Widget ltsv(childrenList,childrenListCodes){
-  return ListView.separated(
-    padding: const EdgeInsets.all(8),
-    itemCount: childrenList.length,
-    itemBuilder: (BuildContext context, int index) {
-      return Container(
-        height: 22,
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text('${childrenList[index]}',style: const TextStyle(fontSize: 16))
-              ),
-            ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Text('${childrenListCodes[index]}',style: titleSmallStyle.copyWith(color: primary))
-              ),
-            ),
-          ],
-        ),
-      );
-    },
-    separatorBuilder: (BuildContext context, int index) => const Divider(),
-  );
 }

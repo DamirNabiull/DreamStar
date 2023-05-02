@@ -62,5 +62,8 @@
   "dream-description": "Описание мечты",
   "new-dream-title": "Новая мечта",
   "create-dream": "Создать мечту",
-  "no-children": "Нет добавленного ребенка"
+  "no-children": "Нет добавленного ребенка",
+  "my-children-balances-parent-profile-text": "Баланс детей",
+  "add-child-text":"Добавить ребёнка",
+  "child-profile-code-input-text":"Код для входа"
 }
