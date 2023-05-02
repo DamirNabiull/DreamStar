@@ -304,10 +304,9 @@ class TaskCreationScreenState extends ConsumerState<TaskCreationScreen> {
                   dropdownNameValue,
                   childrenIdsList[nameIndex],
                 );
+                var newDate = '${_dateInput.text} 23:59:59';
                 task.deadline = deadlineFlag
-                    ? DateFormat("dd.MM.yyyy").parse(_dateInput.text).add(
-                          const Duration(hours: 23, minutes: 59, seconds: 59),
-                        )
+                    ? DateFormat("dd.MM.yyyy hh:mm:ss").parse(newDate)
                     : null;
                 task.penalty = penaltyFlag ? dropdownPenaltyValue : null;
                 task.createdAt = DateTime.now();
