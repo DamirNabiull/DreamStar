@@ -1,9 +1,7 @@
 import 'package:dream_star/Clients/providers.dart';
-import 'package:dream_star/UI/routes.dart';
 import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:localization/localization.dart';
 
 import 'package:localization/localization.dart';
 
@@ -20,7 +18,6 @@ class ProfileParentScreenState extends ConsumerState<ProfileParentScreen> {
   bool passwordVisibleRep = false;
   var nameInputText = TextEditingController();
   var birthDayInputText = TextEditingController();
-  int _selectedIndex = 3;
   final List childrenListNames = <String>["Олег", "Никита", "Ева"];
   final List childrenListCodes = <String>["NEQ13", "BY2W7", "3LFB3"];
 
@@ -30,12 +27,6 @@ class ProfileParentScreenState extends ConsumerState<ProfileParentScreen> {
     //example
     nameInputText.text = "Сергей Нечалов";
     birthDayInputText.text = "12.10.1986";
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
   }
 
   @override

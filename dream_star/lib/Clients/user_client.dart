@@ -17,7 +17,7 @@ class UserClient {
   String? childToken;
   List<String> childTokens = [];
   List<String> _childNames = [];
-  List<int> _stars = [];
+  final List<int> _stars = [];
 
   final _chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_-';
   final _rnd = Random();

@@ -1,12 +1,8 @@
 import 'package:dream_star/Clients/providers.dart';
+import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:localization/localization.dart';
-
-import 'package:flutter_svg/svg.dart';
 import 'package:localization/localization.dart';
-import 'dart:ui';
-import '../../themes.dart';
 
 class BalanceChildScreen extends ConsumerStatefulWidget {
   const BalanceChildScreen({super.key});
@@ -16,17 +12,9 @@ class BalanceChildScreen extends ConsumerStatefulWidget {
 }
 
 class BalanceChildScreenState extends ConsumerState<BalanceChildScreen> {
-  int _selectedIndex = 2;
-
   @override
   void initState() {
     super.initState();
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
   }
 
   @override

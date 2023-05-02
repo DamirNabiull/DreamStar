@@ -2,13 +2,11 @@ import 'dart:ui';
 
 import 'package:dream_star/Clients/providers.dart';
 import 'package:dream_star/UI/ParentSide/authorization/reg_page.dart';
-import 'package:dream_star/UI/routes.dart';
+import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:localization/localization.dart';
-
-import '../../themes.dart';
 
 class LoginParentScreen extends ConsumerStatefulWidget {
   const LoginParentScreen({super.key});
@@ -22,12 +20,13 @@ class LoginParentScreenState extends ConsumerState<LoginParentScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
   bool _isLogging = false;
-  
+
   final snackBar = const SnackBar(
-    content: Text('Check your input field again',style: TextStyle(color:Colors.black,fontSize: 17)),
+    content: Text('Check your input field again',
+        style: TextStyle(color: Colors.black, fontSize: 17)),
   );
 
-  Future<Null> showHint() async {
+  Future<void> showHint() async {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
@@ -212,8 +211,13 @@ class LoginParentScreenState extends ConsumerState<LoginParentScreen> {
                             Navigator.of(context).pop();
                             _isLogging = false;
                             Navigator.pushReplacementNamed(
-                                context, '/main',);
-                          }).onError((error, stackTrace) => showHint());
+                              context,
+                              '/main',
+                            );
+                          }).onError((error, stackTrace) {
+                            showHint();
+                            null;
+                          });
                           _isLogging = false;
                         }
                       },

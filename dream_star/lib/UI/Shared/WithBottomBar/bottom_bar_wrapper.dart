@@ -8,7 +8,6 @@ import 'package:dream_star/UI/Shared/Connection/no_connection_wrapper.dart';
 import 'package:dream_star/UI/Shared/Login/wait_login_screen.dart';
 import 'package:dream_star/UI/Shared/Tasks/tasks_main_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localization/localization.dart';
 

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';

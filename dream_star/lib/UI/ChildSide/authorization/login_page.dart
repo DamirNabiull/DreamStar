@@ -1,15 +1,11 @@
 import 'package:dream_star/Clients/providers.dart';
-import 'package:dream_star/UI/routes.dart';
+import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localization/localization.dart';
-
 import 'package:pinput/pinput.dart';
-// import 'package:localization/localization.dart';
-
 import 'package:flutter_svg/svg.dart';
 import 'dart:ui';
-import '../../themes.dart';
 
 class LoginChildScreen extends ConsumerStatefulWidget {
   const LoginChildScreen({super.key});
@@ -23,12 +19,13 @@ class LoginChildScreenState extends ConsumerState<LoginChildScreen> {
   final focusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   bool _isLogging = false;
-  
+
   final snackBar = const SnackBar(
-    content: Text('Check your input field again',style: TextStyle(color:Colors.black,fontSize: 17)),
+    content: Text('Check your input field again',
+        style: TextStyle(color: Colors.black, fontSize: 17)),
   );
 
-  Future<Null> showHint() async {
+  Future<void> showHint() async {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
@@ -216,8 +213,13 @@ class LoginChildScreenState extends ConsumerState<LoginChildScreen> {
                                 Navigator.of(context).pop();
                                 _isLogging = false;
                                 Navigator.pushReplacementNamed(
-                                  context, '/main',);
-                              }).onError((error, stackTrace) => showHint());
+                                  context,
+                                  '/main',
+                                );
+                              }).onError((error, stackTrace) {
+                                showHint();
+                                null;
+                              });
                               _isLogging = false;
                             }
                           },

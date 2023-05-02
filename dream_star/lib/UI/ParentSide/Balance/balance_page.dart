@@ -1,10 +1,6 @@
+import 'package:dream_star/UI/themes.dart';
 import 'package:flutter/material.dart';
-// import 'package:localization/localization.dart';
-
-import 'package:flutter_svg/svg.dart';
 import 'package:localization/localization.dart';
-import 'dart:ui';
-import '../../themes.dart';
 
 class BalanceParentScreen extends StatefulWidget {
   const BalanceParentScreen({super.key});
@@ -14,19 +10,12 @@ class BalanceParentScreen extends StatefulWidget {
 }
 
 class BalanceParentScreenState extends State<BalanceParentScreen> {
-  int _selectedIndex = 2;
   final List childrenListNames = <String>["Олег", "Никита", "Ева"];
   final List childrenListBalances = <String>["21", "123", "33"];
 
   @override
   void initState() {
     super.initState();
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
   }
 
   @override
