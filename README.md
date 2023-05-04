@@ -1,6 +1,6 @@
 # DreamStar
 
-# 1.0.0 - [APK](https://github.com/DamirNabiull/DreamStar/blob/main/app-release.apk)
+# 1.0.1 - [APK](https://github.com/DamirNabiull/DreamStar/blob/main/app-release.apk)
 
 ## Description
 Kids to do list.

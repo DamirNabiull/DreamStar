@@ -311,13 +311,16 @@ class DreamCardState extends ConsumerState<DreamCard> {
         ),
       ),
       onTap: () {
-        updateDream(
-          widget.dreamInfo.id,
-          DreamStatus.wait,
-          widget.dreamInfo.cost,
-        );
-        updateStars(widget.dreamInfo.childId, -widget.dreamInfo.cost);
-        ref.read(userProvider).updateAuthInfo();
+        var cost = -widget.dreamInfo.cost;
+        if (ref.read(userProvider).getChildStars() + cost >= 0) {
+          updateDream(
+            widget.dreamInfo.id,
+            DreamStatus.wait,
+            widget.dreamInfo.cost,
+          );
+          ref.read(userProvider).updateChildStars(cost);
+          updateStars(widget.dreamInfo.childId, cost);
+        }
       },
     );
   }

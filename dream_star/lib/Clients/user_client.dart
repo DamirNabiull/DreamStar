@@ -102,6 +102,10 @@ class UserClient {
     await _getUserInfo();
   }
 
+  void updateChildStars(int stars) {
+    _userInfo!.stars = _userInfo!.stars! + stars;
+  }
+
   Future _setChildrenTokensList(bool isParent) async {
     if (!isParent) {
       return;
