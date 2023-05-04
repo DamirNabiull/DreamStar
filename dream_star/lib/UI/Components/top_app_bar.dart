@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class TopAppBar extends AppBar {
   TopAppBar(BuildContext context, String title, List<String> tabNames,
-      AppSide appSide,
+      AppSide appSide, AppSide targetSide, Widget creationScreen,
       {super.key})
       : super(
           title: Text(
@@ -27,19 +27,23 @@ class TopAppBar extends AppBar {
                 // unselectedLabelColor: secondary,
               )),
           actions: [
-            appSide == AppSide.parent
+            appSide == targetSide
                 ? Padding(
                     padding: const EdgeInsets.only(right: 20.0),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute<void>(
-                          builder: (BuildContext context) {
-                            return const TaskCreationScreen();
-                          },
-                        ));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) {
+                              return creationScreen;
+                            },
+                          ),
+                        );
                       },
                       child: SvgPicture.asset("assets/plus-24px-white.svg"),
-                    ))
+                    ),
+                  )
                 : const SizedBox.shrink(),
           ],
         );

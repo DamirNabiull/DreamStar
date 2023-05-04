@@ -1,6 +1,6 @@
 # DreamStar
 
-# 1.0.0 - [APK](https://github.com/DamirNabiull/DreamStar/blob/main/app-release.apk)
+# 1.0.1 - [APK](https://github.com/DamirNabiull/DreamStar/blob/main/app-release.apk)
 
 ## Description
 Kids to do list.
@@ -24,6 +24,12 @@ Applications for teaching children financial literacy, self-organization, and go
     - when the Internet connection appears, the application continues to work in normal mode
     - you can create a task without an Internet connection, it will be cached, and when the Internet appears, it will send to the database
 
+5) Github actions:
+    - formatting
+    - lint
+    - testing
+    - build for android
+
 ## Code
 1) Any networking - Firebase
 2) UI files separated from logic files (use Riverpod)
@@ -35,6 +41,9 @@ Applications for teaching children financial literacy, self-organization, and go
 4) Custom theme is applied in Material App
 5) Localization
 6) Custom app icon
+7) Builds successfully for Web
+8) Unhandled exceptions handling with Crashlytics
+9) Used Riverpod
 
 # Screenshots
 <p>
@@ -60,4 +69,12 @@ Applications for teaching children financial literacy, self-organization, and go
   <img src="./screens/20.png" width="300" />
   <img src="./screens/21.png" width="300" />
   <img src="./screens/22.png" width="300" />
+  <img src="./screens/23.png" width="400" />
+  <img src="./screens/24.png" width="400" />
+  <img src="./screens/25.png" width="400" />
+  <img src="./screens/26.png" width="400" />
+  <img src="./screens/27.png" width="400" />
+  <img src="./screens/28.png" width="400" />
+  <img src="./screens/29.png" width="400" />
+  <img src="./screens/30.png" width="400" />
 </p>

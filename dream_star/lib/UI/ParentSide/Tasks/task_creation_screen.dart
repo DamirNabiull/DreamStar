@@ -1,5 +1,6 @@
 import 'package:dream_star/Clients/providers.dart';
 import 'package:dream_star/Models/task_info.dart';
+import 'package:dream_star/UI/Shared/NoChildAdded/no_child_screen.dart';
 import 'package:dream_star/UI/themes.dart';
 import 'package:dream_star/UI/Components/custom_date_input_field.dart';
 import 'package:flutter/material.dart';
@@ -31,12 +32,16 @@ class TaskCreationScreenState extends ConsumerState<TaskCreationScreen> {
   late int dropdownPenaltyValue;
   bool isButtonDisabled = true;
   List<String> childrenNamesList = [];
+  List<String> childrenIdsList = [];
+  int nameIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    childrenNamesList = ref.read(userProvider).getChildrenList();
-    dropdownNameValue = childrenNamesList.first;
+    childrenNamesList = ref.read(userProvider).getChildrenNamesList();
+    childrenIdsList = ref.read(userProvider).childrenList();
+    dropdownNameValue =
+        childrenNamesList.isNotEmpty ? childrenNamesList.first : 'empty';
     _dateInput.text = DateFormat('dd.MM.yyyy').format(DateTime.now());
     taskPenaltyList = List<int>.generate(dropdownCostValue, (i) => i + 1);
     dropdownPenaltyValue = taskPenaltyList.first;
@@ -81,37 +86,43 @@ class TaskCreationScreenState extends ConsumerState<TaskCreationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            backgroundColor: primary,
-            centerTitle: true,
-            title: Text('new-task-title'.i18n()),
-            titleTextStyle: titleMediumStyle.copyWith(color: white)),
-        backgroundColor: primaryBackground,
-        body: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
-            child: Column(
-              children: [
-                Expanded(
+      appBar: AppBar(
+        backgroundColor: primary,
+        centerTitle: true,
+        title: Text('new-task-title'.i18n()),
+        titleTextStyle: titleMediumStyle.copyWith(color: white),
+      ),
+      backgroundColor: primaryBackground,
+      body: childrenNamesList.isNotEmpty
+          ? Padding(
+              padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+              child: Column(
+                children: [
+                  Expanded(
                     child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 28),
-                      buildDescriptionSection(),
-                      const SizedBox(height: 12),
-                      buildChildSection(),
-                      const SizedBox(height: 12),
-                      buildCostSection(),
-                      const SizedBox(height: 12),
-                      buildDeadlineSection(),
-                      const SizedBox(height: 12),
-                      buildPenaltySection()
-                    ],
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 28),
+                          buildDescriptionSection(),
+                          const SizedBox(height: 12),
+                          buildChildSection(),
+                          const SizedBox(height: 12),
+                          buildCostSection(),
+                          const SizedBox(height: 12),
+                          buildDeadlineSection(),
+                          const SizedBox(height: 12),
+                          buildPenaltySection()
+                        ],
+                      ),
+                    ),
                   ),
-                )),
-                buildButton(),
-                const SizedBox(height: 20),
-              ],
-            )));
+                  buildButton(),
+                  const SizedBox(height: 20),
+                ],
+              ),
+            )
+          : const NoChildScreen(),
+    );
   }
 
   Widget buildDescriptionSection() {
@@ -144,7 +155,8 @@ class TaskCreationScreenState extends ConsumerState<TaskCreationScreen> {
               underline: const SizedBox.shrink(),
               onChanged: (String? value) {
                 setState(() {
-                  dropdownNameValue = value!;
+                  nameIndex = childrenNamesList.indexOf(value!);
+                  dropdownNameValue = value;
                 });
               },
               items: childrenNamesList
@@ -283,24 +295,24 @@ class TaskCreationScreenState extends ConsumerState<TaskCreationScreen> {
         onPressed: isButtonDisabled
             ? null
             : () {
-                ref.read(fireStoreProvider).createTask(
-                      TaskInfo(
-                          "",
-                          _titleController.text,
-                          _descriptionController.text,
-                          dropdownCostValue,
-                          TaskStatus.progress,
-                          null,
-                          dropdownNameValue,
-                          "test"),
-                    );
+                TaskInfo task = TaskInfo(
+                  _titleController.text,
+                  _descriptionController.text,
+                  dropdownCostValue,
+                  TaskStatus.progress,
+                  null,
+                  dropdownNameValue,
+                  childrenIdsList[nameIndex],
+                );
+                var newDate = '${_dateInput.text} 23:59:59';
+                task.deadline = deadlineFlag
+                    ? DateFormat("dd.MM.yyyy hh:mm:ss").parse(newDate)
+                    : null;
+                task.penalty = penaltyFlag ? dropdownPenaltyValue : null;
+                task.createdAt = DateTime.now();
+
+                ref.read(fireStoreProvider).createTask(task);
                 Navigator.pop(context);
-                // print(_titleController.text);
-                // print(_descriptionController.text);
-                // print(dropdownCostValue);
-                // print(dropdownNameValue);
-                // print(_dateInput.text);
-                // print(dropdownPenaltyValue);
               },
         child: Text(
           'create-task'.i18n(),
