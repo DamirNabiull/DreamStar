@@ -73,5 +73,9 @@
   "parent-complete-dream-button-title": "Исполнить мечту!",
   "parent-approved-dream-button-title": "Подтвердить цену",
   "no-children": "Нет добавленного ребенка",
-  "loading-user-info": "Загружаем информацию о пользователе"
+  "loading-user-info": "Загружаем информацию о пользователе",
+  "dreams-screen-title": "Список мечт",
+  "dreams-progress-title": "Мечты",
+  "dreams-review-title": "Мечты на оценке",
+  "dreams-passed-title": "Выполненные мечты"
 }

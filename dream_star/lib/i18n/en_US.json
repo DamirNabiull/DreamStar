@@ -73,5 +73,9 @@
   "parent-complete-dream-button-title": "Fulfill the dream!",
   "parent-approved-dream-button-title": "Confirm cost",
   "no-children": "No added child",
-  "loading-user-info": "Loading user information"
+  "loading-user-info": "Loading user information",
+  "dreams-screen-title": "Dream list",
+  "dreams-progress-title": "Dreams",
+  "dreams-review-title": "Dreams on review",
+  "dreams-passed-title": "Completed dreams"
 }
