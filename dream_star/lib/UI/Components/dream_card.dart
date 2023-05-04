@@ -179,6 +179,7 @@ class DreamCardState extends ConsumerState<DreamCard> {
           SizedBox(
             width: 25,
             child: TextField(
+                controller: _costController,
                 maxLength: 3,
                 keyboardType: TextInputType.number,
                 inputFormatters: [
@@ -339,11 +340,15 @@ class DreamCardState extends ConsumerState<DreamCard> {
               .approvedDreamButtonTextStyle,
         ),
       ),
-      onTap: () => updateDream(
-        widget.dreamInfo.id,
-        DreamStatus.approved,
-        int.parse(_costController.text),
-      ),
+      onTap: () {
+        updateDream(
+          widget.dreamInfo.id,
+          DreamStatus.approved,
+          int.parse(_costController.text),
+        );
+        FocusScope.of(context).unfocus();
+        _costController.clear();
+      },
     );
   }
 
