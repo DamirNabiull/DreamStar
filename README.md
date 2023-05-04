@@ -24,6 +24,12 @@ Applications for teaching children financial literacy, self-organization, and go
     - when the Internet connection appears, the application continues to work in normal mode
     - you can create a task without an Internet connection, it will be cached, and when the Internet appears, it will send to the database
 
+5) Github actions:
+    - formatting
+    - lint
+    - testing
+    - build for android
+
 ## Code
 1) Any networking - Firebase
 2) UI files separated from logic files (use Riverpod)
@@ -35,6 +41,9 @@ Applications for teaching children financial literacy, self-organization, and go
 4) Custom theme is applied in Material App
 5) Localization
 6) Custom app icon
+7) Builds successfully for Web
+8) Unhandled exceptions handling with Crashlytics
+9) Used Riverpod
 
 # Screenshots
 <p>
