@@ -1,3 +1,5 @@
+import 'package:dream_star/Clients/providers.dart';
+import 'package:dream_star/Models/dream_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localization/localization.dart';
@@ -113,7 +115,17 @@ class DreamCreationScreenState extends ConsumerState<DreamCreationScreen> {
         onPressed: isButtonDisabled
             ? null
             : () {
-                // Создание мечты
+                DreamInfo dream = DreamInfo(
+                  _titleController.text,
+                  _descriptionController.text,
+                  0,
+                  DreamStatus.review,
+                  null,
+                  ref.read(userProvider).getUserName(),
+                  ref.read(userProvider).getUserId(),
+                );
+                dream.createdAt = DateTime.now();
+                ref.read(fireStoreProvider).createDream(dream);
                 Navigator.pop(context);
               },
         child: Text(

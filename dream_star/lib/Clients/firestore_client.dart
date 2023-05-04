@@ -98,23 +98,24 @@ class FireStoreClient {
     await dreamRef.set(dreamDTO.toJson());
   }
 
-  void updateDreamStatus(String dreamId, DreamStatus status) async {
+  void updateDreamStatus(String dreamId, DreamStatus status, int cost) async {
     final dreamRef = _dreamsCollection.doc(dreamId);
-    dreamRef.update({"status": status.toString()});
+    dreamRef.update({"status": status.toString(), 'cost': cost});
   }
 
-  Stream<List<DreamInfo>> getDreams(List<String> childIds, List<DreamStatus> statusList) {
+  Stream<List<DreamInfo>> getDreams(
+      List<String> childIds, List<DreamStatus> statusList) {
     if (childIds.isNotEmpty) {
       List<String> statuses = [];
       for (var status in statusList) {
         statuses.add(status.toString());
       }
-      return _tasksCollection
+      return _dreamsCollection
           .where("childId", whereIn: childIds)
-          .where("status", whereIn: statuses)
           .orderBy('createdAt', descending: true)
           .snapshots()
           .map((snapshot) => snapshot.docs
+              .where((doc) => statuses.contains(doc['status']))
               .map((doc) =>
                   _mapper.dreamDTOToDreamInfo(DreamDTO.fromJson(doc.data())))
               .toList());
@@ -139,8 +140,10 @@ class FireStoreClient {
     user.update(userDTO.toJson());
   }
 
-  void updateStars(String id, int stars) {
+  Future<void> updateStars(String id, int stars) async {
     final user = _usersCollection.doc(id);
-    user.update({'stars': stars});
+    final snapshot = await user.get();
+    final userDTO = UserDTO.fromJson(snapshot.data()!);
+    user.update({'stars': userDTO.stars! + stars});
   }
 }

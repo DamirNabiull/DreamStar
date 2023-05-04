@@ -5,6 +5,7 @@ import 'package:dream_star/UI/ChildSide/Profile/profile_page.dart';
 import 'package:dream_star/UI/ParentSide/Balance/balance_page.dart';
 import 'package:dream_star/UI/ParentSide/Profile/profile_page.dart';
 import 'package:dream_star/UI/Shared/Connection/no_connection_wrapper.dart';
+import 'package:dream_star/UI/Shared/Dreams/dreams_main_screen.dart';
 import 'package:dream_star/UI/Shared/Login/wait_login_screen.dart';
 import 'package:dream_star/UI/Shared/Tasks/tasks_main_screen.dart';
 import 'package:flutter/material.dart';
@@ -22,14 +23,14 @@ class BottomBarWrapperState extends ConsumerState<ConsumerStatefulWidget> {
   int _index = 0;
   final List<Widget> _parentPages = [
     const TasksMainScreen(),
-    const WaitLoginScreen(),
+    const DreamsMainScreen(),
     const BalanceParentScreen(),
     const ProfileParentScreen(),
   ];
 
   final List<Widget> _childPages = [
     const TasksMainScreen(),
-    const WaitLoginScreen(),
+    const DreamsMainScreen(),
     const BalanceChildScreen(),
     const ProfileChildScreen(),
   ];

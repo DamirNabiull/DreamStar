@@ -54,7 +54,8 @@ class DreamCardState extends ConsumerState<DreamCard> {
 
   @override
   Widget build(BuildContext context) {
-    var updateTask = ref.read(fireStoreProvider).updateTaskStatus;
+    var updateDream = ref.read(fireStoreProvider).updateDreamStatus;
+    var updateStars = ref.read(fireStoreProvider).updateStars;
     return Container(
         decoration: BoxDecoration(
           color: white,
@@ -97,7 +98,7 @@ class DreamCardState extends ConsumerState<DreamCard> {
                           children: [
                             buildChildName(),
                             const Spacer(),
-                            buildButton(updateTask)
+                            buildButton(updateDream, updateStars)
                           ],
                         )
                       ],
@@ -204,16 +205,17 @@ class DreamCardState extends ConsumerState<DreamCard> {
 
   Widget buildCostLabel(Widget starImage) {
     return SizedBox(
-        child: Row(
-      children: [
-        Text(
-          widget.dreamInfo.cost.toString(),
-          style: labelMediumStyle.copyWith(color: primary),
-        ),
-        const SizedBox(width: 5.0),
-        starImage
-      ],
-    ));
+      child: Row(
+        children: [
+          Text(
+            widget.dreamInfo.cost.toString(),
+            style: labelMediumStyle.copyWith(color: primary),
+          ),
+          const SizedBox(width: 5.0),
+          starImage,
+        ],
+      ),
+    );
   }
 
   Widget buildChildName() {
@@ -231,7 +233,7 @@ class DreamCardState extends ConsumerState<DreamCard> {
         : const SizedBox.shrink();
   }
 
-  Widget buildButton(updateTask) {
+  Widget buildButton(updateDream, updateStars) {
     switch (widget.appSide) {
       case AppSide.child:
         switch (widget.dreamInfo.status) {
@@ -245,7 +247,7 @@ class DreamCardState extends ConsumerState<DreamCard> {
                     .extension<ThemeExtensions>()!
                     .inactiveDreamButtonTextStyle);
           case DreamStatus.approved:
-            return buildBuyButton();
+            return buildBuyButton(updateDream, updateStars);
           case DreamStatus.wait:
             return buildInactiveButton(
                 "child-await-dream-button-title".i18n(),
@@ -270,11 +272,11 @@ class DreamCardState extends ConsumerState<DreamCard> {
                     customTheme
                         .extension<ThemeExtensions>()!
                         .approvedMutedDreamButtonTextStyle)
-                : buildApproveButton();
+                : buildApproveButton(updateDream);
           case DreamStatus.approved:
             return const SizedBox.shrink();
           case DreamStatus.wait:
-            return buildCompleteButton();
+            return buildCompleteButton(updateDream);
           case DreamStatus.complete:
             return const SizedBox.shrink();
         }
@@ -294,7 +296,7 @@ class DreamCardState extends ConsumerState<DreamCard> {
     );
   }
 
-  Widget buildBuyButton() {
+  Widget buildBuyButton(updateDream, updateStars) {
     return GestureDetector(
       child: Container(
         alignment: Alignment.center,
@@ -308,11 +310,18 @@ class DreamCardState extends ConsumerState<DreamCard> {
               .acceptDreamButtonTextStyle,
         ),
       ),
-      onTap: () => {},
+      onTap: () {
+        updateDream(
+          widget.dreamInfo.id,
+          DreamStatus.wait,
+          widget.dreamInfo.cost,
+        );
+        updateStars(widget.dreamInfo.childId, -widget.dreamInfo.cost);
+      },
     );
   }
 
-  Widget buildApproveButton() {
+  Widget buildApproveButton(updateDream) {
     return GestureDetector(
       child: Container(
         alignment: Alignment.center,
@@ -326,11 +335,15 @@ class DreamCardState extends ConsumerState<DreamCard> {
               .approvedDreamButtonTextStyle,
         ),
       ),
-      onTap: () => {},
+      onTap: () => updateDream(
+        widget.dreamInfo.id,
+        DreamStatus.approved,
+        int.parse(_costController.text),
+      ),
     );
   }
 
-  Widget buildCompleteButton() {
+  Widget buildCompleteButton(updateDream) {
     return GestureDetector(
       child: Container(
         alignment: Alignment.center,
@@ -344,7 +357,11 @@ class DreamCardState extends ConsumerState<DreamCard> {
               .completeDreamButtonTextStyle,
         ),
       ),
-      onTap: () => {},
+      onTap: () => updateDream(
+        widget.dreamInfo.id,
+        DreamStatus.complete,
+        widget.dreamInfo.cost,
+      ),
     );
   }
 }

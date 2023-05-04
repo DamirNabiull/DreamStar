@@ -74,6 +74,10 @@ class UserClient {
 
   // DATA FUNCTIONS
 
+  String getUserName() {
+    return _userInfo!.name;
+  }
+
   String getUserNameSurname() {
     return '${_userInfo!.name} ${_userInfo!.surname}';
   }
@@ -88,6 +92,10 @@ class UserClient {
 
   List<String> getChildrenNamesList() {
     return _childNames;
+  }
+
+  String getUserId() {
+    return _userId!;
   }
 
   Future updateAuthInfo() async {
