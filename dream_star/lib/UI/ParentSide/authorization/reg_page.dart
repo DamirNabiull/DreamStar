@@ -19,12 +19,12 @@ class RegParentScreenState extends State<RegParentScreen> {
   Switch? _character = Switch.female;
   bool passwordVisible = false;
   bool passwordVisibleRep = false;
-  var name_input_text = TextEditingController();
-  var second_name_input_text = TextEditingController();
-  var birth_day_input_text = TextEditingController();
-  var email_input_text = TextEditingController();
-  var password_input_text = TextEditingController();
-  var verify_password_input_text = TextEditingController();
+  var nameInputText = TextEditingController();
+  var secondNameInputText = TextEditingController();
+  var birthDayInputText = TextEditingController();
+  var emailInputText = TextEditingController();
+  var passwordInputText = TextEditingController();
+  var verifyPasswordInputText = TextEditingController();
 
   @override
   void initState() {
@@ -106,7 +106,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                   Material(
                     borderRadius: const BorderRadius.all(Radius.circular(15)),
                     child: TextField(
-                      controller: name_input_text,
+                      controller: nameInputText,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -123,7 +123,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                   Material(
                     borderRadius: const BorderRadius.all(Radius.circular(15)),
                     child: TextField(
-                      controller: second_name_input_text,
+                      controller: secondNameInputText,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -140,7 +140,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                   Material(
                     borderRadius: const BorderRadius.all(Radius.circular(15)),
                     child: TextField(
-                      controller: birth_day_input_text,
+                      controller: birthDayInputText,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -229,7 +229,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                   Material(
                     borderRadius: const BorderRadius.all(Radius.circular(15)),
                     child: TextField(
-                      controller: email_input_text,
+                      controller: emailInputText,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -246,7 +246,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                   Material(
                     borderRadius: const BorderRadius.all(Radius.circular(15)),
                     child: TextField(
-                      controller: password_input_text,
+                      controller: passwordInputText,
                       obscureText: passwordVisible,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -274,7 +274,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                   Material(
                     borderRadius: const BorderRadius.all(Radius.circular(15)),
                     child: TextField(
-                      controller: verify_password_input_text,
+                      controller: verifyPasswordInputText,
                       obscureText: passwordVisibleRep,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
