@@ -104,34 +104,35 @@ class DreamCreationScreenState extends ConsumerState<DreamCreationScreen> {
 
   Widget buildButton() {
     return ElevatedButton(
-        style: ElevatedButton.styleFrom(
-            elevation: 5,
-            disabledBackgroundColor: primaryMuted,
-            backgroundColor: primary,
-            shadowColor: secondary,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22.0)),
-            minimumSize: const Size.fromHeight(54)),
-        onPressed: isButtonDisabled
-            ? null
-            : () {
-                DreamInfo dream = DreamInfo(
-                  _titleController.text,
-                  _descriptionController.text,
-                  0,
-                  DreamStatus.review,
-                  null,
-                  ref.read(userProvider).getUserName(),
-                  ref.read(userProvider).getUserId(),
-                );
-                dream.createdAt = DateTime.now();
-                ref.read(fireStoreProvider).createDream(dream);
-                Navigator.pop(context);
-              },
-        child: Text(
-          'create-dream'.i18n(),
-          style: titleLargeStyle.copyWith(
-              color: isButtonDisabled ? secondary : white),
-        ),);
+      style: ElevatedButton.styleFrom(
+          elevation: 5,
+          disabledBackgroundColor: primaryMuted,
+          backgroundColor: primary,
+          shadowColor: secondary,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(22.0)),
+          minimumSize: const Size.fromHeight(54)),
+      onPressed: isButtonDisabled
+          ? null
+          : () {
+              DreamInfo dream = DreamInfo(
+                _titleController.text,
+                _descriptionController.text,
+                0,
+                DreamStatus.review,
+                null,
+                ref.read(userProvider).getUserName(),
+                ref.read(userProvider).getUserId(),
+              );
+              dream.createdAt = DateTime.now();
+              ref.read(fireStoreProvider).createDream(dream);
+              Navigator.pop(context);
+            },
+      child: Text(
+        'create-dream'.i18n(),
+        style: titleLargeStyle.copyWith(
+            color: isButtonDisabled ? secondary : white),
+      ),
+    );
   }
 }

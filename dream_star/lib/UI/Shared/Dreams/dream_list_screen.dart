@@ -15,9 +15,9 @@ class DreamListScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final dreamsStream = ref.watch(fireStoreProvider).getDreams(
-      ref.read(userProvider).childrenList(),
-      _dreamStatusList,
-    );
+          ref.read(userProvider).childrenList(),
+          _dreamStatusList,
+        );
     return Scaffold(
       body: StreamBuilder(
         stream: dreamsStream,
