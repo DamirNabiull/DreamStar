@@ -69,4 +69,12 @@ Applications for teaching children financial literacy, self-organization, and go
   <img src="./screens/20.png" width="300" />
   <img src="./screens/21.png" width="300" />
   <img src="./screens/22.png" width="300" />
+  <img src="./screens/23.png" width="400" />
+  <img src="./screens/24.png" width="400" />
+  <img src="./screens/25.png" width="400" />
+  <img src="./screens/26.png" width="400" />
+  <img src="./screens/27.png" width="400" />
+  <img src="./screens/28.png" width="400" />
+  <img src="./screens/29.png" width="400" />
+  <img src="./screens/30.png" width="400" />
 </p>
