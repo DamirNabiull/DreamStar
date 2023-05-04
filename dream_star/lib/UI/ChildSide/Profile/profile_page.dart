@@ -28,7 +28,7 @@ class ProfileChildScreenState extends ConsumerState<ProfileChildScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: white,
-      appBar: AppBar(title: const Text('Profile'), actions: <Widget>[
+      appBar: AppBar(title: Text('profile-title'.i18n()), actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.settings),
           onPressed: () {

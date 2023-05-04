@@ -23,7 +23,7 @@ class BalanceParentScreenState extends State<BalanceParentScreen> {
     return Scaffold(
       backgroundColor: white,
       appBar: AppBar(
-        title: const Text('Balance'),
+        title: Text('balance-title'.i18n()),
       ),
       body: Stack(
         children: [

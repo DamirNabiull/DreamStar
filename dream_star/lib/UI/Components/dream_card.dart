@@ -317,6 +317,7 @@ class DreamCardState extends ConsumerState<DreamCard> {
           widget.dreamInfo.cost,
         );
         updateStars(widget.dreamInfo.childId, -widget.dreamInfo.cost);
+        ref.read(userProvider).updateAuthInfo();
       },
     );
   }

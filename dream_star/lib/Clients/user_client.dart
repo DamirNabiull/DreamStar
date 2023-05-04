@@ -99,7 +99,7 @@ class UserClient {
   }
 
   Future updateAuthInfo() async {
-    await _setAuthInfo();
+    await _getUserInfo();
   }
 
   Future _setChildrenTokensList(bool isParent) async {
@@ -130,10 +130,6 @@ class UserClient {
 
   void _setUserRole(bool isParent) {
     role = isParent ? AppSide.parent : AppSide.child;
-  }
-
-  Future _setAuthInfo() async {
-    await _getUserInfo();
   }
 
   Future _getUserInfo() async {

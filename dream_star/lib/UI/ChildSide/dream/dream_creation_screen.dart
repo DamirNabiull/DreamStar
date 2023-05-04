@@ -132,6 +132,6 @@ class DreamCreationScreenState extends ConsumerState<DreamCreationScreen> {
           'create-dream'.i18n(),
           style: titleLargeStyle.copyWith(
               color: isButtonDisabled ? secondary : white),
-        ));
+        ),);
   }
 }
