@@ -19,6 +19,12 @@ class RegParentScreenState extends State<RegParentScreen> {
   Switch? _character = Switch.female;
   bool passwordVisible = false;
   bool passwordVisibleRep = false;
+  var name_input_text = TextEditingController();
+  var second_name_input_text = TextEditingController();
+  var birth_day_input_text = TextEditingController();
+  var email_input_text = TextEditingController();
+  var password_input_text = TextEditingController();
+  var verify_password_input_text = TextEditingController();
 
   @override
   void initState() {
@@ -97,49 +103,52 @@ class RegParentScreenState extends State<RegParentScreen> {
                     ),
                   ),
 
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: secondary),
-                    ),
+                  Material(
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
                     child: TextField(
+                      controller: name_input_text,
                       decoration: InputDecoration(
-                        border: InputBorder.none,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
                         labelText: "name-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
+                        filled: true,
+                        fillColor: Colors.white,
                       ),
                       style: const TextStyle(color: Colors.black),
                     ),
                   ),
                   const SizedBox(height: 15),
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: secondary),
-                    ),
+                  Material(
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
                     child: TextField(
+                      controller: second_name_input_text,
                       decoration: InputDecoration(
-                        border: InputBorder.none,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
                         labelText: "second-name-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
+                        filled: true,
+                        fillColor: Colors.white,
                       ),
                       style: const TextStyle(color: Colors.black),
                     ),
                   ),
                   const SizedBox(height: 15),
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: secondary),
-                    ),
+                  Material(
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
                     child: TextField(
+                      controller: birth_day_input_text,
                       decoration: InputDecoration(
-                        border: InputBorder.none,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
                         labelText: "birth-day-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
+                        filled: true,
+                        fillColor: Colors.white,
                       ),
                       style: const TextStyle(color: Colors.black),
                     ),
@@ -155,6 +164,7 @@ class RegParentScreenState extends State<RegParentScreen> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(color: secondary),
+                        color: Colors.white,
                       ),
                       child: Column(children: [
                         Text(
@@ -172,13 +182,13 @@ class RegParentScreenState extends State<RegParentScreen> {
                         padding: const EdgeInsets.all(1.0),
                         width: 146,
                         child: RadioListTile<Switch>(
-                          controlAffinity: ListTileControlAffinity.trailing,
+                          controlAffinity: ListTileControlAffinity.leading,
                           title: Text(
                             "switch-female-text".i18n(),
                             style: const TextStyle(
                                 fontWeight: FontWeight.normal,
                                 fontSize: 18,
-                                color: Colors.grey),
+                                color: Colors.black),
                           ),
                           activeColor: Colors.deepPurpleAccent,
                           value: Switch.female,
@@ -195,13 +205,13 @@ class RegParentScreenState extends State<RegParentScreen> {
                         padding: const EdgeInsets.all(1.0),
                         width: 146,
                         child: RadioListTile<Switch>(
-                          controlAffinity: ListTileControlAffinity.trailing,
+                          controlAffinity: ListTileControlAffinity.leading,
                           title: Text(
                             "switch-male-text".i18n(),
                             style: const TextStyle(
                                 fontWeight: FontWeight.normal,
                                 fontSize: 18,
-                                color: Colors.grey),
+                                color: Colors.black),
                           ),
                           activeColor: Colors.deepPurpleAccent,
                           value: Switch.male,
@@ -216,33 +226,35 @@ class RegParentScreenState extends State<RegParentScreen> {
                     ],
                   ),
                   const SizedBox(height: 15),
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: secondary),
-                    ),
+                  Material(
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
                     child: TextField(
+                      controller: email_input_text,
                       decoration: InputDecoration(
-                        border: InputBorder.none,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
                         labelText: "email-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
+                        filled: true,
+                        fillColor: Colors.white,
                       ),
                       style: const TextStyle(color: Colors.black),
                     ),
                   ),
                   const SizedBox(height: 15),
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: secondary),
-                    ),
+                  Material(
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
                     child: TextField(
+                      controller: password_input_text,
                       obscureText: passwordVisible,
                       decoration: InputDecoration(
-                        border: InputBorder.none,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
                         labelText: "password-input-text".i18n(),
+                        filled: true,
+                        fillColor: Colors.white,
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
                         suffixIcon: IconButton(
                           icon: Icon(passwordVisible
@@ -259,18 +271,19 @@ class RegParentScreenState extends State<RegParentScreen> {
                     ),
                   ),
                   const SizedBox(height: 15),
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: secondary),
-                    ),
+                  Material(
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
                     child: TextField(
+                      controller: verify_password_input_text,
                       obscureText: passwordVisibleRep,
                       decoration: InputDecoration(
-                        border: InputBorder.none,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
                         labelText: "verify-password-input-text".i18n(),
                         labelStyle: titleSmallStyle.copyWith(color: secondary),
+                        filled: true,
+                        fillColor: Colors.white,
                         suffixIcon: IconButton(
                           icon: Icon(passwordVisibleRep
                               ? Icons.visibility
