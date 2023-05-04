@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dream_star/Clients/providers.dart';
+import 'package:dream_star/DTO/dream_dto.dart';
 import 'package:dream_star/DTO/task_dto.dart';
 import 'package:dream_star/DTO/user_dto.dart';
+import 'package:dream_star/Models/dream_info.dart';
 import 'package:dream_star/Models/task_info.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,7 +17,7 @@ class FireStoreClient {
   late final CollectionReference<Map<String, dynamic>> _tasksCollection;
   late final CollectionReference<Map<String, dynamic>> _usersCollection;
   late final CollectionReference<Map<String, dynamic>> _tokensCollection;
-  // late final CollectionReference<Map<String, dynamic>> _dreamsCollection;
+  late final CollectionReference<Map<String, dynamic>> _dreamsCollection;
 
   final container = ProviderContainer();
   late final MappingClient _mapper = container.read(mappingProvider);
@@ -24,7 +26,7 @@ class FireStoreClient {
     _tasksCollection = db.collection("tasks");
     _usersCollection = db.collection("users");
     _tokensCollection = db.collection("tokens");
-    // _dreamsCollection = db.collection("dreams");
+    _dreamsCollection = db.collection("dreams");
   }
 
   void createToken(String token, String id, String password) {
@@ -83,6 +85,38 @@ class FireStoreClient {
           .map((snapshot) => snapshot.docs
               .map((doc) =>
                   _mapper.taskDTOToTaskInfo(TaskDTO.fromJson(doc.data())))
+              .toList());
+    }
+    return const Stream.empty();
+  }
+
+  void createDream(DreamInfo dreamInfo) async {
+    final dreamDTO = _mapper.dreamInfoToDreamDTO(dreamInfo);
+    final dreamRef = _dreamsCollection.doc();
+    dreamDTO.id = dreamRef.id;
+
+    await dreamRef.set(dreamDTO.toJson());
+  }
+
+  void updateDreamStatus(String dreamId, DreamStatus status) async {
+    final dreamRef = _dreamsCollection.doc(dreamId);
+    dreamRef.update({"status": status.toString()});
+  }
+
+  Stream<List<DreamInfo>> getDreams(List<String> childIds, List<DreamStatus> statusList) {
+    if (childIds.isNotEmpty) {
+      List<String> statuses = [];
+      for (var status in statusList) {
+        statuses.add(status.toString());
+      }
+      return _tasksCollection
+          .where("childId", whereIn: childIds)
+          .where("status", whereIn: statuses)
+          .orderBy('createdAt', descending: true)
+          .snapshots()
+          .map((snapshot) => snapshot.docs
+              .map((doc) =>
+                  _mapper.dreamDTOToDreamInfo(DreamDTO.fromJson(doc.data())))
               .toList());
     }
     return const Stream.empty();

@@ -142,7 +142,7 @@ class DreamCardState extends ConsumerState<DreamCard> {
           case DreamStatus.approved:
             return buildCostLabel(
                 SvgPicture.asset('assets/star-empty-14px-yellow.svg'));
-          case DreamStatus.await:
+          case DreamStatus.wait:
             return buildCostLabel(
                 SvgPicture.asset('assets/star-empty-14px-yellow.svg'));
           case DreamStatus.complete:
@@ -156,7 +156,7 @@ class DreamCardState extends ConsumerState<DreamCard> {
           case DreamStatus.approved:
             return buildCostLabel(
                 SvgPicture.asset('assets/star-empty-14px-yellow.svg'));
-          case DreamStatus.await:
+          case DreamStatus.wait:
             return buildCostLabel(
                 SvgPicture.asset('assets/star-empty-14px-yellow.svg'));
           case DreamStatus.complete:
@@ -246,7 +246,7 @@ class DreamCardState extends ConsumerState<DreamCard> {
                     .inactiveDreamButtonTextStyle);
           case DreamStatus.approved:
             return buildBuyButton();
-          case DreamStatus.await:
+          case DreamStatus.wait:
             return buildInactiveButton(
                 "child-await-dream-button-title".i18n(),
                 customTheme
@@ -273,7 +273,7 @@ class DreamCardState extends ConsumerState<DreamCard> {
                 : buildApproveButton();
           case DreamStatus.approved:
             return const SizedBox.shrink();
-          case DreamStatus.await:
+          case DreamStatus.wait:
             return buildCompleteButton();
           case DreamStatus.complete:
             return const SizedBox.shrink();
