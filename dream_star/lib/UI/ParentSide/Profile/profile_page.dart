@@ -97,20 +97,20 @@ class ProfileParentScreenState extends ConsumerState<ProfileParentScreen> {
                       border: Border.all(color: secondary),
                     ),
                     child: TextField(
-                        controller: birthDayInputText,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          labelText:
-                              "parent-profile-birth-day-input-text".i18n(),
-                          labelStyle: titleSmallStyle.copyWith(
-                            color: primary,
-                          ),
+                      controller: birthDayInputText,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        labelText: "parent-profile-birth-day-input-text".i18n(),
+                        labelStyle: titleSmallStyle.copyWith(
+                          color: primary,
                         ),
-                        style: const TextStyle(
-                          color: Colors.black,
-                        ),
-                        readOnly: true,
-                    enabled: false,),
+                      ),
+                      style: const TextStyle(
+                        color: Colors.black,
+                      ),
+                      readOnly: true,
+                      enabled: false,
+                    ),
                   ),
                   SizedBox(
                     height: 60,

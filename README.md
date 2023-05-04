@@ -18,6 +18,7 @@ Applications for teaching children financial literacy, self-organization, and go
 
 3) Application is already reasonable in some way
     - application can be used like ToDo list app
+    - now creations of dreams exists
 
 4) Missing network situation is handled
     - when the Internet connection is lost, a screen with a loading indicator appears
@@ -29,6 +30,14 @@ Applications for teaching children financial literacy, self-organization, and go
     - lint
     - testing
     - build for android
+
+## Test accounts
+1) Parent:
+    - email : test@test.ru
+    - password : test123
+
+2) Child:
+    - code : JNF6R
 
 ## Code
 1) Any networking - Firebase

@@ -46,8 +46,8 @@ void main() {
   test('Task mapper test', () {
     final mapper = MappingClient();
 
-    DreamInfo dreamInfo = DreamInfo('title', 'description', 0, DreamStatus.complete,
-        cardLineColors[0], 'childName', 'childId');
+    DreamInfo dreamInfo = DreamInfo('title', 'description', 0,
+        DreamStatus.complete, cardLineColors[0], 'childName', 'childId');
     DreamDTO dreamDTO = DreamDTO('title', 'description', 0,
         'DreamStatus.complete', 0, 'childName', 'childId');
 
