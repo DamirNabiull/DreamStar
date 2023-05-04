@@ -1,6 +1,8 @@
 import 'dart:ui';
 
+import 'package:dream_star/DTO/dream_dto.dart';
 import 'package:dream_star/DTO/task_dto.dart';
+import 'package:dream_star/Models/dream_info.dart';
 import 'package:dream_star/Models/task_info.dart';
 import 'package:dream_star/UI/themes.dart';
 
@@ -37,6 +39,33 @@ class MappingClient {
       TaskStatus.values.firstWhere((e) => e.toString() == status);
 
   String _taskStatusToString(TaskStatus status) => status.toString();
+
+  DreamInfo dreamDTOToDreamInfo(DreamDTO dreamDTO) => DreamInfo(
+        dreamDTO.title,
+        dreamDTO.description,
+        dreamDTO.cost,
+        _dreamStatusToEnum(dreamDTO.status),
+        _stringToColor(dreamDTO.color),
+        dreamDTO.childName,
+        dreamDTO.childId,
+        dreamDTO.id,
+      );
+
+  DreamDTO dreamInfoToDreamDTO(DreamInfo dream) => DreamDTO(
+        dream.title,
+        dream.description,
+        dream.cost,
+        _dreamStatusToString(dream.status),
+        _colorToInt(dream.lineColor),
+        dream.childName,
+        dream.childId,
+        dream.id,
+      );
+
+  DreamStatus _dreamStatusToEnum(String status) =>
+      DreamStatus.values.firstWhere((e) => e.toString() == status);
+
+  String _dreamStatusToString(DreamStatus status) => status.toString();
 
   Color _stringToColor(int color) => cardLineColors[color];
 
